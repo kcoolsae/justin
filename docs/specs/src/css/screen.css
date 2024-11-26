@@ -11,7 +11,12 @@ body {
 }
 
 strong {
-    font-weight: 500;
+    font-weight: 600;
+    color: #333333;
+}
+
+.note strong {
+    color: purple;
 }
 
 h1, h2, h3 {
@@ -27,6 +32,11 @@ h2, h3, h4 {
 
 a {
     color: #00aaaa;
+}
+
+code {
+    font-size: smaller;
+    color: #337777;
 }
 
 a[href^="http://"]:before {
@@ -84,6 +94,11 @@ div.container p {
     padding: 5px 20px;
     border-top: 1px solid grey;
     border-radius: 0;
+}
+
+.note {
+    color: purple;
+    font-size: smaller;
 }
 
 

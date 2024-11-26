@@ -20,6 +20,10 @@ destination: ../docs/
 # Build settings
 markdown: kramdown
 
+kramdown:
+    syntax_highlighter_opts:
+      disable: true
+
 # Default settings
 defaults:
    -
