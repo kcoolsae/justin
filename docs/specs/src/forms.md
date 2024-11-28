@@ -52,6 +52,17 @@ Note that category selection (*are you an accompanying person* or *do you intend
 to participate in the task editing process*) is already a type of
 conditional question.
 
+Question text
+---
+
+Question text can be formatted using markdown. This allows for
+italics, bold, lists, links to external pages, etc.
+
+{:.note}
+Do we need to support inclusion of images in the question text? This
+is technically more different and also requires an additional
+user interface for the user to upload images.
+
 Technical
 ---
 
