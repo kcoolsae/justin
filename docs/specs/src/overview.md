@@ -27,7 +27,7 @@ Data
 
 The data stored falls into three different categories
 
-**Personal data** Full name, email address, country, role. This information is used to identify the
+**Personal data** Full name, email address, country, privileges (see below). This information is used to identify the
 participant. (A participant can see who else of their country is participating in the workshop and in what role.)
 
 **Background** as a member of the community. This data is used by the task handling committee (THC) to set up work
@@ -77,34 +77,48 @@ with the system does not necessarily imply that they will participate in the wor
 Authentication
 ---
 As the web application will be used only a few times per year we would prefer not to use a password authentication
-system, as most people
-tend to forget passwords for this type of application and need to click the 'forgot password' link anyway. So we cut out
-the middle man:
+system, as most people tend to forget passwords for this type of application and need to click the 'forgot password'
+link anyway. So we cut out the middle man:
 
 To authenticate, people have to type in their e-mail address and click a submit button. This sends a mail to that email
-address with a
-link they can use to access the system. This link is valid for a certain amount of time (say, 24 hours) and can be used
+address with a link they can use to access the system. This link is valid for a certain amount of time (say, 24 hours) and can be used
 only once.
-
-Registering as a new user is done in the same way, although we provide a separate 'Register' button for that purpose.
-When registering, the user
-must provide their full name and indicate the country they are associated with.
-
-Users that belong to the same country can see each other's email address, name and whether they are participating in the
-workshop that year. Currently,
-this is the only check we have in place to prevent people from doing 'fake' registrations.
 
 {:.note}
 Should we provide an alternative way of authentication for users that need frequent access (administrators) or for whom
 emails from the system
 tend to arrive in their spam folder?
 
+Registration
+---
+{:.note}
+We see two different options for registration.
+
+1 A special link is provided for first time registration. This leads to a page into which
+new users can enter email address, full name and country. After submitting this page, it needs to
+be confirmed that this registration is valid, by
+* A registered user of the same country, or
+* a user with a special *Registration* privilege. (e.g., a THC member)
+
+This sends an email to the new user to confirm their access to these system.
+
+2 Self-registration is not possilble. Instead
+* A registered user can register a new user *for the same country*,
+* or a user with a *Registration* privilege can register anyone, independent of country
+
+In this case only email address (and country) are entered in the system. The new user receives
+a mail with a link to complete the registration (and enter their full name).
+
+{:.note}
+**TODO** Select which of those methods we shall use.
+
 Language
 --------
 Only an English language user interface is provided.
 
 {:.note}
-This is important for technical reasons - internationalizing a web application which originally was not intended to be, is
+This is important for technical reasons - internationalizing a web application which originally was not intended to be,
+is
 an enormous amount of work. On the other hand, a single language application is much easier to program.
 
 

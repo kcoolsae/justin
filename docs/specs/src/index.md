@@ -9,6 +9,9 @@ See
 * [Overview](overview.md)
 * [Form structure](forms.md)
 
+Recent changes
+* November 28 - [registration procedure](overview.md#registration)
+
 Schedule
 * High priority: the interface for the user: authentication, registration, data entry
 * Medium priority: data retrieval by authorised users
