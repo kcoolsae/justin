@@ -7,9 +7,11 @@ and some additional (technical) information.
 
 See
 * [Overview](overview.md)
+* [Form mockups](mockups/formpage1.html) - what the forms could look like
 * [Form structure](forms.md)
 
 Recent changes
+* November 30 - [form structure](forms.md) and [mockups](mockups/formpage1.html)
 * November 28 - [registration procedure](overview.md#registration)
 
 Schedule
@@ -17,7 +19,4 @@ Schedule
 * Medium priority: data retrieval by authorised users
 * Lower priority: compilation of question forms (could be done offline for the first year), assignment of roles, special cases
 
-{:.note}
-It may be possible to export a Google form to a format that can be imported into the system or database. 
-(According to ChatGPT - haven't tried this, but worth pursuing.)
 

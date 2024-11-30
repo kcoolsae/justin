@@ -8,7 +8,7 @@ International Workshop
 See
 * [Specifications](docs/specs/README.md) 
 
-(\*) Working title. Refers to *Justin Bieber*, where 'Bieber' is the German word for
-'beaver'.
+(\*) Working title. Refers to *Justin Bieber*, where 'Bieber' is
+pronounced exactly like 'Biber', the German word for 'beaver'.
 
 

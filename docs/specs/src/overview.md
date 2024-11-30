@@ -8,7 +8,7 @@ See also:
 ---
 
 In order to organise the Bebras International Workshop, a lot of information is needed about the participants,
-concerning their background as a member of the community and there preferences for (accommodation during) the workshop.
+concerning their background as a member of the community and their preferences for (accommodation during) the workshop.
 Traditionally, this information is gathered through several web-based forms (Google forms, say) that are filled in by
 the participants in the weeks before the workshop.
 
@@ -61,6 +61,9 @@ given this privilege for the category 'preferences'.
 **View personal data** Can see names, email addresses and countries for *all* users (and not only
 for users of the same country).
 
+**Register new users** (See also below) Can register new users or validate registrations. Possibly distinguished between
+only for a specific country vs. for any country.
+
 **Admin** Can assign/revoke privileges to/from users. Can reset the system between subsequent workshops.
 
 {:.note}
@@ -91,6 +94,7 @@ tend to arrive in their spam folder?
 
 Registration
 ---
+
 {:.note}
 We see two different options for registration.
 
@@ -102,15 +106,19 @@ be confirmed that this registration is valid, by
 
 This sends an email to the new user to confirm their access to these system.
 
-2 Self-registration is not possilble. Instead
+2 Self-registration is not possible. Instead
 * A registered user can register a new user *for the same country*,
 * or a user with a *Registration* privilege can register anyone, independent of country
 
 In this case only email address (and country) are entered in the system. The new user receives
 a mail with a link to complete the registration (and enter their full name).
 
+The above is a *lenient* version. There is also an option to be a bit *stricter*: not everyone from the
+same country can validate registration of a new user (case 1) or register a new user (case 2). Instead, only a selected
+number of people of that country can do so. (I.e., those having a special *Registration* privilege.)
+
 {:.note}
-**TODO** Select which of those methods we shall use.
+**TODO** Select which method we shall use (1 or 2) and whether in the *strict* or in the *lenient* version.
 
 Language
 --------
@@ -118,7 +126,6 @@ Only an English language user interface is provided.
 
 {:.note}
 This is important for technical reasons - internationalizing a web application which originally was not intended to be,
-is
-an enormous amount of work. On the other hand, a single language application is much easier to program.
+is an enormous amount of work. On the other hand, a single language application is much easier to program.
 
 

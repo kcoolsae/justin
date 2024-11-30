@@ -1,0 +1,33 @@
+/* Google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+
+body {
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 400;
+    background-color: #cceeff;
+    color: black;
+    height: 100%;
+}
+
+.container-md {
+    max-width: 768px; /* Bootstrap 5 Medium breakpoint */
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.form-check-input {
+    border: 1px solid #0d6efd;
+}
+
+textarea.form-control {
+    border-color: #0d6efd;
+}
+
+b, strong {
+    font-weight: 500;
+}
+
+.note {
+    font-size: 0.9rem;
+    color: purple;
+}

@@ -1,0 +1,133 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justin - example form page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="mockups.css" rel="stylesheet">
+</head>
+<body>
+<div class="container-md">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">Conference center registration form</h3>
+            <p>Application for participation in the 21st <b>Bebras International Task Workshop</b> - some week in May
+                2025, In South Korea</p>
+            <p>Hotel reservation and accommodation form for <i>onsite</i> participants, guests and accompanying persons.
+            </p>
+            <p class="text-danger"><b>*</b> Denotes a mandatory question</p>
+        </div>
+    </div>
+    <div class="card mt-3">
+        <div class="card-body">
+            <h4 class="card-title">Question showcase</h4>
+            <p>The remainder of the 'questions' on this form are simply here to showcase the additional question types
+                which did not occur on the previous pages. We already had <i>multiple choice (radio)</i>, <i>text</i>,
+                <i>text area</i> and <i>date</i>.
+            </p>
+        </div>
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="card-title">Multiple choice (radio) with 'other'</h5>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="question22" value="1">
+                <label class="form-check-label">Primary school</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="question22" value="2">
+                <label class="form-check-label">Secondary school</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="question22" value="3">
+                <label class="form-check-label">Higher education</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="question22" value="4" data-other="text1">
+                <label class="form-check-label me-4">Other...</label>
+                <input id="text1" type="text" disabled>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="card-title">Multiple choice (dropdown)</h5>
+            <p>Specify your T-shirt size</p>
+            <select class="form-select">
+                <option selected>Choose...</option>
+                <option value="1">S</option>
+                <option value="2">M</option>
+                <option value="3">L</option>
+                <option value="4">XL</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="card-title">Multiple choice (buttons)</h5>
+            <input type="radio" class="btn-check" name="question123" id="option1" autocomplete="off">
+            <label class="btn btn-outline-primary" for="option1">Yes</label>
+
+            <input type="radio" class="btn-check" name="question123" id="option2" autocomplete="off">
+            <label class="btn btn-outline-primary" for="option2">No</label>
+
+            <input type="radio" class="btn-check" name="question123" id="option3" autocomplete="off">
+            <label class="btn btn-outline-primary" for="option3">Maybe</label>
+
+            <p class="note mt-2">Only for very short answers. Not sure whether we shall keep this. (Does not exist in Google forms.)</p>
+        </div>
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="card-title">Checkboxes</h5>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label">I am allergic to chocolate</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label">I suffer from jetlag, so cannot work on the first day</label>
+            </div>
+        </div>
+    </div>
+
+      <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="card-title">Intermediate title</h5>
+            <p>Allows some extra explanation to be added before a set of questions, without
+            starting a new page.</p>
+            <p class="note">Not sure whether we shall keep this...</p>
+        </div>
+      </div>
+
+  <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="card-title">Checkboxes with 'other'</h5>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label">I will bring chocolate</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox">
+                <label class="form-check-label">I will bring fridge magnets</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" data-other="text2">
+                <label class="form-check-label me-4">Other...</label>
+                <input type="text" id="text2" disabled>
+            </div>
+        </div>
+    </div>
+
+    <p class="mt-3">
+        <a href="formpage2.html" class="btn btn-outline-primary">Back</a>
+        <a href="../forms.html" class="btn btn-primary">Submit</a>
+    </p>
+</div>
+
+<script src="others.js"></script>
+</body>
