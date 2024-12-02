@@ -1,0 +1,39 @@
+@* sign_in.scala.html
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2023-2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+@import views.html.layout.raw
+
+@()
+
+@raw("sign_in") {
+    <div class="container-sm">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <img src='@routes.Assets.versioned("img/bebras_org-logo.svg")' class="img-fluid" alt="Logo of Bebras International">
+                    </div>
+                </div>
+                <h5 class="card-title">Bebras international workshop information system</h5>
+                <form action="@routes.HomeController.todo()" method="GET">
+                    <div class="row">
+                        <div class="col"><input class="form-control" type="text" name="email" placeholder="Registered email address"></div>
+                        <div class="col-auto"><button type="submit" class="btn btn-primary">Sign in</button></div>
+                    </div>
+                </form>
+                <div class="row">
+                    <p class="form-text">
+                        You will receive an email with a (temporary) link granting you access to the system.</p>
+                </div>
+                <div class="row">
+                    <a href="@routes.HomeController.todo()">Not registered?</a>
+                </div>
+            </div>
+        </div>
+        <p></p>
+    </div>
+}

@@ -17,17 +17,9 @@ libraryDependencies ++= Seq(
   "org.postgresql" % "postgresql" % "42.7.4" % Runtime
 )
 
-// Include local template extensions
-// TODO are both of them needed?
-TwirlKeys.templateImports ++= Seq(
-  "views.html.ext._",
-  "views.html.b5._"
-)
-
 // Include template extensions for be.ugent.caagt:play-utils
 TwirlKeys.templateImports ++= Seq(
   "_root_.be.ugent.caagt.play.util.TemplateJavaMagic._",
-  "_root_.common._",
   "views.html.be.ugent.caagt.play.ext._"
 )
 

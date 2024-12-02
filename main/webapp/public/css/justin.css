@@ -1,0 +1,41 @@
+/*
+ * justin.css
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Copyright © 2024 Kris Coolsaet (Universiteit Gent)
+ *
+ * This software is distributed under the MIT License - see files LICENSE and AUTHORS
+ * in the top level project directory.
+ */
+
+/* Google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+
+/* TODO serve fonts locally */
+
+/* General styling */
+body {
+    height: 100%;
+}
+
+.container-md {
+    max-width: 768px; /* Bootstrap 5 Medium breakpoint */
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.container-sm {
+    max-width: 576px; /* Bootstrap 5 Small breakpoint */
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Originally: bolder - too bold */
+/*
+b, strong {
+    font-weight: 500;
+}
+*/
+
+textarea.form-control {
+    border-color: #0b77b6;
+}
