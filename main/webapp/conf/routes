@@ -2,6 +2,7 @@
 
 # home + authentication
 GET     /        controllers.HomeController.index(request: Request)
+POST    /a/s     controllers.AuthenticationController.signIn(request: Request)
 
 # extra
 GET     /x/t     controllers.HomeController.todo(request: Request)

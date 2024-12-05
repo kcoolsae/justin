@@ -5,12 +5,14 @@
 * This software is distributed under the MIT License - see files LICENSE and AUTHORS
 * in the top level project directory.
 *@
+@import deputies.Deputy
 @import views.html.layout.raw
-
-@()
+@import views.html.b5._
+@(f: Form[deputies.AuthenticationDeputy.EmailData])(implicit deputy: Deputy)
 
 @raw("sign_in") {
     <div class="container-sm">
+        @layout._show_status()
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -19,15 +21,15 @@
                     </div>
                 </div>
                 <h5 class="card-title">Bebras international workshop information system</h5>
-                <form action="@routes.HomeController.todo()" method="GET">
+                @helper.form(routes.AuthenticationController.signIn()) {
                     <div class="row">
-                        <div class="col"><input class="form-control" type="text" name="email" placeholder="Registered email address"></div>
+                        @b5.email(f("email"), "placeholder" -> "Registered email address", "_class" -> "col", "_label" -> None)
                         <div class="col-auto"><button type="submit" class="btn btn-primary">Sign in</button></div>
                     </div>
-                </form>
+                }
                 <div class="row">
                     <p class="form-text">
-                        You will receive an email with a (temporary) link granting you access to the system.</p>
+                        You will receive an email with a (temporary) link granting you access to the system. (Registered users only.)</p>
                 </div>
                 <div class="row">
                     <a href="@routes.HomeController.todo()">Not registered?</a>

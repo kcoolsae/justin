@@ -9,8 +9,8 @@
 
 package deputies;
 
-import be.ugent.caagt.play.deputies.Deputy;
 import play.mvc.Result;
+import views.html.auth.sign_in;
 
 public class HomeDeputy extends Deputy {
 
@@ -18,7 +18,7 @@ public class HomeDeputy extends Deputy {
      * Login page
      */
     public Result index() {
-        return ok(views.html.auth.sign_in.render());
+        return ok(sign_in.render(emptyForm(AuthenticationDeputy.EmailData.class), this));
     }
 
     /**
