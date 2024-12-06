@@ -10,6 +10,7 @@
 package deputies;
 
 import common.DataAccessDeputy;
+import common.Session;
 import lombok.Getter;
 import lombok.Setter;
 import play.data.Form;
@@ -18,6 +19,8 @@ import play.libs.mailer.Email;
 import play.libs.mailer.MailerClient;
 import play.mvc.Result;
 import views.html.auth.sign_in;
+
+import java.util.Map;
 
 @Setter
 public class AuthenticationDeputy extends DataAccessDeputy {
@@ -68,11 +71,36 @@ public class AuthenticationDeputy extends DataAccessDeputy {
                         Please use the link below to log in to the system.  (The link is valid for 30 minutes only!)
                         
                         """
-                        + hostUri() + controllers.routes.HomeController.landing(token);
+                        + hostUri() + controllers.routes.AuthenticationController.login(token);
                 sendEmail("Bebras Justin - Sign-in", email, message);
                 success("An email was sent to the given address.");
             }
-            return redirect(controllers.routes.HomeController.index());
+            return redirectToIndex();
         }
+    }
+
+    /**
+     * Token login by registered user.
+     */
+    public Result login(String token) {
+        int userId = dac().getUserDao().getUserIdForLoginToken(token);
+        if (userId == 0) {
+            error("""
+                    The link you used to access the system is either invalid or
+                    has expired. Please sign in again to continue.""");
+            return redirectToIndex();
+        } else {
+            return redirectToIndex().withSession(
+                    Map.of(Session.ID, userId + "")
+            );
+        }
+    }
+
+    /**
+     * Logout
+     */
+    public Result logout() {
+        success("Successfully logged out.");
+        return redirectToIndex().withNewSession();
     }
 }

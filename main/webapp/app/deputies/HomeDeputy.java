@@ -9,6 +9,7 @@
 
 package deputies;
 
+import common.Session;
 import play.mvc.Result;
 import views.html.auth.sign_in;
 
@@ -18,13 +19,17 @@ public class HomeDeputy extends Deputy {
      * Starting page
      */
     public Result index() {
-        return ok(sign_in.render(emptyForm(AuthenticationDeputy.EmailData.class), this));
+        if (findInSession(Session.ID) != null) {
+            return landing();
+        } else {
+            return ok(sign_in.render(emptyForm(AuthenticationDeputy.EmailData.class), this));
+        }
     }
 
     /**
      * Landing page for a registered user.
      */
-    public Result landing(String token) {
+    private Result landing() {
         return ok(views.html.home.landing.render(this));
     }
 

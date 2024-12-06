@@ -16,4 +16,10 @@ public interface UserDao {
      * when the user does not exist.
      */
     String createToken (String email);
+
+    /**
+     * Return the user ID for the given (login) token. Returns 0 when not found
+     * or when the token is expired.
+     */
+    int getUserIdForLoginToken (String token);
 }

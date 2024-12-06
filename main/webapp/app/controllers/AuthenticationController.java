@@ -36,4 +36,13 @@ public class AuthenticationController extends DataAccessController<Authenticatio
     public Result signIn(Http.Request request) {
         return createDeputy(request).signIn();
     }
+
+    public Result login (Http.Request request, String token) {
+        return createDeputy(request).login(token);
+    }
+
+    public Result logout (Http.Request request) {
+        return createDeputy(request).logout();
+    }
+
 }

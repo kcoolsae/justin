@@ -13,7 +13,7 @@ CREATE TABLE users (
 CREATE TABLE tokens (
     user_id       INTEGER PRIMARY KEY REFERENCES users,
     token_text    TEXT UNIQUE NOT NULL,
-    token_expires TIMESTAMP   NOT NULL DEFAULT NOW() + INTERVAL '30 minutes' -- default 30 minutes
+    token_expires TIMESTAMP   NOT NULL
 );
 
 

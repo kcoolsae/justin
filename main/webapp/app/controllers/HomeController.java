@@ -28,10 +28,6 @@ public class HomeController extends Controller<HomeDeputy> {
         return createDeputy(request).index();
     }
 
-    public Result landing(Http.Request request, String token) {
-        return createDeputy(request).landing(token);
-    }
-
     public Result todo(Http.Request request) {
         return createDeputy(request).todo();
     }

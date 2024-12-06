@@ -11,6 +11,7 @@ package be.ugent.justin.db.jdbc;
 
 import be.ugent.justin.db.dao.UserDao;
 
+import java.time.Instant;
 import java.util.UUID;
 
 public class JDBCUserDao extends JDBCAbstractDao implements UserDao {
@@ -27,12 +28,22 @@ public class JDBCUserDao extends JDBCAbstractDao implements UserDao {
         if (userId == 0) {
             return null;
         } else {
-            String token = UUID.randomUUID().toString();
+            String token = UUID.randomUUID() + "-" + (1234 + userId);
+            Instant expires = Instant.now().plusSeconds(60 * 30); // TODO make configurable
             insertOrUpdateInto("tokens")
                     .key("user_id", userId)
                     .value("token_text", token)
+                    .value("token_expires", expires)
                     .execute();
             return token;
         }
+    }
+
+    @Override
+    public int getUserIdForLoginToken(String token) {
+        return select("user_id").from("tokens")
+                .where("token_text", token)
+                .where("token_expires > NOW()")
+                .getInt();
     }
 }
