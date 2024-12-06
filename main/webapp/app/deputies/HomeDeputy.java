@@ -15,10 +15,17 @@ import views.html.auth.sign_in;
 public class HomeDeputy extends Deputy {
 
     /**
-     * Login page
+     * Starting page
      */
     public Result index() {
         return ok(sign_in.render(emptyForm(AuthenticationDeputy.EmailData.class), this));
+    }
+
+    /**
+     * Landing page for a registered user.
+     */
+    public Result landing(String token) {
+        return ok(views.html.home.landing.render(this));
     }
 
     /**

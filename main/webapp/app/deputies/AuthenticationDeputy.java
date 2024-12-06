@@ -18,6 +18,8 @@ import play.libs.mailer.MailerClient;
 import play.mvc.Result;
 import views.html.auth.sign_in;
 
+import java.util.UUID;
+
 public class AuthenticationDeputy extends Deputy {
 
     private MailerClient mailerClient; // injected by controller!
@@ -61,13 +63,14 @@ public class AuthenticationDeputy extends Deputy {
         if (form.hasErrors()) {
             return badRequest(sign_in.render(form, this));
         } else {
+            String token = UUID.randomUUID().toString();
             String message = """
                     Dear user,
                     
                     Please use the link below to log in to the system.  (The link is valid for 30 minutes only!)
                     
                     """
-                    + hostUri() + controllers.routes.HomeController.index();
+                    + hostUri() + controllers.routes.HomeController.landing(token);
             sendEmail("Bebras Justin - Sign-in", form.get().email, message);
             success("An email was sent to the given address.");
             return redirect(controllers.routes.HomeController.index());
