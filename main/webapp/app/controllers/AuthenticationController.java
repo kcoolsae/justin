@@ -9,7 +9,7 @@
 
 package controllers;
 
-import be.ugent.caagt.play.controllers.Controller;
+import common.DataAccessController;
 import deputies.AuthenticationDeputy;
 import play.libs.mailer.MailerClient;
 import play.mvc.Http;
@@ -17,7 +17,7 @@ import play.mvc.Result;
 
 import javax.inject.Inject;
 
-public class AuthenticationController extends Controller<AuthenticationDeputy> {
+public class AuthenticationController extends DataAccessController<AuthenticationDeputy> {
 
     @Inject
     private MailerClient mailerClient;

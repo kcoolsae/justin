@@ -9,6 +9,7 @@
 
 package deputies;
 
+import common.DataAccessDeputy;
 import lombok.Getter;
 import lombok.Setter;
 import play.data.Form;
@@ -18,15 +19,10 @@ import play.libs.mailer.MailerClient;
 import play.mvc.Result;
 import views.html.auth.sign_in;
 
-import java.util.UUID;
-
-public class AuthenticationDeputy extends Deputy {
+@Setter
+public class AuthenticationDeputy extends DataAccessDeputy {
 
     private MailerClient mailerClient; // injected by controller!
-
-    public void setMailerClient(MailerClient mailerClient) {
-        this.mailerClient = mailerClient;
-    }
 
     private void sendEmail(String subject, String to, String text) {
         Email email = new Email()
@@ -63,16 +59,19 @@ public class AuthenticationDeputy extends Deputy {
         if (form.hasErrors()) {
             return badRequest(sign_in.render(form, this));
         } else {
-            String token = UUID.randomUUID().toString();
-            String message = """
-                    Dear user,
-                    
-                    Please use the link below to log in to the system.  (The link is valid for 30 minutes only!)
-                    
-                    """
-                    + hostUri() + controllers.routes.HomeController.landing(token);
-            sendEmail("Bebras Justin - Sign-in", form.get().email, message);
-            success("An email was sent to the given address.");
+            String email = form.get().email;
+            String token = dac().getUserDao().createToken(email);
+            if (token != null) {
+                String message = """
+                        Dear user,
+                        
+                        Please use the link below to log in to the system.  (The link is valid for 30 minutes only!)
+                        
+                        """
+                        + hostUri() + controllers.routes.HomeController.landing(token);
+                sendEmail("Bebras Justin - Sign-in", email, message);
+                success("An email was sent to the given address.");
+            }
             return redirect(controllers.routes.HomeController.index());
         }
     }

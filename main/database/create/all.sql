@@ -1,0 +1,2 @@
+--
+\ir people.sql
