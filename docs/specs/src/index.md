@@ -9,8 +9,11 @@ See
 * [Overview](overview.md)
 * [Form mockups](mockups/formpage1.html) - what the forms could look like
 * [Form structure](forms.md)
+* [Events / categories](events.md)
 
 Recent changes
+* December 7 - [events / categories](events.md)
+* December 6 - the application is live at [https://justin.ugent.be/justin](https://justin.ugent.be/justin).
 * November 30 - [form structure](forms.md) and [mockups](mockups/formpage1.html)
 * November 28 - [registration procedure](overview.md#registration)
 

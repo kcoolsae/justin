@@ -35,8 +35,12 @@ a {
 }
 
 code {
-    font-size: smaller;
+    font-size: 0.9rem;
     color: #337777;
+}
+
+em {
+    color: #005555;
 }
 
 a[href^="http://"]:before {
@@ -98,7 +102,6 @@ div.container p {
 
 .note {
     color: purple;
-    font-size: smaller;
 }
 
 

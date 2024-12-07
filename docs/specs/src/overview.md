@@ -98,7 +98,7 @@ Registration
 {:.note}
 We see two different options for registration.
 
-1 A special link is provided for first time registration. This leads to a page into which
+1 A special link is provided for first time **registration**. This leads to a page into which
 new users can enter email address, full name and country. After submitting this page, it needs to
 be confirmed that this registration is valid, by
 * A registered user of the same country, or
@@ -107,14 +107,14 @@ be confirmed that this registration is valid, by
 This sends an email to the new user to confirm their access to these system.
 
 2 Self-registration is not possible. Instead
-* A registered user can register a new user *for the same country*,
-* or a user with a *Registration* privilege can register anyone, independent of country
+* A registered user can **invite** a new user *from the same country*,
+* or a user with a *Registration* privilege can invite anyone, independent of country
 
 In this case only email address (and country) are entered in the system. The new user receives
-a mail with a link to complete the registration (and enter their full name).
+a mail with a link to complete their registration (and enter their full name), no further confirmation is necessary.
 
 The above is a *lenient* version. There is also an option to be a bit *stricter*: not everyone from the
-same country can validate registration of a new user (case 1) or register a new user (case 2). Instead, only a selected
+same country can confirm registration of a new user (case 1) or invite a new user (case 2). Instead, only a selected
 number of people of that country can do so. (I.e., those having a special *Registration* privilege.)
 
 {:.note}
