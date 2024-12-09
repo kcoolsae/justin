@@ -19,8 +19,8 @@
                      height="60">
                 </a>
                 <ul class="nav nav-pills">
-                    <li class="nav-item my-2">Country: BE</li>
-                    @_profile_menu()
+                    <li class="nav-item my-2">Country: @deputy.getRequest.session.get("country")</li>
+                    @_profile_menu(deputy)
                 </ul>
             </nav>
         </header>

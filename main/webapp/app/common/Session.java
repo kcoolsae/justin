@@ -7,7 +7,9 @@
  * in the top level project directory.
  */
 
-package common;/**
+package common;
+
+/**
  * Defines and documents all session variables
  */
 public final class Session {
@@ -17,5 +19,15 @@ public final class Session {
      * Not present when nobody is logged in. Non-zero integer.
      */
     public static final String ID = "id";
+
+    /**
+     * Name of the user currently logged in. Not present when nobody is logged in.
+     */
+    public static final String NAME = "name";
+
+    /**
+     * Country of the user currently logged in. Not present when nobody is logged in.
+     */
+    public static final String COUNTRY = "country";
 
 }

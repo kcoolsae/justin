@@ -9,6 +9,7 @@
 
 package deputies;
 
+import be.ugent.justin.db.dto.User;
 import common.DataAccessDeputy;
 import common.Session;
 import lombok.Getter;
@@ -90,8 +91,9 @@ public class AuthenticationDeputy extends DataAccessDeputy {
                     has expired. Please sign in again to continue.""");
             return redirectToIndex();
         } else {
+            User user = dac().getUserDao().getUserById(userId); // TODO combine with getUserIdForLoginToken ?
             return redirectToIndex().withSession(
-                    Map.of(Session.ID, userId + "")
+                    Map.of(Session.ID, userId + "", Session.NAME, user.name(), Session.COUNTRY, user.country())
             );
         }
     }

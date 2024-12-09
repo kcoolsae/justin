@@ -10,6 +10,7 @@
 package be.ugent.justin.db.jdbc;
 
 import be.ugent.justin.db.dao.UserDao;
+import be.ugent.justin.db.dto.User;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -45,5 +46,18 @@ public class JDBCUserDao extends JDBCAbstractDao implements UserDao {
                 .where("token_text", token)
                 .where("token_expires > NOW()")
                 .getInt();
+    }
+
+    @Override
+    public User getUserById(int userId) {
+        return select("user_email, user_name, user_country")
+                .from("users")
+                .where("user_id", userId)
+                .getObject(rs -> new User(
+                        userId,
+                        rs.getString("user_email"),
+                        rs.getString("user_name"),
+                        rs.getString("user_country")
+                ));
     }
 }

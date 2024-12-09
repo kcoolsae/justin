@@ -7,7 +7,9 @@
 
 CREATE TABLE users (
     user_id       SERIAL PRIMARY KEY,
-    user_email    TEXT UNIQUE NOT NULL -- always trimmed lower case
+    user_email    TEXT UNIQUE NOT NULL, -- always trimmed lower case
+    user_name     TEXT NOT NULL,
+    user_country  CHAR(2) NOT NULL -- may reference a country table
 );
 
 CREATE TABLE tokens (

@@ -9,6 +9,8 @@
 
 package be.ugent.justin.db.dao;
 
+import be.ugent.justin.db.dto.User;
+
 public interface UserDao {
 
     /**
@@ -22,4 +24,9 @@ public interface UserDao {
      * or when the token is expired.
      */
     int getUserIdForLoginToken (String token);
+
+    /**
+     * Return the user for the given ID. Returns null when not found.
+     */
+    User getUserById (int userId);
 }
