@@ -46,9 +46,17 @@ need not necessarily register with the system. But then the host must make sure 
 
 The status of an event can be one of the following:
 
-* *In preparation* Administrators can create categories, forms, etc. for the event, but the event is not yet visible to regular users.
+* *Pending* Administrators can create categories, forms, etc. for the event, but the event is not yet visible to regular users.
 * *Published* Users can indicate whether they will attend the event or not, but questionnaires are not yet available.
 * *Open* Users can fill out the questionnaires.
 * *Closed* Users can no longer fill out the questionnaires.
 * *Archived* The event is no longer visible to regular users.
+To regular users, *pending* and *archived* look basically the same.
 
+See also
+* Mockups of the landing page depending on status :
+[pending](mockups/pending.html),
+[published](mockups/published.html),
+[open](mockups/open.html),
+[closed](mockups/closed.html),
+[archived](mockups/archived.html).

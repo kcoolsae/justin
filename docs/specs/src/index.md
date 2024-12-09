@@ -12,6 +12,7 @@ See
 * [Events / categories](events.md)
 
 Recent changes
+* December 9 - [mockups](mockups/pending.html) of the landing page, depending on status.
 * December 7 - [events / categories](events.md)
 * December 6 - the application is live at [https://justin.ugent.be/justin](https://justin.ugent.be/justin).
 * November 30 - [form structure](forms.md) and [mockups](mockups/formpage1.html)

@@ -6,11 +6,9 @@
 * in the top level project directory.
 *@
 @import deputies.Deputy
-@import views.html.layout.raw
-@import views.html.b5._
 @(f: Form[deputies.AuthenticationDeputy.EmailData])(implicit deputy: Deputy)
 
-@raw("sign_in") {
+@layout.raw("sign_in") {
     <div class="container-sm">
         @layout._show_status()
         <div class="card">
@@ -36,6 +34,5 @@
                 </div>
             </div>
         </div>
-        <p></p>
     </div>
 }

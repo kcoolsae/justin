@@ -4,9 +4,12 @@
 body {
     font-family: 'Fira Sans', sans-serif;
     font-weight: 400;
-    background-color: #cceeff;
     color: black;
     height: 100%;
+}
+
+body.form-page {
+    background-color: #cceeff;
 }
 
 .container-md {
@@ -30,4 +33,20 @@ b, strong {
 .note {
     font-size: 0.9rem;
     color: purple;
+}
+.note a {
+    color: purple;
+}
+
+.navbar {
+    padding: 0 2px 0 2px;
+    border-bottom: 2px solid #008bc8;
+}
+
+.nav-link {
+    color: #008bc8;
+}
+
+.navbar-brand img {
+    height: 60px;
 }

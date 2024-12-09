@@ -1,0 +1,30 @@
+@* plain.scala.html
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+
+@import views.html.layout.raw
+@(pageId: String, css: Html = Html(""), js: Html = Html(""))(content: => Html)(implicit deputy: deputies.Deputy)
+
+@raw(pageId, css, js){
+    <div class="container-md">
+        <header>
+            <nav class="navbar justify-content-between mb-2">
+                <a class="navbar-brand" href="@controllers.routes.HomeController.index()">
+                    <img src='@routes.Assets.versioned("img/bebras_org-logo.svg")'
+                     alt="Logo of Bebras International"
+                     height="60">
+                </a>
+                <ul class="nav nav-pills">
+                    <li class="nav-item my-2">Country: BE</li>
+                    @_profile_menu()
+                </ul>
+            </nav>
+        </header>
+        @_show_status()
+        <main>@content</main>
+    </div>
+}

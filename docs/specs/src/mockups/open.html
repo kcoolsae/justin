@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justin - example form page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="mockups.css" rel="stylesheet">
+</head>
+<body>
+<div class="container-md">
+    <header>
+        <nav class="navbar justify-content-between mb-2">
+            <a class="navbar-brand" href="#">
+                <img src="../img/bebras_org-logo.svg">
+            </a>
+            <ul class="nav nav-pills">
+                <li class="nav-item dropdown">
+                    <button class="btn nav-link dropdown-toggle pe-0" type="button" id="profileMenu"
+                            data-bs-toggle="dropdown">
+                        John Doe
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="profileMenu">
+                        <li><a class="dropdown-item">Change profile</a></li>
+                        <li><a class="dropdown-item">Log out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h3>21st International Bebras Task Workshop in Seoul</h3>
+        <p>The workshop will take place on <b>May 11-15</b>, 2025, in <b>Seoul</b> (South Korea).</p>
+
+        <p>You have indicated that you will <b>participate</b> in this event.</p>
+        <div class="card">
+            <div class="card-body">
+                <p>Please check the relevant items.</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="host" data-js="id-1" checked>
+                    <label class="form-check-label">I need accommodation at the conference center.</label>
+                </div>
+                <div id="id-1">
+                    <p class="ms-4"><a href="">Fill out the corresponding form</a> before <b>April 30</b>, 2025.</p>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="host" data-js="id-2">
+                    <label class="form-check-label">I will participate in the task editing process (in a working
+                        group).</label>
+                </div>
+                <div id="id-2">
+                    <p class="ms-4"><a href="">Fill out the corresponding form</a> before <b>May 2</b>, 2025.
+                    <span class="text-danger">Mandatory questions are still missing answers.</span></p>
+                </div>
+            </div>
+        </div>
+        <p class="note">See here for status <a href="pending.html">pending</a> |
+            <a href="published.html">published</a> |
+            <a href="closed.html">closed</a> |
+            <a href="pending.html">archived</a>.
+            Also click on the checkboxes to see what changes.
+        </p>
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="open.js"></script>
+</body>

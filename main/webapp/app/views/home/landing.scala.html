@@ -1,9 +1,5 @@
 @()(implicit deputy: deputies.Deputy)
 
-@layout.raw("landing"){
-    <div class="container-md">
-        <h3>Bebras international workshop information system</h3>
-        <p><b>TODO</b> This is to become the landing page for a registered user after signing in.</p>
-        <p><a href="@routes.AuthenticationController.logout()">Log out</a>.</p>
-    </div>
+@layout.plain("landing"){
+    <p>There are no events currently active and therefore no forms for you to fill in.</p>
 }

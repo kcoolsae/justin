@@ -1,0 +1,14 @@
+@()
+
+@* TODO *@
+
+<li class="nav-item dropdown">
+    <button class="btn nav-link dropdown-toggle pe-0" type="button" id="profileMenu"
+    data-bs-toggle="dropdown">
+        John Doe
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="profileMenu">
+        <li><a class="dropdown-item">Change profile</a></li>
+        <li><a class="dropdown-item" href="@routes.AuthenticationController.logout()">Log out</a></li>
+    </ul>
+</li>
