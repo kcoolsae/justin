@@ -9,6 +9,8 @@ POST    /a/s       controllers.AuthenticationController.signIn(request: Request)
 # profile
 GET     /p/n       controllers.ProfileController.showChangeName(request: Request)
 POST    /p/n       controllers.ProfileController.changeName(request: Request)
+GET     /p/e       controllers.ProfileController.showChangeEmail(request: Request)
+POST    /p/e       controllers.ProfileController.changeEmail(request: Request)
 
 # extra
 GET     /x/t       controllers.HomeController.todo(request: Request)

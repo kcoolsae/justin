@@ -12,7 +12,9 @@
 @import "../bootstrap/node_modules/bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
-$primary: #008bc8; // Bebras logo darkest color
+$primary: #016795; // Bebras logo darkest color, but slightly darker
+$secondary: #c5a775;
+$warning: #ffa600;
 $form-check-input-border:  var(--bs-border-width) solid $primary;
 
 $font-family-base: 'Fira Sans', sans-serif;
