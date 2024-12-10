@@ -100,7 +100,7 @@ public class Deputy extends be.ugent.caagt.play.deputies.Deputy {
      * Redirects to the index page of this application
      */
     protected Result redirectToIndex() {
-        return redirect(controllers.routes.HomeController.index());
+        return redirect(controllers.routes.InitialController.index());
     }
 
 }

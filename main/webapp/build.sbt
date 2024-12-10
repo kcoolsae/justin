@@ -8,9 +8,11 @@ libraryDependencies ++= Seq(
   javaCore, guice, javaJdbc,
 
   "be.ugent.caagt" %% "play-utils" % "1.1",
-  "org.webjars" % "font-awesome" % "6.6.0",
+  "org.webjars" % "font-awesome" % "6.7.1",
   "org.playframework" %% "play-mailer" % "10.1.0",
   "org.playframework" %% "play-mailer-guice" % "10.1.0",
+
+  "com.vladsch.flexmark" % "flexmark" % "0.64.8",
 
   "org.projectlombok" % "lombok" % "1.18.36" % Compile,
 

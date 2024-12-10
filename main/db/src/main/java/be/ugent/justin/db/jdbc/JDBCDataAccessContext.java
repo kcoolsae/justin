@@ -11,6 +11,7 @@ package be.ugent.justin.db.jdbc;
 
 import be.ugent.caagt.dao.helper.BaseDAC;
 import be.ugent.justin.db.DataAccessContext;
+import be.ugent.justin.db.dao.EventDao;
 import be.ugent.justin.db.dao.UserDao;
 import lombok.Getter;
 
@@ -29,5 +30,10 @@ public class JDBCDataAccessContext extends BaseDAC implements DataAccessContext 
     @Override
     public UserDao getUserDao() {
         return new JDBCUserDao(this);
+    }
+
+    @Override
+    public EventDao getEventDao() {
+        return new JDBCEventDao(this);
     }
 }

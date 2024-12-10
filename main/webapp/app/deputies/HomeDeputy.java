@@ -9,8 +9,11 @@
 
 package deputies;
 
+import be.ugent.justin.db.dto.Event;
 import common.LoggedInDeputy;
 import play.mvc.Result;
+
+import java.util.List;
 
 public class HomeDeputy extends LoggedInDeputy {
 
@@ -18,7 +21,8 @@ public class HomeDeputy extends LoggedInDeputy {
      * Landing page for a registered user.
      */
     public Result landing() {
-        return ok(views.html.home.landing.render(this));
+        List<Event> events = dac().getEventDao().getVisibleEvents();
+        return ok(views.html.home.landing.render(events,this));
     }
 
 }
