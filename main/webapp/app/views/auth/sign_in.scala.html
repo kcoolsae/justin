@@ -21,7 +21,7 @@
                 <h5 class="card-title">Bebras international workshop information system</h5>
                 @helper.form(routes.AuthenticationController.signIn()) {
                     <div class="row">
-                        @b5.email(f("email"), "placeholder" -> "Registered email address", "_class" -> "col", "_label" -> None)
+                        @b5.email(f("email"), "placeholder" -> "Registered email address", "_class" -> "col", "_label" -> "")
                         <div class="col-auto"><button type="submit" class="btn btn-primary">Sign in</button></div>
                     </div>
                 }

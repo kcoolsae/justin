@@ -29,4 +29,14 @@ public interface UserDao {
      * Return the user for the given ID. Returns null when not found.
      */
     User getUserById (int userId);
+
+    /**
+     * Return information about the current user.
+     */
+    User getCurrentUser ();
+
+    /**
+     * Update the name of the current user with the given ID.
+     */
+    void updateName (String name);
 }

@@ -60,4 +60,14 @@ public class JDBCUserDao extends JDBCAbstractDao implements UserDao {
                         rs.getString("user_country")
                 ));
     }
+
+    @Override
+    public User getCurrentUser() {
+        return getUserById(getUserId());
+    }
+
+    @Override
+    public void updateName(String name) {
+        update("users").set("user_name", name).where("user_id", getUserId()).execute();
+    }
 }

@@ -10,14 +10,14 @@
 @id = @{information.args.get("_id").map(_.toString).getOrElse(information.id + "_field")}
 <div class="mb-3 @information.args.get("_class")" id="@id">
         @* _name not supported *@
-        @if(information.label == None) {
-            <label class="form-label" for="@information.id">@information.label</label>
+        @if(information.label!=""){
+                <label class="form-label" for="@information.id">@information.label</label>
         }
         @information.html
         @information.errors.map { error =>
             <div class="invalid-feedback">@error</div>
         }
         @information.infos.map { info =>
-            <div class="form-text">@info</div>
+            <small class="form-text">@info</small>
         }
 </div>

@@ -29,11 +29,4 @@ public class DataAccessDeputy extends Deputy {
         }
     }
 
-    /**
-     * ID of current user taken from session.
-     */
-    public int getCurrentUserId() {
-        return Integer.parseInt(findInSession(Session.ID));
-    }
-
 }

@@ -7,7 +7,9 @@
  * in the top level project directory.
  */
 
-package common;import be.ugent.justin.db.DataAccessContext;
+package common;
+
+import be.ugent.justin.db.DataAccessContext;
 import be.ugent.justin.db.DataAccessProvider;
 import play.libs.typedmap.TypedKey;
 import play.mvc.Action;
@@ -19,7 +21,7 @@ import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 
 /**
- * Used with the @With-annotation to ensure that makes all action methods in such a controller run in a database transaction
+ * Used with the @@With-annotation to ensure that makes all action methods in such a controller run in a database transaction
  * and provides a data access context for them.
  */
 public class InjectDAC extends Action.Simple {

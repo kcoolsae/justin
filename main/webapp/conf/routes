@@ -6,6 +6,10 @@ GET     /l/:token  controllers.AuthenticationController.login(request: Request, 
 GET     /x         controllers.AuthenticationController.logout(request: Request)
 POST    /a/s       controllers.AuthenticationController.signIn(request: Request)
 
+# profile
+GET     /p/n       controllers.ProfileController.showChangeName(request: Request)
+POST    /p/n       controllers.ProfileController.changeName(request: Request)
+
 # extra
 GET     /x/t       controllers.HomeController.todo(request: Request)
 

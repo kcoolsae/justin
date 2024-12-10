@@ -1,0 +1,26 @@
+@* change_name.scala.html
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+@import deputies.ProfileDeputy
+
+@(f: Form[ProfileDeputy.NameData])(implicit deputy: deputies.Deputy)
+
+@layout.plain("change_name") {
+    <h5>Change your name</h5>
+    <div class="card">
+        <div class="card-body">
+            @helper.form(action = routes.ProfileController.changeName()) {
+                <div class="row">
+                @b5.text(f("name"), "_class" -> "col",
+                    "_label" -> "Name",
+                    "_help" -> "For international accessibility, please enter your name in Latin characters.")
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            }
+        </div>
+    </div>
+}
