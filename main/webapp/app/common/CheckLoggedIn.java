@@ -10,12 +10,10 @@
 package common;
 
 import play.api.mvc.Call;
-import play.i18n.MessagesApi;
 import play.mvc.Action;
 import play.mvc.Http;
 import play.mvc.Result;
 
-import javax.inject.Inject;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
@@ -26,7 +24,7 @@ import java.util.concurrent.CompletionStage;
 class CheckLoggedIn extends Action.Simple{
 
     private Call loginCall() {
-        return controllers.routes.HomeController.index();
+        return controllers.routes.InitialController.index();
     }
 
     @Override

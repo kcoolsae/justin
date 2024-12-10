@@ -9,7 +9,7 @@
 
 package controllers;
 
-import be.ugent.caagt.play.controllers.Controller;
+import common.LoggedInController;
 import deputies.HomeDeputy;
 import play.mvc.Result;
 import play.mvc.Http;
@@ -18,17 +18,14 @@ import play.mvc.Http;
  * Provides the index page and other pages that
  * need no database support
  */
-public class HomeController extends Controller<HomeDeputy> {
+public class HomeController extends LoggedInController<HomeDeputy> {
 
     public HomeController() {
         super (HomeDeputy::new);
     }
 
-    public Result index(Http.Request request) {
-        return createDeputy(request).index();
+    public Result landing (Http.Request request) {
+        return createDeputy(request).landing();
     }
 
-    public Result todo(Http.Request request) {
-        return createDeputy(request).todo();
-    }
 }

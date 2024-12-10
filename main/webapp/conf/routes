@@ -1,10 +1,13 @@
 # This file defines all application routes (Higher priority routes first)
 
 # home + authentication
-GET     /          controllers.HomeController.index(request: Request)
+GET     /          controllers.InitialController.index(request: Request)
 GET     /l/:token  controllers.AuthenticationController.login(request: Request, token: String)
 GET     /x         controllers.AuthenticationController.logout(request: Request)
 POST    /a/s       controllers.AuthenticationController.signIn(request: Request)
+
+GET     /h         controllers.HomeController.landing(request: Request)
+
 
 # profile
 GET     /p/n       controllers.ProfileController.showChangeName(request: Request)
@@ -13,7 +16,7 @@ GET     /p/e       controllers.ProfileController.showChangeEmail(request: Reques
 POST    /p/e       controllers.ProfileController.changeEmail(request: Request)
 
 # extra
-GET     /x/t       controllers.HomeController.todo(request: Request)
+GET     /x/t       controllers.InitialController.todo(request: Request)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file   controllers.Assets.versioned(path="/public", file: Asset)

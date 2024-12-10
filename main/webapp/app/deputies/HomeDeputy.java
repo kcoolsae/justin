@@ -9,35 +9,16 @@
 
 package deputies;
 
-import common.Session;
+import common.LoggedInDeputy;
 import play.mvc.Result;
-import views.html.auth.sign_in;
 
-public class HomeDeputy extends Deputy {
-
-    /**
-     * Starting page
-     */
-    public Result index() {
-        if (findInSession(Session.ID) != null) {
-            return landing();
-        } else {
-            return ok(sign_in.render(emptyForm(AuthenticationDeputy.EmailData.class), this));
-        }
-    }
+public class HomeDeputy extends LoggedInDeputy {
 
     /**
      * Landing page for a registered user.
      */
-    private Result landing() {
+    public Result landing() {
         return ok(views.html.home.landing.render(this));
     }
 
-    /**
-     * Page explaining that this part of the application is
-     * not yet implemented.
-     */
-    public Result todo() {
-        return ok(views.html.other.todo.render());
-    }
 }
