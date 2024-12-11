@@ -5,13 +5,16 @@
 * This software is distributed under the MIT License - see files LICENSE and AUTHORS
 * in the top level project directory.
 *@
+
 @import _root_.be.ugent.justin.db.dto.Event
 
-@(events: List[Event])(implicit deputy: deputies.Deputy)
+@import views.html.ext.md
+
+@(events: List[Event])(implicit deputy: HomeDeputy)
 
 @layout.plain("landing") {
     @foreach(events) { event =>
         <h3>@event.name</h3>
-        <p>@event.description</p> @* TODO markdown *@
+        <p>@md(event.description)</p>
     }
 }

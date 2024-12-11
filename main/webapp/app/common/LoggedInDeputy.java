@@ -10,11 +10,21 @@
 package common;
 
 import be.ugent.caagt.play.controllers.Controller;
+import lombok.Setter;
 
 /**
- * Base class for deputies of {@link LoggedInController}. Provides a data access context and some helper methods
+ * Base class for deputies of {@link LoggedInController}.
+ * Provides data access, markdown service and will only be used
+ * when a user is logged in.
  */
+@Setter
 public class LoggedInDeputy extends DataAccessDeputy {
+
+    private MarkdownService markdownService; // injected
+
+    public String toHtml(String str) {
+        return markdownService.toHtml(str);
+    }
 
     @Override
     public void setParent(Controller<?> parent) throws RuntimeException {

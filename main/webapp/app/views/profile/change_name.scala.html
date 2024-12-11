@@ -5,9 +5,8 @@
 * This software is distributed under the MIT License - see files LICENSE and AUTHORS
 * in the top level project directory.
 *@
-@import deputies.ProfileDeputy
 
-@(f: Form[ProfileDeputy.NameData])(implicit deputy: deputies.Deputy)
+@(f: Form[ProfileDeputy.NameData])(implicit deputy: ProfileDeputy)
 
 @layout.plain("change_name") {
     <h5>Change your name</h5>

@@ -21,6 +21,7 @@ libraryDependencies ++= Seq(
 
 // Include template extensions for be.ugent.caagt:play-utils
 TwirlKeys.templateImports ++= Seq(
+  "deputies._",
   "_root_.be.ugent.caagt.play.util.TemplateJavaMagic._",
   "views.html.be.ugent.caagt.play.ext._"
 )
