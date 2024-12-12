@@ -21,4 +21,8 @@ public class FormDeputy extends LoggedInDeputy {
         dac().getFormDao().setParticipation(formId, participation);
         return ok();
     }
+
+    public Result landing(int formId) {
+        return ok("Landing page for form " + formId);
+    }
 }

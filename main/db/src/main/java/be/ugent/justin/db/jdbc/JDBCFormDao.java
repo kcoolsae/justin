@@ -14,7 +14,7 @@ import be.ugent.justin.db.dto.Form;
 
 import java.util.List;
 
-public class JDBCFormDao extends JDBCAbstractDao implements FormDao {
+class JDBCFormDao extends JDBCAbstractDao implements FormDao {
 
     protected JDBCFormDao(JDBCDataAccessContext context) {
         super(context);

@@ -18,7 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class JDBCEventDao extends JDBCAbstractDao implements EventDao {
+class JDBCEventDao extends JDBCAbstractDao implements EventDao {
 
     public JDBCEventDao(JDBCDataAccessContext context) {
         super(context);

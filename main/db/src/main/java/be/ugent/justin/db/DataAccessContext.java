@@ -11,6 +11,7 @@ package be.ugent.justin.db;
 
 /* Abstraction of a database connection. Provides data access objects. */
 
+import be.ugent.justin.db.dao.ElementDao;
 import be.ugent.justin.db.dao.EventDao;
 import be.ugent.justin.db.dao.FormDao;
 import be.ugent.justin.db.dao.UserDao;
@@ -22,6 +23,8 @@ public interface DataAccessContext extends AutoCloseable {
     EventDao getEventDao();
 
     FormDao getFormDao();
+
+    ElementDao getElementDao();
 
     void begin();
 

@@ -23,4 +23,8 @@ public class FormController extends LoggedInController<FormDeputy> {
     public Result changeParticipation(Http.Request request, int formId, boolean participation) {
         return createDeputy(request).changeParticipation(formId, participation);
     }
+
+    public Result landing(Http.Request request, int formId) {
+        return createDeputy(request).landing(formId);
+    }
 }

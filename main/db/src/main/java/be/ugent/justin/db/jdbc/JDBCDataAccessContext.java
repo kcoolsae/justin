@@ -11,6 +11,7 @@ package be.ugent.justin.db.jdbc;
 
 import be.ugent.caagt.dao.helper.BaseDAC;
 import be.ugent.justin.db.DataAccessContext;
+import be.ugent.justin.db.dao.ElementDao;
 import be.ugent.justin.db.dao.EventDao;
 import be.ugent.justin.db.dao.FormDao;
 import be.ugent.justin.db.dao.UserDao;
@@ -19,7 +20,7 @@ import lombok.Getter;
 import java.sql.Connection;
 
 @Getter
-public class JDBCDataAccessContext extends BaseDAC implements DataAccessContext {
+class JDBCDataAccessContext extends BaseDAC implements DataAccessContext {
 
     private final int userId;
 
@@ -41,5 +42,10 @@ public class JDBCDataAccessContext extends BaseDAC implements DataAccessContext 
     @Override
     public FormDao getFormDao() {
         return new JDBCFormDao(this);
+    }
+
+    @Override
+    public ElementDao getElementDao() {
+        return new JDBCElementDao(this);
     }
 }

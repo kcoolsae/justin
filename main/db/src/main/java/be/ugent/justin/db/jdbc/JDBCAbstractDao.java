@@ -14,7 +14,7 @@ import be.ugent.caagt.dao.helper.BaseDAO;
 /**
  * Common superclass for all JDBC DAOs.
  */
-public class JDBCAbstractDao extends BaseDAO {
+class JDBCAbstractDao extends BaseDAO {
 
     protected JDBCAbstractDao(JDBCDataAccessContext context) {
         super(context);

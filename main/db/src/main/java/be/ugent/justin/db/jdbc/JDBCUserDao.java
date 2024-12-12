@@ -15,7 +15,7 @@ import be.ugent.justin.db.dto.User;
 import java.time.Instant;
 import java.util.UUID;
 
-public class JDBCUserDao extends JDBCAbstractDao implements UserDao {
+class JDBCUserDao extends JDBCAbstractDao implements UserDao {
 
     public JDBCUserDao(JDBCDataAccessContext context) {
         super(context);

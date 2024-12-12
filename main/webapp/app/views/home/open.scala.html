@@ -54,7 +54,7 @@
                         <label class="form-check-label">@form.label</label>
                     </div>
                     <div>
-                        <p class="ms-4"><a href="@routes.InitialController.todo()">Fill out the corresponding form</a> before
+                        <p class="ms-4"><a href="@routes.FormController.landing(form.id)">Fill out the corresponding form</a> before
                             <b>@DateTimeFormatter.ofPattern("MMMM dd, yyyy", Locale.ENGLISH).format(form.deadline)</b>.</p>
                     </div>
                 </div>
