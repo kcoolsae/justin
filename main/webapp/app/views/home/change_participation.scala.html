@@ -1,0 +1,29 @@
+@* change_participation.scala.html
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2023-2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+
+@import _root_.be.ugent.justin.db.dto.Event
+@import views.html.ext.md
+
+@(event: Event, f: Form[HomeDeputy.ParticipationData])(implicit deputy: HomeDeputy)
+
+@layout.plain("change_participation") {
+    @_event_header(event)
+    @helper.form(action=routes.HomeController.changeParticipation(event.id)) {
+        <div class="card">
+            <div class="card-body">
+                @b5.radio_group(
+                    f("participation"),
+                    Seq("true" -> "Yes", "false" -> "No"),
+                    "_label" -> "Do you intend to participate in this event?"
+                )
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    }
+
+}

@@ -1,4 +1,4 @@
-@* landing.scala.html
+@* _event_header.scala.html
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * Copyright © 2023-2024 Kris Coolsaet (Universiteit Gent)
 *
@@ -9,7 +9,7 @@
 
 @(event: Event)(implicit deputy: HomeDeputy)
 
-@layout.plain("landing") {
-    @_event_header_long(event)
-    @* TODO dispatch on event type *@
-}
+<h3>@event.name</h3>
+<p>@ext.md(event.description)</p>
+
+

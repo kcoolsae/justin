@@ -15,8 +15,7 @@ import play.mvc.Result;
 import play.mvc.Http;
 
 /**
- * Provides the index page and other pages that
- * need no database support
+ * Provides the index page and top level event related for regular users.
  */
 public class HomeController extends LoggedInController<HomeDeputy> {
 
@@ -26,6 +25,14 @@ public class HomeController extends LoggedInController<HomeDeputy> {
 
     public Result landing (Http.Request request) {
         return createDeputy(request).landing();
+    }
+
+    public Result showChangeParticipation (Http.Request request, String eventId) {
+        return createDeputy(request).showChangeParticipation(eventId);
+    }
+
+    public Result changeParticipation (Http.Request request, String eventId) {
+        return createDeputy(request).changeParticipation(eventId);
     }
 
 }

@@ -1,0 +1,18 @@
+@* _event_header_long.scala.html
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2023-2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+@import _root_.be.ugent.justin.db.dto.Event
+
+@(event: Event)(implicit deputy: HomeDeputy)
+
+@change={<a href="@routes.HomeController.showChangeParticipation(event.id)">change</a>}
+
+@if(event.participation) {
+    <p>You have indicated that you will <b>participate</b> in this event (@change).</p>
+} else {
+    <p>You have indicated that you will <b>not</b> participate in this event (@change).</p>
+}
