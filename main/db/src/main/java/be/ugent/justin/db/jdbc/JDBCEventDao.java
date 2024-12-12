@@ -12,7 +12,7 @@ package be.ugent.justin.db.jdbc;
 import be.ugent.caagt.dao.helper.SelectSQLStatement;
 import be.ugent.justin.db.dao.EventDao;
 import be.ugent.justin.db.dto.Event;
-import be.ugent.justin.db.dto.EventType;
+import be.ugent.justin.db.dto.EventStatus;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,13 +30,13 @@ public class JDBCEventDao extends JDBCAbstractDao implements EventDao {
                 rs.getString("event_key"),
                 rs.getString("event_name"),
                 rs.getString("event_description"),
-                EventType.valueOf(rs.getString("event_type")),
+                EventStatus.valueOf(rs.getString("event_status")),
                 rs.getObject("participation_status", Boolean.class)
         );
     }
 
     private SelectSQLStatement selectEvent() {
-        return select("event_id, event_key, event_name, event_description, event_type, participation_status")
+        return select("event_id, event_key, event_name, event_description, event_status, participation_status")
                 .from("events LEFT JOIN participations USING (event_id)");
     }
 
@@ -50,8 +50,8 @@ public class JDBCEventDao extends JDBCAbstractDao implements EventDao {
     @Override
     public List<Event> getVisibleEvents() {
         return selectEvent()
-                .where("event_type != 'ARCHIVED'")
-                .where("event_type != 'PENDING'")
+                .where("event_status != 'ARCHIVED'")
+                .where("event_status != 'PENDING'")
                 .orderBy("when_created", false)
                 .getList(JDBCEventDao::makeEvent);
     }

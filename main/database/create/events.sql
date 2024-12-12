@@ -5,7 +5,7 @@
 --  This software is distributed under the MIT License - see files LICENSE and AUTHORS
 --  in the top level project directory.
 
-CREATE TYPE event_type
+CREATE TYPE event_status
     AS ENUM ('PENDING', 'PUBLISHED', 'OPEN', 'CLOSED', 'ARCHIVED'); -- upper case for java enums
 
 CREATE TABLE events (
@@ -13,7 +13,7 @@ CREATE TABLE events (
     event_key         TEXT UNIQUE,
     event_name        TEXT,
     event_description TEXT, -- allows markdown
-    event_type        event_type,
+    event_status      event_status,
     when_created      TIMESTAMP DEFAULT now()
 );
 

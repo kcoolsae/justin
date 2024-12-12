@@ -10,6 +10,10 @@ GET     /h         controllers.HomeController.landing(request: Request)
 GET     /e/p/:eventId controllers.HomeController.showChangeParticipation(request: Request, eventId: Int)
 POST    /e/p/:eventId controllers.HomeController.changeParticipation(request: Request, eventId: Int)
 
+POST    /f/:formId/:set controllers.FormController.changeParticipation(request: Request, formId: Int, set: Boolean)
+
+# forms
+
 # profile
 GET     /p/n       controllers.ProfileController.showChangeName(request: Request)
 POST    /p/n       controllers.ProfileController.changeName(request: Request)

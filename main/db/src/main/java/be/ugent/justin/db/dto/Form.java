@@ -1,5 +1,5 @@
 /*
- * Event.java
+ * Form.java
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Copyright © 2024 Kris Coolsaet (Universiteit Gent)
  *
@@ -9,8 +9,7 @@
 
 package be.ugent.justin.db.dto;
 
-public record Event(int id, String key, String name, String description, EventStatus status,
-                    Boolean participation  // null means not yet decided
-) {
+import java.time.LocalDate;
 
+public record Form (int id, String label, LocalDate deadline, boolean participation){
 }

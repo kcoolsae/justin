@@ -1,0 +1,20 @@
+@* closed.scala.html
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2023-2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+@import _root_.be.ugent.justin.db.dto.Event
+
+@(event: Event)(implicit deputy: HomeDeputy)
+
+@layout.plain("closed") {
+    @_event_header(event)
+    @if(event.participation) {
+        <p>You have indicated that you will <b>participate</b> in this event. The corresponding
+        questionnaires have now been <b>closed</b>.</p>
+    } else {
+        <p>You have indicated that you will <b>not</b> participate in this event.</p>
+    }
+}

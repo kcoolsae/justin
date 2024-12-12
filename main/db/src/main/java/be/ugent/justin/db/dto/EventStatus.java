@@ -9,7 +9,7 @@
 
 package be.ugent.justin.db.dto;
 
-public enum EventType {
+public enum EventStatus {
     PENDING,    // not yet visible to the user
     PUBLISHED,  // visible, can be subscribed to, but no forms yet
     OPEN,       // forms can be filled in

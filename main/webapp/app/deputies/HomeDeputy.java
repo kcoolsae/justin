@@ -15,7 +15,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import play.data.Form;
 import play.mvc.Result;
 
 import views.html.home.*;
@@ -36,14 +35,23 @@ public class HomeDeputy extends LoggedInDeputy {
                 warning ("Only the most recent event is shown.");
             }
             Event event = events.getFirst();
-            if (event.participation() != null) {
-                return ok(landing.render(event, this));
-            } else {
+            if (event.participation() == null) {
                 return ok(change_participation.render(
                         event,
                         emptyForm(ParticipationData.class),
                         this
                 ));
+            } else {
+                return ok (switch (event.status()) {
+                    case PUBLISHED -> published.render(event, this);
+                    case OPEN -> open.render(
+                            event,
+                            dac().getFormDao().listFormsRestricted(event.id()),
+                            this
+                    );
+                    case CLOSED -> closed.render(event, this);
+                    default -> no_event.render(this);
+                });
             }
         }
     }
@@ -55,6 +63,7 @@ public class HomeDeputy extends LoggedInDeputy {
     public static class ParticipationData {
         public Boolean participation; // default null
     }
+
 
     /**
      * Show the form to change participation
