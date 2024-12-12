@@ -9,7 +9,7 @@
 
 package be.ugent.justin.db.dto;
 
-public record Event(String id, String name, String description, EventType type,
+public record Event(int id, String key, String name, String description, EventType type,
                     Boolean participation  // null means not yet decided
 ) {
 

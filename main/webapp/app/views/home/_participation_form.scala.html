@@ -7,7 +7,7 @@
 *@
 @import _root_.be.ugent.justin.db.dto.Event
 
-@(f: Form[HomeDeputy.ParticipationData], eventId: String)(implicit deputy: HomeDeputy)
+@(f: Form[HomeDeputy.ParticipationData], eventId: Int)(implicit deputy: HomeDeputy)
 
 @helper.form(action=routes.HomeController.changeParticipation(eventId)) {
     <div class="card">

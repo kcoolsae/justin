@@ -12,7 +12,6 @@ package be.ugent.justin.db.dao;
 import be.ugent.justin.db.dto.Event;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface EventDao {
 
@@ -25,11 +24,11 @@ public interface EventDao {
     /**
      * Get the event with the given ID
      */
-    Event getEvent(String eventId);
+    Event getEvent(int eventId);
 
     /**
      * Change the participation status of the current user for the given event.
      */
-    void setParticipation(String eventId, boolean participating);
+    void setParticipation(int eventId, boolean participating);
 
 }

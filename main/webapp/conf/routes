@@ -7,8 +7,8 @@ GET     /x         controllers.AuthenticationController.logout(request: Request)
 POST    /a/s       controllers.AuthenticationController.signIn(request: Request)
 
 GET     /h         controllers.HomeController.landing(request: Request)
-GET     /e/p/:eventId controllers.HomeController.showChangeParticipation(request: Request, eventId: String)
-POST    /e/p/:eventId controllers.HomeController.changeParticipation(request: Request, eventId: String)
+GET     /e/p/:eventId controllers.HomeController.showChangeParticipation(request: Request, eventId: Int)
+POST    /e/p/:eventId controllers.HomeController.changeParticipation(request: Request, eventId: Int)
 
 # profile
 GET     /p/n       controllers.ProfileController.showChangeName(request: Request)

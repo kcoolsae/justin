@@ -27,11 +27,11 @@ public class HomeController extends LoggedInController<HomeDeputy> {
         return createDeputy(request).landing();
     }
 
-    public Result showChangeParticipation (Http.Request request, String eventId) {
+    public Result showChangeParticipation (Http.Request request, int eventId) {
         return createDeputy(request).showChangeParticipation(eventId);
     }
 
-    public Result changeParticipation (Http.Request request, String eventId) {
+    public Result changeParticipation (Http.Request request, int eventId) {
         return createDeputy(request).changeParticipation(eventId);
     }
 

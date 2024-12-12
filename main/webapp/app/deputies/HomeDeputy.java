@@ -56,15 +56,10 @@ public class HomeDeputy extends LoggedInDeputy {
         public Boolean participation; // default null
     }
 
-    // used in template
-    public Form<ParticipationData> getEmptyParticipationForm() {
-        return emptyForm(ParticipationData.class);
-    }
-
     /**
      * Show the form to change participation
      */
-    public Result showChangeParticipation(String eventId) {
+    public Result showChangeParticipation(int eventId) {
         Event event = dac().getEventDao().getEvent(eventId);
         return ok(change_participation.render(
                 event,
@@ -76,9 +71,10 @@ public class HomeDeputy extends LoggedInDeputy {
     /**
      * Change whether a user participates in an event or not
      */
-    public Result changeParticipation(String eventId) {
+    public Result changeParticipation(int eventId) {
         Boolean participation = formFromRequest(ParticipationData.class).get().participation;
         if (participation != null) {
+            // TODO only when event is open or published
             dac().getEventDao().setParticipation(eventId, participation);
         }
         return redirectToIndex();

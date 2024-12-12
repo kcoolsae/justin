@@ -26,7 +26,8 @@ public class JDBCEventDao extends JDBCAbstractDao implements EventDao {
 
     private static Event makeEvent(ResultSet rs) throws SQLException {
         return new Event(
-                rs.getString("event_id"),
+                rs.getInt("event_id"),
+                rs.getString("event_key"),
                 rs.getString("event_name"),
                 rs.getString("event_description"),
                 EventType.valueOf(rs.getString("event_type")),
@@ -35,12 +36,12 @@ public class JDBCEventDao extends JDBCAbstractDao implements EventDao {
     }
 
     private SelectSQLStatement selectEvent() {
-        return select("event_id, event_name, event_description, event_type, participation_status")
+        return select("event_id, event_key, event_name, event_description, event_type, participation_status")
                 .from("events LEFT JOIN participations USING (event_id)");
     }
 
     @Override
-    public Event getEvent(String eventId) {
+    public Event getEvent(int eventId) {
         return selectEvent()
                 .where("event_id", eventId)
                 .getObject(JDBCEventDao::makeEvent);
@@ -56,7 +57,7 @@ public class JDBCEventDao extends JDBCAbstractDao implements EventDao {
     }
 
     @Override
-    public void setParticipation(String eventId, boolean participating) {
+    public void setParticipation(int eventId, boolean participating) {
         insertOrUpdateInto("participations")
                 .key("event_id", eventId)
                 .key("user_id", getUserId())
