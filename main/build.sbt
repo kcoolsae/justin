@@ -8,7 +8,8 @@ scalaVersion := "2.13.15"
 lazy val root = (project in file(".")).aggregate(
   db, webapp, webjar
 ).settings(
-  publish / skip := true
+  publish / skip := true,
+  run := (webapp / Compile / run).evaluated
 )
 
 lazy val db = project in file("db")
