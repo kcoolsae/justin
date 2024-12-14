@@ -10,11 +10,47 @@
 
 @(header: FormHeader, elements: Collection[Element])(implicit deputy: FormDeputy)
 
+@js={
+    <script>
+            /* TODO could be moved to a separate file */
+            document.addEventListener("DOMContentLoaded", function () {
+                const others = document.querySelectorAll('.justin-other');
+                others.forEach(other => {
+                    const otherText = other.querySelector('input[type="text"]');
+
+                    /* in case of radio buttons */
+                    const radioButtons = other.querySelectorAll('input[type="radio"]');
+                    if (radioButtons.length > 0) {
+                        const otherRadio = radioButtons[radioButtons.length - 1]
+                        otherText.disabled = !otherRadio.checked;
+
+                        radioButtons.forEach(button => {
+                            button.addEventListener('change', () => {
+                                otherText.disabled = !otherRadio.checked;
+                            });
+                        });
+                    }
+
+                    /* in case of checkboxes */
+                    const checkBox = other.querySelector('input[type="checkbox"]');
+                    if (checkBox != null) {
+                        otherText.disabled = !checkBox.checked;
+
+                        checkBox.addEventListener('change', () => {
+                            otherText.disabled = !checkBox.checked;
+                        });
+                    }
+
+                });
+            });
+    </script>
+}
+
 @required()={
     <span class="text-danger">*</span>
 }
 
-@layout.form("page") {
+@layout.form("page", js=js) {
     <div class="card">
         <div class="card-body">
             <img src='@routes.Assets.versioned("img/bebras_org-logo.svg")'

@@ -1,0 +1,28 @@
+@* _radio_group_other.scala.html
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+@(field: play.api.data.Field, otherField: play.api.data.Field, options: Seq[(String, String)], args: (String, Any)*)(implicit handler: B5.FieldBuilder, messages: play.api.i18n.MessagesProvider)
+
+@* Adapted from b5.radio_group to provide an additional 'other' option with associated textfield *@
+
+@b5.input(field, "form-check-input", args: _*) { t =>
+    @options.map { o =>
+        <div class='form-check @if(field.hasErrors)("is-invalid")'>
+            <input type="radio" id="@(t.id)_@o._1" name="@t.name" value="@o._1" class="@t.classArg"
+                @if(t.value.contains(o._1))("checked='checked'") @B5.toHtmlArgs(t.args)>
+            <label class="form-check-label" for="@(t.id)_@o._1">@o._2</label>
+        </div>
+    }
+
+    @* 'Other' field *@
+    <div class='form-check @if(otherField.hasErrors)("is-invalid")'>
+        <input type="radio" id="@(t.id)_other" name="@t.name" value="other" class="@t.classArg"
+            @if(t.value.contains("other"))("checked='checked'") @B5.toHtmlArgs(t.args)>
+        <label class="form-check-label me-4" for="@(t.id)_other">Other...</label>
+        <input type="text" class="justin-other-field" id="@otherField.id" name="@otherField.name" value="@otherField.value" >
+    </div>
+}
