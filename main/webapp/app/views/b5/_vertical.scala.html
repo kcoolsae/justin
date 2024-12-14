@@ -8,7 +8,7 @@
 
 @(information: B5.FieldInformation)
 @id = @{information.args.get("_id").map(_.toString).getOrElse(information.id + "_field")}
-<div class="mb-3 @information.args.get("_class")" id="@id">
+<div class="@information.args.get("_class")" id="@id">
         @* _name not supported *@
         @if(information.label!=""){
                 <label class="form-label" for="@information.id">@information.label</label>

@@ -64,11 +64,12 @@ class JDBCElementDao extends JDBCAbstractDao implements ElementDao {
 
         // now retrieve options
         select("element_id, option_id, option_key, option_text")
-                .from("options")
+                .from("options JOIN elements USING (element_id)")
+                .where("element_page_nr", pageNr)
                 .orderBy("element_id")
                 .orderBy("option_seq_nr")
                 .processMap(map,
-                        (el,rs) -> ((MultipleChoiceElement)el).addOption(makeOption(rs))
+                        (el,rs) -> ((OptionsElement)el).addOption(makeOption(rs))
                 );
 
         return List.copyOf(map.values());

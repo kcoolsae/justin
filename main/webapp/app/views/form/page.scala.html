@@ -10,6 +10,10 @@
 
 @(header: FormHeader, elements: Collection[Element])(implicit deputy: FormDeputy)
 
+@required()={
+    <span class="text-danger">*</span>
+}
+
 @layout.form("page") {
     <div class="card">
         <div class="card-body">
@@ -26,7 +30,9 @@
         <div class="card mt-3">
             <div class="card-body">
                 @if(element.getTitle != null) {
-                    <h5 class="card-title">@element.getTitle</h5>
+                    <h5 class="card-title">@element.getTitle@if(element.isRequired){@required()}</h5>
+                } else if(element.isRequired){
+                    <h5 class="card-title">@required()</h5>
                 }
                 @if(element.getDescription != null) {
                     @ext.md(element.getDescription)

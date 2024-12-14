@@ -9,19 +9,10 @@
 
 package be.ugent.justin.db.dto;
 
-import lombok.Getter;
-
-import java.util.List;
-import java.util.ArrayList;
-
-@Getter
-public class MultipleChoiceElement extends QuestionElement {
-
-    private final List<Option> options;
+public class MultipleChoiceElement extends OptionsElement {
 
     public MultipleChoiceElement(int id, String key, String title, String description, boolean required) {
         super(id, key, title, description, required);
-        options = new ArrayList<>();
     }
 
     @Override
@@ -29,7 +20,4 @@ public class MultipleChoiceElement extends QuestionElement {
         return visitor.visitMultipleChoice(this);
     }
 
-    public void addOption(Option option) {
-        options.add(option);
-    }
 }

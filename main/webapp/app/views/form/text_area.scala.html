@@ -1,0 +1,13 @@
+@* text_area.scala.html
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+
+@import _root_.be.ugent.justin.db.dto.TextAreaElement
+
+@(element: TextAreaElement)(implicit deputy: FormDeputy)
+
+@b5.text_area(Forms.field(s"value[${element.getId}]", ""), "_label" -> "", "rows" -> 2)

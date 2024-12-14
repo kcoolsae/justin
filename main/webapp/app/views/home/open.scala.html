@@ -43,23 +43,25 @@
 @layout.plain("open", js = js) {
     @_event_header_long(event)
 
-    <div class="card">
-        <div class="card-body">
-            <p>Please check the relevant items.</p>
-            @foreach(forms) { form =>
-                <div class="justin-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox"
-                               data-url="@routes.FormController.changeParticipation(form.id,set=true)" @if(form.participation)("checked")>
-                        <label class="form-check-label">@form.label</label>
+    @if(event.participation()){
+        <div class="card">
+            <div class="card-body">
+                <p>Please check the relevant items.</p>
+                @foreach(forms) { form =>
+                    <div class="justin-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox"
+                                   data-url="@routes.FormController.changeParticipation(form.id,set=true)" @if(form.participation)("checked")>
+                            <label class="form-check-label">@form.label</label>
+                        </div>
+                        <div>
+                            <p class="ms-4"><a href="@routes.FormController.landing(form.id)">Fill out the corresponding form</a> before
+                                <b>@DateTimeFormatter.ofPattern("MMMM dd, yyyy", Locale.ENGLISH).format(form.deadline)</b>.</p>
+                        </div>
                     </div>
-                    <div>
-                        <p class="ms-4"><a href="@routes.FormController.landing(form.id)">Fill out the corresponding form</a> before
-                            <b>@DateTimeFormatter.ofPattern("MMMM dd, yyyy", Locale.ENGLISH).format(form.deadline)</b>.</p>
-                    </div>
-                </div>
-            }
+                }
+            </div>
         </div>
-    </div>
+    }
 
 }

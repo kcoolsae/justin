@@ -9,9 +9,13 @@
 
 package be.ugent.justin.db.dto;
 
-public class CheckboxesElement extends QuestionElement {
+public class CheckboxesElement extends OptionsElement {
 
     private final boolean hasOther;
+
+    public boolean hasOther() {
+        return hasOther;
+    }
 
     public CheckboxesElement(int id, String key, String title, String description, boolean required, boolean hasOther) {
         super(id, key, title, description, required);

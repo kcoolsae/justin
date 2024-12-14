@@ -9,8 +9,7 @@
 
 package deputies;
 
-import be.ugent.justin.db.dto.Element;
-import be.ugent.justin.db.dto.ElementVisitor;
+import be.ugent.justin.db.dto.*;
 import common.LoggedInDeputy;
 import play.mvc.Result;
 import play.twirl.api.Html;
@@ -39,9 +38,50 @@ public class FormDeputy extends LoggedInDeputy {
     }
 
     private class AdditionalContentVisitor extends ElementVisitor<Html> {
+
         @Override
         public Html visitElement(Element element) {
-            return views.html.form.testing.render(element, FormDeputy.this);
+            return views.html.form.unknown.render(element, FormDeputy.this);
+        }
+
+        @Override
+        public Html visitInfo(InfoElement element) {
+            return new Html("");
+        }
+
+        @Override
+        public Html visitText(TextElement element) {
+            return views.html.form.text.render(element, FormDeputy.this);
+        }
+
+        @Override
+        public Html visitRadio(RadioElement element) {
+            return views.html.form.radio.render(element, FormDeputy.this);
+        }
+
+        @Override
+        public Html visitDate(DateElement element) {
+            return views.html.form.date.render(element, FormDeputy.this);
+        }
+
+        @Override
+        public Html visitTextArea(TextAreaElement element) {
+            return views.html.form.text_area.render(element, FormDeputy.this);
+        }
+
+        @Override
+        public Html visitCheckboxes(CheckboxesElement element) {
+            return views.html.form.checkboxes.render(element, FormDeputy.this);
+        }
+
+        @Override
+        public Html visitSelect(SelectElement element) {
+            return views.html.form.select.render(element, FormDeputy.this);
+        }
+
+        @Override
+        public Html visitButtons(ButtonsElement element) {
+            return views.html.form.buttons.render(element, FormDeputy.this);
         }
     }
 

@@ -1,0 +1,15 @@
+@* radio.scala.html
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+
+@import _root_.be.ugent.justin.db.dto.RadioElement
+
+@(element: RadioElement)(implicit deputy: FormDeputy)
+
+@b5.radio_group(Forms.field(s"value[${element.getId}]", ""),
+    element.getOptions.map(o => (o.id.toString -> o.text)).toSeq,
+    "_label" -> "")

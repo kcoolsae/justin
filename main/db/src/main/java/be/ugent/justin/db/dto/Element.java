@@ -28,4 +28,8 @@ public abstract class Element {
         return visitor.visitElement(this);
     }
 
+    public boolean isRequired() {
+        return false;
+    }
+
 }

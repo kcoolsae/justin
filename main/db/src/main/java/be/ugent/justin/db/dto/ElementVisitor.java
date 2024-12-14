@@ -19,8 +19,12 @@ public abstract class ElementVisitor<R> {
         return visitElement(element);
     }
 
-    public R visitMultipleChoice(MultipleChoiceElement element) {
+    public R visitOptions(OptionsElement element) {
         return visitQuestionElement(element);
+    }
+
+    public R visitMultipleChoice(MultipleChoiceElement element) {
+        return visitOptions(element);
     }
 
     public R visitRadio(RadioElement element) {
@@ -36,7 +40,7 @@ public abstract class ElementVisitor<R> {
     }
 
     public R visitCheckboxes(CheckboxesElement element) {
-        return visitQuestionElement(element);
+        return visitOptions(element);
     }
 
     public R visitText(TextElement element) {
