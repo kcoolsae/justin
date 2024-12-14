@@ -10,7 +10,8 @@
 package be.ugent.justin.db.jdbc;
 
 import be.ugent.justin.db.dao.FormDao;
-import be.ugent.justin.db.dto.Form;
+import be.ugent.justin.db.dto.FormHeader;
+import be.ugent.justin.db.dto.FormLabel;
 
 import java.util.List;
 
@@ -21,13 +22,13 @@ class JDBCFormDao extends JDBCAbstractDao implements FormDao {
     }
 
     @Override
-    public List<Form> listFormsRestricted(int eventId) {
+    public List<FormLabel> listFormsRestricted(int eventId) {
         return select("forms.form_id, form_label, form_deadline, user_id IS NOT NULL as participation_status")
                 .from("forms LEFT JOIN user_forms " +
                         "ON (forms.form_id = user_forms.form_id AND user_forms.user_id = ?)")
                 .parameter(getUserId())
                 .where("event_id", eventId)
-                .getList(rs -> new Form(
+                .getList(rs -> new FormLabel(
                         rs.getInt("form_id"),
                         rs.getString("form_label"),
                         rs.getDate("form_deadline").toLocalDate(),
@@ -48,5 +49,17 @@ class JDBCFormDao extends JDBCAbstractDao implements FormDao {
                     .where("user_id", getUserId())
                     .execute();
         }
+    }
+
+    @Override
+    public FormHeader getForm(int formId) {
+        return select("form_id, form_title, form_description")
+                .from("forms")
+                .where("form_id", formId)
+                .getObject(rs -> new FormHeader(
+                        rs.getInt("form_id"),
+                        rs.getString("form_title"),
+                        rs.getString("form_description")
+                ));
     }
 }

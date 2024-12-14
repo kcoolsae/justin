@@ -9,7 +9,8 @@
 
 package be.ugent.justin.db.dao;
 
-import be.ugent.justin.db.dto.Form;
+import be.ugent.justin.db.dto.FormHeader;
+import be.ugent.justin.db.dto.FormLabel;
 
 import java.util.List;
 
@@ -18,11 +19,16 @@ public interface FormDao {
     /**
      * List of all forms for a given event. Includes only id, label and deadline.
      */
-    List<Form> listFormsRestricted(int eventId);
+    List<FormLabel> listFormsRestricted(int eventId);
 
     /**
      * Indicate that the current user will 'participate' in the form, or not.
      */
     void setParticipation(int formId, boolean participate);
+
+    /**
+     * Return form information for a given form.
+     */
+    FormHeader getForm(int formId);
 
 }

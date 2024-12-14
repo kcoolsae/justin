@@ -19,7 +19,7 @@ public class InfoElement extends Element {
     }
 
     @Override
-    <R> R visit(ElementVisitor<R> visitor) {
+    public <R> R accept(ElementVisitor<R> visitor) {
         return visitor.visitInfo(this);
     }
 }

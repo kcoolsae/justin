@@ -54,11 +54,11 @@ class JDBCElementDao extends JDBCAbstractDao implements ElementDao {
     }
 
     @Override
-    public Collection<Element> listElements(int formId, int pageId) {
+    public Collection<Element> listElements(int formId, int pageNr) {
         // without options
         Map<Integer,Element> map = selectElement()
                 .where("form_id", formId)
-                .where("page_id", pageId)
+                .where("element_page_nr", pageNr)
                 .orderBy("element_seq_nr")
                 .getMap(JDBCElementDao::makeElement);
 

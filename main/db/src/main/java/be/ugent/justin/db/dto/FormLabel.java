@@ -11,5 +11,5 @@ package be.ugent.justin.db.dto;
 
 import java.time.LocalDate;
 
-public record Form (int id, String label, LocalDate deadline, boolean participation){
+public record FormLabel(int id, String label, LocalDate deadline, boolean participation){
 }

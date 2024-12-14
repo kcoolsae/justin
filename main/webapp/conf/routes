@@ -14,6 +14,8 @@ POST    /e/p/:eventId controllers.HomeController.changeParticipation(request: Re
 POST    /f/c/:formId/:set controllers.FormController.changeParticipation(request: Request, formId: Int, set: Boolean)
 GET     /f/l/:formId controllers.FormController.landing(request: Request, formId: Int)
 
+GET     /f/p/:formId/:pageNr controllers.FormController.showPage(request: Request, formId: Int, pageNr: Int)
+
 # profile
 GET     /p/n       controllers.ProfileController.showChangeName(request: Request)
 POST    /p/n       controllers.ProfileController.changeName(request: Request)

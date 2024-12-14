@@ -1,0 +1,17 @@
+@* form.scala.html
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+@(pageId: String, css: Html = Html(""), js: Html = Html(""))(content: => Html)(implicit deputy: deputies.Deputy)
+
+@formCSS = {
+    <style>body { background-color: #ddf5f5; }</style>
+    @css
+}
+
+@raw(pageId, formCSS, js) {
+    <div class="container-md">@content</div>
+}

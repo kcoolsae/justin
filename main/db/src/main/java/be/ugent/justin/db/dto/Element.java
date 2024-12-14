@@ -24,7 +24,7 @@ public abstract class Element {
     private final String title;
     private final String description;
 
-    <R> R visit(ElementVisitor<R> visitor) {
+    public <R> R accept(ElementVisitor<R> visitor) {
         return visitor.visitElement(this);
     }
 

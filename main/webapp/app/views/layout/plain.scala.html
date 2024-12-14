@@ -6,7 +6,6 @@
 * in the top level project directory.
 *@
 
-@import views.html.layout.raw
 @(pageId: String, css: Html = Html(""), js: Html = Html(""))(content: => Html)(implicit deputy: deputies.Deputy)
 
 @raw(pageId, css, js){
