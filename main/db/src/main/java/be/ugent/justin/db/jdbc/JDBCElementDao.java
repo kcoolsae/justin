@@ -40,7 +40,7 @@ class JDBCElementDao extends JDBCAbstractDao implements ElementDao {
             case TEXT -> new TextElement(id, key, title, description, required);
             case TEXT_AREA -> new TextAreaElement(id, key, title, description, required);
             case DATE -> new DateElement(id, key, title, description, required);
-            case INFO -> new InfoElement(id, key, title, description, "newpage".equals(extra));
+            case INFO -> new InfoElement(id, key, title, description);
         };
     }
 
@@ -54,10 +54,11 @@ class JDBCElementDao extends JDBCAbstractDao implements ElementDao {
     }
 
     @Override
-    public Collection<Element> listElements(int formId) {
+    public Collection<Element> listElements(int formId, int pageId) {
         // without options
         Map<Integer,Element> map = selectElement()
                 .where("form_id", formId)
+                .where("page_id", pageId)
                 .orderBy("element_seq_nr")
                 .getMap(JDBCElementDao::makeElement);
 

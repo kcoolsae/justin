@@ -15,6 +15,6 @@ import java.util.Collection;
 
 public interface ElementDao {
 
-    Collection<Element> listElements(int formId);
+    Collection<Element> listElements(int formId, int pageId);
 
 }

@@ -14,11 +14,8 @@ import lombok.Getter;
 @Getter
 public class InfoElement extends Element {
 
-    private final boolean startsPage;
-
-    public InfoElement(int id, String key, String title, String description, boolean startsPage) {
+    public InfoElement(int id, String key, String title, String description) {
         super(id, key, title, description);
-        this.startsPage = startsPage;
     }
 
     @Override
