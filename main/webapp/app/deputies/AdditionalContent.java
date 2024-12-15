@@ -115,15 +115,14 @@ public class AdditionalContent extends ElementVisitor<Html> {
                 )
         ).toList();
         if (element.hasOther()) {
-            int index = answer.indexOf(';');
-            String checkAnswer;
-            String stringAnswer;
-            if (index >= 0) {
-                checkAnswer = "true";
-                stringAnswer = answer.substring(index + 1);
-            } else {
-                checkAnswer = "false";
-                stringAnswer = "";
+            String checkAnswer = "false";
+            String stringAnswer = "";
+            if (answer != null) {
+                int index = answer.indexOf(';');
+                if(index >= 0) {
+                    checkAnswer = "true";
+                    stringAnswer = answer.substring(index + 1);
+                }
             }
             return views.html.form.checkboxes_other.render(
                     fields,

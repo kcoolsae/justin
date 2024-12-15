@@ -62,4 +62,23 @@ class JDBCFormDao extends JDBCAbstractDao implements FormDao {
                         rs.getString("form_description")
                 ));
     }
+
+
+    @Override
+    public int nextPage(int formId, int pageNr) {
+        return select("MIN(element_page_nr)")
+                .from("elements")
+                .where("form_id", formId)
+                .where("element_page_nr > ?", pageNr)
+                .getInt();
+    }
+
+    @Override
+    public int previousPage(int formId, int pageNr) {
+        return select("MAX(element_page_nr)")
+                .from("elements")
+                .where("form_id", formId)
+                .where("element_page_nr < ?", pageNr)
+                .getInt();
+    }
 }

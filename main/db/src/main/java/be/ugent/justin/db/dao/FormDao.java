@@ -31,4 +31,15 @@ public interface FormDao {
      */
     FormHeader getForm(int formId);
 
+    /**
+     * Next page of the form. Returns zero when there is no next page. Can also
+     * be used to find the first page by using 0 for parameter pageNr.
+     */
+    int nextPage(int formId, int pageNr);
+
+    /**
+     * Previous page of the form. Returns zero when there is no previous page.
+     */
+    int previousPage(int formId, int pageNr);
+
 }

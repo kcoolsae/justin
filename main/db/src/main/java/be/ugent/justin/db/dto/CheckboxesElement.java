@@ -17,8 +17,8 @@ public class CheckboxesElement extends OptionsElement {
         return hasOther;
     }
 
-    public CheckboxesElement(int id, String key, String title, String description, boolean required, boolean hasOther, String answer) {
-        super(id, key, title, description, required, answer);
+    public CheckboxesElement(int id, String key, String title, String description, boolean hasOther, String answer) {
+        super(id, key, title, description, false, answer); // required makes no sense for checkboxes
         this.hasOther = hasOther;
     }
 

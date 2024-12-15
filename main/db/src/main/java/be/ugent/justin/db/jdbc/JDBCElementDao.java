@@ -37,7 +37,7 @@ class JDBCElementDao extends JDBCAbstractDao implements ElementDao {
             case RADIO -> new RadioElement(id, key, title, description, required, "other".equals(extra), answer);
             case BUTTONS -> new ButtonsElement(id, key, title, description, required, answer);
             case SELECT -> new SelectElement(id, key, title, description, required, answer);
-            case CHECKBOXES -> new CheckboxesElement(id, key, title, description, required, "other".equals(extra), answer);
+            case CHECKBOXES -> new CheckboxesElement(id, key, title, description, "other".equals(extra), answer);
             case TEXT -> new TextElement(id, key, title, description, required, answer);
             case TEXT_AREA -> new TextAreaElement(id, key, title, description, required, answer);
             case DATE -> new DateElement(id, key, title, description, required, answer);

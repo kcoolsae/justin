@@ -32,8 +32,8 @@ public class FormDeputy extends LoggedInDeputy {
     }
 
     public Result landing(int formId) {
-        // TODO should use lowest page nr, not 1?
-        return showPage(formId, 1);
+        // TODO present an instruction/warning page when no answer have yet been entered for this form
+        return redirect(routes.FormController.showPage(formId, dac().getFormDao().nextPage(formId, 0)));
     }
 
     public Result showPage(int formId, int pageNr) {
@@ -72,6 +72,12 @@ public class FormDeputy extends LoggedInDeputy {
             }
         }
 
-        return redirect(routes.FormController.showPage(formId, pageNr + 1)); // TODO check action
+        // TODO could probably provide next page number in form?
+        int nextPage = dac().getFormDao().nextPage(formId, pageNr);
+        if (nextPage == 0) {
+            return redirectToIndex();
+        } else {
+            return redirect(routes.FormController.showPage(formId, nextPage));
+        }
     }
 }
