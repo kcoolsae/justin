@@ -1,13 +1,17 @@
-@* checkboxes.scala.html
+@* checkboxes_other.scala.html
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * Copyright © 2024 Kris Coolsaet (Universiteit Gent)
 *
 * This software is distributed under the MIT License - see files LICENSE and AUTHORS
 * in the top level project directory.
 *@
-
-@(fields: List[AdditionalContent.FieldWithText])(implicit deputy: FormDeputy)
+@(fields: List[AdditionalContent.FieldWithText],
+        checkField: Form.Field, otherField: Form.Field)(implicit deputy: FormDeputy)
 
 @foreach(fields) { fwt =>
     @b5.checkbox(fwt.field, fwt.text, "_label" -> "")
 }
+
+@b5._checkbox_other(checkField, otherField,
+    "_label" -> "", "_class" -> "justin-other"
+)

@@ -11,8 +11,8 @@ package be.ugent.justin.db.dto;
 
 public class MultipleChoiceElement extends OptionsElement {
 
-    public MultipleChoiceElement(int id, String key, String title, String description, boolean required) {
-        super(id, key, title, description, required);
+    public MultipleChoiceElement(int id, String key, String title, String description, boolean required, String answer) {
+        super(id, key, title, description, required, answer);
     }
 
     @Override

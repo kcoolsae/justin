@@ -6,8 +6,6 @@
 * in the top level project directory.
 *@
 
-@import _root_.be.ugent.justin.db.dto.TextElement
+@(field: Form.Field)(implicit deputy: FormDeputy)
 
-@(element: TextElement)(implicit deputy: FormDeputy)
-
-@b5.text(Forms.field(s"string[${element.getId}]", ""), "_label" -> "")
+@b5.text(field, "_label" -> "")

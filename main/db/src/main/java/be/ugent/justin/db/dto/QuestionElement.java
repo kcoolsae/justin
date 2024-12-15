@@ -15,9 +15,11 @@ import lombok.Getter;
 public abstract class QuestionElement extends Element {
 
     private final boolean required;
+    private final String answer; // answer by the current user
 
-    public QuestionElement(int id, String key, String title, String description, boolean required) {
+    public QuestionElement(int id, String key, String title, String description, boolean required, String answer) {
         super(id, key, title, description);
         this.required = required;
+        this.answer = answer;
     }
 }

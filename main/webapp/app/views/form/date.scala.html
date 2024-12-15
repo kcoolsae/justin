@@ -6,8 +6,6 @@
 * in the top level project directory.
 *@
 
-@import _root_.be.ugent.justin.db.dto.DateElement
+@(field: Form.Field)(implicit deputy: FormDeputy)
 
-@(element: DateElement)(implicit deputy: FormDeputy)
-
-@b5.date(Forms.field(s"string[${element.getId}]", ""), "_label" -> "")
+@b5.date(field, "_label" -> "")

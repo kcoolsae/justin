@@ -32,14 +32,15 @@ class JDBCElementDao extends JDBCAbstractDao implements ElementDao {
         String description = rs.getString("element_description");
         boolean required = rs.getBoolean("element_required");
         String extra = rs.getString("element_extra");
+        String answer = rs.getString("answer_text");
         return switch (ElementType.valueOf(rs.getString("element_type"))) {
-            case RADIO -> new RadioElement(id, key, title, description, required, "other".equals(extra));
-            case BUTTONS -> new ButtonsElement(id, key, title, description, required);
-            case SELECT -> new SelectElement(id, key, title, description, required);
-            case CHECKBOXES -> new CheckboxesElement(id, key, title, description, required, "other".equals(extra));
-            case TEXT -> new TextElement(id, key, title, description, required);
-            case TEXT_AREA -> new TextAreaElement(id, key, title, description, required);
-            case DATE -> new DateElement(id, key, title, description, required);
+            case RADIO -> new RadioElement(id, key, title, description, required, "other".equals(extra), answer);
+            case BUTTONS -> new ButtonsElement(id, key, title, description, required, answer);
+            case SELECT -> new SelectElement(id, key, title, description, required, answer);
+            case CHECKBOXES -> new CheckboxesElement(id, key, title, description, required, "other".equals(extra), answer);
+            case TEXT -> new TextElement(id, key, title, description, required, answer);
+            case TEXT_AREA -> new TextAreaElement(id, key, title, description, required, answer);
+            case DATE -> new DateElement(id, key, title, description, required, answer);
             case INFO -> new InfoElement(id, key, title, description);
         };
     }
@@ -49,8 +50,10 @@ class JDBCElementDao extends JDBCAbstractDao implements ElementDao {
     }
 
     public SelectSQLStatement selectElement() {
-        return select("element_id, element_key, element_title, element_description, element_required, element_type, element_extra")
-                .from("elements");
+        return select("elements.element_id, element_key, element_title, element_description, element_required, element_type, element_extra, answer_text")
+                .from("elements LEFT JOIN answers " +
+                        "ON (elements.element_id = answers.element_id AND answers.user_id = ?)")
+                .parameter(getUserId());
     }
 
     @Override

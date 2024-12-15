@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * Common superclass for all form elements
+ * Common superclass for all form elements.
  */
 @Getter
 @AllArgsConstructor

@@ -1,15 +1,16 @@
-@* select.scala.html
+@* radio_other.scala.html
 * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * Copyright © 2024 Kris Coolsaet (Universiteit Gent)
 *
 * This software is distributed under the MIT License - see files LICENSE and AUTHORS
 * in the top level project directory.
 *@
-
 @import _root_.be.ugent.justin.db.dto.Option
 
-@(field: Form.Field, options: List[Option])(implicit deputy: FormDeputy)
+@(field: Form.Field, otherField: Form.Field, options: List[Option])(implicit deputy: FormDeputy)
 
-@b5.select(field,
+@b5._radio_group_other(
+    field, otherField,
     options.map(o => (o.id.toString -> o.text)).toSeq,
-    "_label" -> "", "_default" -> "")
+    "_label" -> "", "_class" -> "justin-other"
+)

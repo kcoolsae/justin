@@ -19,8 +19,8 @@ public class OptionsElement extends QuestionElement {
 
     protected final List<Option> options;
 
-    public OptionsElement(int id, String key, String title, String description, boolean required) {
-        super(id, key, title, description, required);
+    public OptionsElement(int id, String key, String title, String description, boolean required, String answer) {
+        super(id, key, title, description, required, answer);
         options = new ArrayList<>();
     }
 

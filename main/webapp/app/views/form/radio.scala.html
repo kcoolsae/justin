@@ -5,18 +5,8 @@
 * This software is distributed under the MIT License - see files LICENSE and AUTHORS
 * in the top level project directory.
 *@
-@import _root_.be.ugent.justin.db.dto.RadioElement
+@import _root_.be.ugent.justin.db.dto.Option
 
-@(element: RadioElement)(implicit deputy: FormDeputy)
+@(field: Form.Field, options: List[Option])(implicit deputy: FormDeputy)
 
-@defining(element.getOptions.map(o => (o.id.toString -> o.text)).toSeq) { options =>
-    @if(element.hasOther) {
-        @b5._radio_group_other(
-            Forms.field(s"number[${element.getId}]", ""),
-            Forms.field(s"string[${element.getId}]", ""),
-            options, "_label" -> "", "_class" -> "justin-other"
-        )
-    } else {
-        @b5.radio_group(Forms.field(s"number[${element.getId}]", ""), options, "_label" -> "")
-    }
-}
+@b5.radio_group(field, options.map(o => (o.id.toString -> o.text)).toSeq, "_label" -> "")

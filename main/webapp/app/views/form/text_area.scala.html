@@ -6,8 +6,6 @@
 * in the top level project directory.
 *@
 
-@import _root_.be.ugent.justin.db.dto.TextAreaElement
+@(field: Form.Field)(implicit deputy: FormDeputy)
 
-@(element: TextAreaElement)(implicit deputy: FormDeputy)
-
-@b5.text_area(Forms.field(s"string[${element.getId}]", ""), "_label" -> "", "rows" -> 2)
+@b5.text_area(field, "_label" -> "", "rows" -> 2)

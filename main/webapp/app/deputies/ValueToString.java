@@ -14,6 +14,8 @@ import be.ugent.justin.db.dto.Element;
 import be.ugent.justin.db.dto.ElementVisitor;
 import be.ugent.justin.db.dto.OptionsElement;
 
+import java.util.Map;
+
 /**
  * Visitor that converts a form value to a string to be stored in the database, depending on the type of the element
  * that the value belongs to.
@@ -53,20 +55,25 @@ public class ValueToString extends ElementVisitor<String> {
         if (data.check == null) {
             return null;
         } else {
-            StringBuilder result = new StringBuilder();
-            boolean hasOther = false;
-            for (int key : data.check.get(element.getId()).keySet()) {
-                if (key == 0) {
-                    hasOther = true;
-                } else {
-                    result.append(key).append(",");
+            Map<Integer, Boolean> optionsChecked = data.check.get(element.getId());
+            if (optionsChecked == null) {
+                return null;
+            } else {
+                StringBuilder result = new StringBuilder();
+                boolean hasOther = false;
+                for (int key : optionsChecked.keySet()) {
+                    if (key == 0) {
+                        hasOther = true;
+                    } else {
+                        result.append(key).append(",");
+                    }
                 }
+                result.deleteCharAt(result.length() - 1); // remove last comma
+                if (hasOther && data.string != null) {
+                    result.append(";").append(data.string.get(element.getId())); // Other
+                }
+                return result.toString();
             }
-            result.deleteCharAt(result.length() - 1); // remove last comma
-            if (hasOther) {
-                result.append(";").append(data.string.get(element.getId())); // Other
-            }
-            return result.toString();
         }
     }
 }

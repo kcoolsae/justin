@@ -20,8 +20,8 @@ public class RadioElement extends MultipleChoiceElement {
         return hasOther;
     }
 
-    public RadioElement(int id, String key, String title, String description, boolean required, boolean hasOther) {
-        super(id, key, title, description, required);
+    public RadioElement(int id, String key, String title, String description, boolean required, boolean hasOther, String answer) {
+        super(id, key, title, description, required, answer);
         this.hasOther = hasOther;
     }
 

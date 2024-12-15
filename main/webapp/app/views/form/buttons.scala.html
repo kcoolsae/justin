@@ -6,10 +6,10 @@
 * in the top level project directory.
 *@
 
-@import _root_.be.ugent.justin.db.dto.ButtonsElement
+@import _root_.be.ugent.justin.db.dto.Option
 
-@(element: ButtonsElement)(implicit deputy: FormDeputy)
+@(field: Form.Field, options: List[Option] )(implicit deputy: FormDeputy)
 
-@b5.button_group(Forms.field(s"number[${element.getId}]", ""),
-    element.getOptions.map(o => (o.id.toString -> o.text)).toSeq,
+@b5.button_group(field,
+    options.map(o => (o.id.toString -> o.text)).toSeq,
     "_label" -> "")

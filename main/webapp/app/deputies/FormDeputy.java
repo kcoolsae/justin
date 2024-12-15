@@ -20,7 +20,6 @@ import play.mvc.Result;
 import play.twirl.api.Html;
 
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class FormDeputy extends LoggedInDeputy {
 
