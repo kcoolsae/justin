@@ -10,12 +10,12 @@
 @(element: CheckboxesElement)(implicit deputy: FormDeputy)
 
 @foreach(element.getOptions) { option =>
-    @b5.checkbox(Forms.field(s"value[${element.getId}]", ""), option.text, "_label" -> "")
+    @b5.checkbox(Forms.field(s"check[${element.getId}][${option.id}]", ""), option.text, "_label" -> "")
 }
 @if(element.hasOther) {
     @b5._checkbox_other(
-        Forms.field(s"value[${element.getId}]", ""),
-        Forms.field(s"other[${element.getId}]", ""),
+        Forms.field(s"check[${element.getId}][0]", ""),
+        Forms.field(s"string[${element.getId}]", ""),
         "_label" -> "", "_class" -> "justin-other"
     )
 }

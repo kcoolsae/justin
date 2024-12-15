@@ -10,4 +10,4 @@
 
 @(element: DateElement)(implicit deputy: FormDeputy)
 
-@b5.date(Forms.field(s"value[${element.getId}]", ""), "_label" -> "")
+@b5.date(Forms.field(s"string[${element.getId}]", ""), "_label" -> "")

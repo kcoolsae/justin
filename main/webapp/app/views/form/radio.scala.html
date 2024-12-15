@@ -12,11 +12,11 @@
 @defining(element.getOptions.map(o => (o.id.toString -> o.text)).toSeq) { options =>
     @if(element.hasOther) {
         @b5._radio_group_other(
-            Forms.field(s"value[${element.getId}]", ""),
-            Forms.field(s"other[${element.getId}]", ""),
+            Forms.field(s"number[${element.getId}]", ""),
+            Forms.field(s"string[${element.getId}]", ""),
             options, "_label" -> "", "_class" -> "justin-other"
         )
     } else {
-        @b5.radio_group(Forms.field(s"value[${element.getId}]", ""), options, "_label" -> "")
+        @b5.radio_group(Forms.field(s"number[${element.getId}]", ""), options, "_label" -> "")
     }
 }

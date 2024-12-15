@@ -20,7 +20,7 @@
 
     @* 'Other' field *@
     <div class='form-check @if(otherField.hasErrors)("is-invalid")'>
-        <input type="radio" id="@(t.id)_other" name="@t.name" value="other" class="@t.classArg"
+        <input type="radio" id="@(t.id)_other" name="@t.name" value="0" class="@t.classArg"
             @if(t.value.contains("other"))("checked='checked'") @B5.toHtmlArgs(t.args)>
         <label class="form-check-label me-4" for="@(t.id)_other">Other...</label>
         <input type="text" class="justin-other-field" id="@otherField.id" name="@otherField.name" value="@otherField.value" >

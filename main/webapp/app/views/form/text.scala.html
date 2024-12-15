@@ -10,4 +10,4 @@
 
 @(element: TextElement)(implicit deputy: FormDeputy)
 
-@b5.text(Forms.field(s"value[${element.getId}]", ""), "_label" -> "")
+@b5.text(Forms.field(s"string[${element.getId}]", ""), "_label" -> "")

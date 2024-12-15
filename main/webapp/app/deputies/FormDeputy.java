@@ -9,10 +9,18 @@
 
 package deputies;
 
+import be.ugent.justin.db.dao.ElementDao;
 import be.ugent.justin.db.dto.*;
 import common.LoggedInDeputy;
+import controllers.routes;
+import lombok.Getter;
+import lombok.Setter;
+import play.data.Form;
 import play.mvc.Result;
 import play.twirl.api.Html;
+
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class FormDeputy extends LoggedInDeputy {
 
@@ -32,60 +40,39 @@ public class FormDeputy extends LoggedInDeputy {
     public Result showPage(int formId, int pageNr) {
         return ok(views.html.form.page.render(
                 dac().getFormDao().getForm(formId),
+                pageNr,
                 dac().getElementDao().listElements(formId, pageNr),
                 this
         ));
     }
 
-    private class AdditionalContentVisitor extends ElementVisitor<Html> {
-
-        @Override
-        public Html visitElement(Element element) {
-            return views.html.form.unknown.render(element, FormDeputy.this);
-        }
-
-        @Override
-        public Html visitInfo(InfoElement element) {
-            return new Html("");
-        }
-
-        @Override
-        public Html visitText(TextElement element) {
-            return views.html.form.text.render(element, FormDeputy.this);
-        }
-
-        @Override
-        public Html visitRadio(RadioElement element) {
-            return views.html.form.radio.render(element, FormDeputy.this);
-        }
-
-        @Override
-        public Html visitDate(DateElement element) {
-            return views.html.form.date.render(element, FormDeputy.this);
-        }
-
-        @Override
-        public Html visitTextArea(TextAreaElement element) {
-            return views.html.form.text_area.render(element, FormDeputy.this);
-        }
-
-        @Override
-        public Html visitCheckboxes(CheckboxesElement element) {
-            return views.html.form.checkboxes.render(element, FormDeputy.this);
-        }
-
-        @Override
-        public Html visitSelect(SelectElement element) {
-            return views.html.form.select.render(element, FormDeputy.this);
-        }
-
-        @Override
-        public Html visitButtons(ButtonsElement element) {
-            return views.html.form.buttons.render(element, FormDeputy.this);
-        }
+    public Html additionalContents(Element element) {
+        return element.accept(new AdditionalContent(this));
     }
 
-    public Html additionalContents(Element element) {
-        return element.accept(new AdditionalContentVisitor());
+    @Getter
+    @Setter
+    public static class PageData {
+        public Map<Integer, Integer> number;     // for multiple choice
+        public Map<Integer, String> string;      // for text fields and others
+        public Map<Integer, Map<Integer, Boolean>> check; // for checkboxes
+    }
+
+    public Result submitPage(int formId, int pageNr) {
+
+        Form<PageData> form = formFromRequest(PageData.class);
+        PageData pageData = form.get();
+        ValueToString valueToString = new ValueToString(pageData);
+
+        // TODO no database calls if nothing changed on the page
+        ElementDao dao = dac().getElementDao();
+        for (Element element : dao.listElements(formId, pageNr)) {
+            String value = element.accept(valueToString);
+            if (value != null) {
+                dao.setAnswer(element.getId(), value);
+            }
+        }
+
+        return redirect(routes.FormController.showPage(formId, pageNr + 1)); // TODO check action
     }
 }

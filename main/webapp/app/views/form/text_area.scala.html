@@ -10,4 +10,4 @@
 
 @(element: TextAreaElement)(implicit deputy: FormDeputy)
 
-@b5.text_area(Forms.field(s"value[${element.getId}]", ""), "_label" -> "", "rows" -> 2)
+@b5.text_area(Forms.field(s"string[${element.getId}]", ""), "_label" -> "", "rows" -> 2)

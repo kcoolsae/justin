@@ -15,6 +15,14 @@ import java.util.Collection;
 
 public interface ElementDao {
 
+    /**
+     * List elements on the given form page.
+     */
     Collection<Element> listElements(int formId, int pageId);
+
+    /**
+     * Register the answer of the current user for the given element.
+     */
+    void setAnswer(int elementId, String answer);
 
 }

@@ -10,6 +10,6 @@
 
 @(element: SelectElement)(implicit deputy: FormDeputy)
 
-@b5.select(Forms.field(s"value[${element.getId}]", ""),
+@b5.select(Forms.field(s"number[${element.getId}]", ""),
     element.getOptions.map(o => (o.id.toString -> o.text)).toSeq,
     "_label" -> "", "_default" -> "")

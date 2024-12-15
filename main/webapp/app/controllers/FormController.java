@@ -31,4 +31,8 @@ public class FormController extends LoggedInController<FormDeputy> {
     public Result showPage(Http.Request request, int formId, int pageNr) {
         return createDeputy(request).showPage(formId, pageNr);
     }
+
+    public Result submitPage(Http.Request request, int formId, int pageNr) {
+        return createDeputy(request).submitPage(formId, pageNr);
+    }
 }

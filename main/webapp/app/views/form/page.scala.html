@@ -8,7 +8,7 @@
 
 @import _root_.be.ugent.justin.db.dto.{FormHeader, Element}
 
-@(header: FormHeader, elements: Collection[Element])(implicit deputy: FormDeputy)
+@(header: FormHeader, pageNr: Int, elements: Collection[Element])(implicit deputy: FormDeputy)
 
 @js={
     <script>
@@ -62,22 +62,25 @@
         </div>
     </div>
 
-    @foreach(elements) { element =>
-        <div class="card mt-3">
-            <div class="card-body">
-                @if(element.getTitle != null) {
-                    <h5 class="card-title">@element.getTitle@if(element.isRequired){@required()}</h5>
-                } else if(element.isRequired){
-                    <h5 class="card-title">@required()</h5>
-                }
-                @if(element.getDescription != null) {
-                    @ext.md(element.getDescription)
-                }
-                @deputy.additionalContents(element)
+    @helper.form(action = routes.FormController.submitPage(header.id, pageNr)) {
+        @foreach(elements) { element =>
+            <div class="card mt-3">
+                <div class="card-body">
+                    @if(element.getTitle != null) {
+                        <h5 class="card-title">@element.getTitle@if(element.isRequired) {@required()}</h5>
+                    } else if(element.isRequired){
+                <h5 class="card-title">@required()</h5>
+                    }
+                    @if(element.getDescription != null) {
+                        @ext.md(element.getDescription)
+                    }
+                    @deputy.additionalContents(element)
+                </div>
             </div>
-        </div>
-    }
+        }
 
-    <p class="mt-3"><a href="" class="btn btn-outline-primary">Next</a></p>
+        <p class="mt-3"><button type="submit" name="action" value="next" class="btn btn-outline-primary">Next</button></p>
+
+    }
 
 }

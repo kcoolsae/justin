@@ -55,3 +55,11 @@ CREATE TABLE options (
     UNIQUE (element_id, option_key)
 );
 
+-- Answers given by the users
+CREATE TABLE answers (
+    element_id    INTEGER REFERENCES elements,
+    user_id       INTEGER REFERENCES users,
+    answer_text   TEXT,
+    PRIMARY KEY (element_id, user_id)
+);
+

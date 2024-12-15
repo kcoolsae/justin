@@ -15,12 +15,12 @@ public abstract class ElementVisitor<R> {
         return null;
     }
 
-    public R visitQuestionElement(Element element) {
+    public R visitQuestion(Element element) {
         return visitElement(element);
     }
 
     public R visitOptions(OptionsElement element) {
-        return visitQuestionElement(element);
+        return visitQuestion(element);
     }
 
     public R visitMultipleChoice(MultipleChoiceElement element) {
@@ -44,15 +44,15 @@ public abstract class ElementVisitor<R> {
     }
 
     public R visitText(TextElement element) {
-        return visitQuestionElement(element);
+        return visitQuestion(element);
     }
 
     public R visitTextArea(TextAreaElement element) {
-        return visitQuestionElement(element);
+        return visitQuestion(element);
     }
 
     public R visitDate(DateElement element) {
-        return visitQuestionElement(element);
+        return visitQuestion(element);
     }
 
     public R visitInfo(InfoElement element) {

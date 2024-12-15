@@ -74,4 +74,13 @@ class JDBCElementDao extends JDBCAbstractDao implements ElementDao {
 
         return List.copyOf(map.values());
     }
+
+    @Override
+    public void setAnswer(int elementId, String answer) {
+        insertOrUpdateInto("answers")
+                .key("element_id", elementId)
+                .key("user_id", getUserId())
+                .value("answer_text", answer)
+                .execute();
+    }
 }
