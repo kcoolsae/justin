@@ -1,63 +1,81 @@
 Form pages
 ===
 See also:
+
 * [Home page](index.md)
 
 ---
-The form structure is intended to mimic that used in popular applications such as 
-[Google forms](google-forms.md). A [mockup](mockups/formpage1.html) of what the forms could look like is available.
+The form structure mimics that used in popular applications such as *Google Forms*.
+A [mockup](mockups/formpage1.html) of what the forms could look like is available. The
+[demo application](https://justin.ugent.be/justin) already supports all types listed below.
 
 The forms in which the data is entered, are organised hierarchically
-into *categories*, *pages* (= *sections*) and *questions*.
+into *categories*, *pages* and *questions*.
 
-Categories and pages can have titles and a header text. Questions
+Categories can have titles and a header text which is shown on each of the corresponding form.
+Pages carry no additional data and are simply used to group questions. Questions
 can be of different type
 
-* Multiple choice (radio buttons / or drop down menu / or buttons?)
-* Multiple choice with 'other' option (radio buttons + text field)
-* Multiple response (check boxes)
-* Multiple response with 'other'
-* Free text (text field / text area).
+* Radio buttons (multiple choice)
+* Drop-down list (multiple choice)
+* Toggle buttons (multiple choice)
+* Radio buttons with 'other' option (multiple choice). When selecting the last option (Other…) a text field appears.
+* Check boxes (multiple response)
+* Check boxes with 'other' (multiple response). When selecting the last option (Other…) a text field appears. Users
+  are allowed only a single 'other' answer.
+* Text field (one line of text).
+* Text area (multiple lines of text).
 * Date (special date field)
 
-{:.note}
-In addition, multiple choice *buttons* could be used, e.g., for yes/no questions (not in Google forms),
-Questions could also be interspersed with explanatory text blocks (cf. Google forms).
+Next to this also explanatory text blocks can be added to the form. Typically, these are used at the top of a new page,
+but they
+are also allowed to be interspersed between questions.
 
-Answers to questions can be pre-filled, from 
-* last year's information
+Answers to questions can be pre-filled, from
+
+* a form from an earlier event (e.g., last year's form of the same category)
 * default values (e.g., dates of arrival and departure)
-* information taken from other questions (or from private data), e.g.,
-  *name on credit card* could be pre-filled with *name of user*.
+* information taken from private data, e.g., *name on credit card* could be pre-filled with *name of user*.
+* information from another form of the same event, This is less useful as pre-filling happens the first time a form is
+  accessed (see below)
 
-Pages group questions so that a user does not see one long page full of questions. Pages can have
-explanatory information in the header and could temporarily be left blank by the user. *Go to next/previous page*
-buttons are provided.
+## User interface
+
+Questions are grouped into pages. Each page display a general header, the same for all pages of the same category and
+below that
+the questions for that page are listed one after another, in a fixed order.
+
+At the bottom of the page,
+a 'Submit'-button is provided to register the answers given on that page. (The user must indeed *actively* submit their
+answers, just clicking
+on a radio button is not sufficient.) Pressing this button saves the answers and moves the user to the next page, or to
+the user's starting page
+if the last page of the form has been reached.
+
+Each page also provides (at the top) a 'back to main page', a 'skip to next page' and a 'skip to previous page'
+link (when appropriate). These are navigation links only: no data is saved when using them.
+
+The first time a user accesses a form, the form is pre-filled with data from the user's profile and earlier forms, as
+described above.
+A separate warning page is shown informing the user about the fact that pages have to be submitted to be registered and
+that some
+data may already be pre-filled by the system.
+
+## Identifiers
 
 Questions are identified
-by a structured alphanumeric identifier, consisting of /year/category/question,
-e.g., `/2025/thc/nr-workshops-attended`, or simply `nr-workshops-attended`
-when year and category are clear. This can be used when selecting
+by a structured alphanumeric identifier, consisting of year/category/question,
+e.g., `2025/thc/nr-workshops-attended`. This can be used when selecting
 answers to be viewed/downloaded, or for internal references, e.g., to
 indicate how one question could be pre-filled with the answer to
-another question.
+another question. (Pages are not included in this identifier.)
 
-{:.note} Not sure whether pages should be part of this hierarchy. Google uses 'page dividers' on the same level
-as questions.
+Multiple choice or multiple response options can be identified
+in a similar way, e.g., `2025/host/dietary-needs/vegetarian`.
 
-Multiple choice or multiple response answers can be identified
-in a similar way, e.g., `/2025/host/dietary-needs/vegetarian`.
-
-{:.note}
-Do we need conditional questions or pages, i.e., items that are
-only shown when a certain answer is given to a question? The identifiers
-described above, may help to easily specify such conditions. (Google
-forms allow this partially!)
-
-{:.note}
-Note that category selection (*are you an accompanying person* or *do you intend
-to participate in the task editing process*) is already a type of
-conditional question.
+In some contexts abbreviations and special notations can be used. `2024/` could indicate 'the same category and
+question as this one, but in the `2024` event'. `~full-name` could indicate 'the full name of the user' as taken from the
+profile. 
 
 Question text
 ---
@@ -72,11 +90,7 @@ user interface for the user to upload images.
 
 Technical
 ---
-It is possible to export a Google form so that it can be imported into the system or database. This requires some manual
-work however, and most unfortunately, all formatting information (bold/italic/bullet lists/...) is lost in the process.
-
-{:.note}
-Programming the pages where users fill in data, is fairly straightforward. The part of the application that allows privileged users
-to create and edit forms, is much more complex. In an early stage of the project it might be necessary to create forms
-in a structured text file (xml, json, yaml) and import them into the system.
+Programming the pages where users fill in data, is fairly straightforward (and is already implemented at the current time). The part of the application that allows
+privileged users to create and edit forms, is much more complex - and of low priority. For 2025 the forms will be imported directly into the database
+from an XML file.
 
