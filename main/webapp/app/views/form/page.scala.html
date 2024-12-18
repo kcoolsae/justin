@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    @helper.form(action = routes.FormController.submitPage(header.id, nextPageNr)) {
+    @helper.form(action = routes.FormController.submitPage(header.id, pageNr)) {
         <input type="hidden" name="nextPage" value="@nextPageNr">
         @foreach(elements) { element =>
             <div class="card mt-3">

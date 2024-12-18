@@ -1,0 +1,29 @@
+@* notice.scala.html
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+@import _root_.be.ugent.justin.db.dto.{FormHeader, Element}
+
+@(header: FormHeader)(implicit deputy: FormDeputy)
+
+@layout.form("page") {
+    <div class="card">
+        <div class="card-body">
+            <img src='@routes.Assets.versioned("img/bebras_org-logo.svg")'
+            alt="Logo of Bebras International"
+            height="60"><h3 class="card-title">@header.title</h3>
+            <p><b>Please note the following before filling out a form:</b></p>
+            <ul>
+                <li>Answers are <b>not</b> registered until you press the <b>Submit</b>-button at the bottom of the page.</li>
+                <li>The links at the top of a page that allow you to skip to the next
+                    or previous pages will <b>not</b> register the changes made on that page.</li>
+                <li>Some fields of the form may already be pre-filled with default answers.
+                    Please check these carefully.</li>
+            </ul>
+            <p><a href="@routes.FormController.showPage(header.id, 0)">Proceed to the form…</a></p>
+        </div>
+    </div>
+}

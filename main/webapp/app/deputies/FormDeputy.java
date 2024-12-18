@@ -11,12 +11,11 @@ package deputies;
 
 import be.ugent.justin.db.dao.ElementDao;
 import be.ugent.justin.db.dao.FormDao;
-import be.ugent.justin.db.dto.*;
+import be.ugent.justin.db.dto.Element;
 import common.LoggedInDeputy;
 import controllers.routes;
 import lombok.Getter;
 import lombok.Setter;
-import play.data.Form;
 import play.mvc.Result;
 import play.twirl.api.Html;
 
@@ -25,11 +24,19 @@ import java.util.Map;
 public class FormDeputy extends LoggedInDeputy {
 
     public Result landing(int formId) {
-        // TODO present an instruction/warning page when no answer have yet been entered for this form
-        return redirect(routes.FormController.showPage(formId, dac().getFormDao().nextPage(formId, 0)));
+        FormDao dao = dac().getFormDao();
+        if (dao.wasNotStarted(formId)) {
+            return ok(views.html.form.notice.render(dao.getForm(formId), this));
+        } else {
+            return redirect(routes.FormController.showPage(formId, 0));
+        }
     }
 
     public Result showPage(int formId, int pageNr) {
+
+        if (pageNr == 0) {
+            pageNr = dac().getFormDao().nextPage(formId, 0);
+        }
 
         FormDao dao = dac().getFormDao();
         return ok(views.html.form.page.render(

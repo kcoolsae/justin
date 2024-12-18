@@ -90,4 +90,13 @@ class JDBCFormDao extends JDBCAbstractDao implements FormDao {
                 .where("element_page_nr < ?", pageNr)
                 .getInt();
     }
+
+    @Override
+    public boolean wasNotStarted(int formId) {
+        return select("1")
+                .from("answers JOIN elements USING(element_id)")
+                .where("user_id", getUserId())
+                .where("form_id", formId)
+                .isEmpty();
+    }
 }

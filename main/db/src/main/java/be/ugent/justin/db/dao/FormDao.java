@@ -47,4 +47,9 @@ public interface FormDao {
      */
     int previousPage(int formId, int pageNr);
 
+    /**
+     * Did the current user already start filling the form?
+     */
+    boolean wasNotStarted(int formId);
+
 }
