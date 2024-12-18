@@ -11,6 +11,7 @@
 
 @change={<a href="@routes.HomeController.showChangeParticipation(event.id)">change</a>}
 
+@_event_header(event)
 @if(event.participation) {
     <p>You have indicated that you will <b>participate</b> in this event (@change).</p>
 } else {

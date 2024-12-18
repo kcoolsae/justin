@@ -30,9 +30,13 @@ public class FormDeputy extends LoggedInDeputy {
     }
 
     public Result showPage(int formId, int pageNr) {
+
+        FormDao dao = dac().getFormDao();
         return ok(views.html.form.page.render(
-                dac().getFormDao().getForm(formId),
+                dao.getForm(formId),
                 pageNr,
+                dao.nextPage(formId, pageNr),
+                dao.previousPage(formId, pageNr),
                 dac().getElementDao().listElements(formId, pageNr),
                 this
         ));
@@ -48,13 +52,13 @@ public class FormDeputy extends LoggedInDeputy {
         public Map<Integer, Integer> number;     // for multiple choice
         public Map<Integer, String> string;      // for text fields and others
         public Map<Integer, Map<Integer, Boolean>> check; // for checkboxes
+        public int nextPage; // hidden field in form
     }
 
     public Result submitPage(int formId, int pageNr) {
 
-        Form<PageData> form = formFromRequest(PageData.class);
-        PageData pageData = form.get();
-        ValueToString valueToString = new ValueToString(pageData);
+        PageData data = formFromRequest(PageData.class).get();
+        ValueToString valueToString = new ValueToString(data);
 
         // TODO no database calls if nothing changed on the page
         ElementDao dao = dac().getElementDao();
@@ -64,13 +68,10 @@ public class FormDeputy extends LoggedInDeputy {
                 dao.setAnswer(element.getId(), value);
             }
         }
-
-        // TODO could probably provide next page number in form?
-        int nextPage = dac().getFormDao().nextPage(formId, pageNr);
-        if (nextPage == 0) {
+        if (data.nextPage == 0) {
             return redirectToIndex();
         } else {
-            return redirect(routes.FormController.showPage(formId, nextPage));
+            return redirect(routes.FormController.showPage(formId, data.nextPage));
         }
     }
 

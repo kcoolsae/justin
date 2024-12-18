@@ -8,61 +8,29 @@
 
 @import _root_.be.ugent.justin.db.dto.{FormHeader, Element}
 
-@(header: FormHeader, pageNr: Int, elements: Collection[Element])(implicit deputy: FormDeputy)
-
-@js={
-    <script>
-            /* TODO could be moved to a separate file */
-            document.addEventListener("DOMContentLoaded", function () {
-                const others = document.querySelectorAll('.justin-other');
-                others.forEach(other => {
-                    const otherText = other.querySelector('input[type="text"]');
-
-                    /* in case of radio buttons */
-                    const radioButtons = other.querySelectorAll('input[type="radio"]');
-                    if (radioButtons.length > 0) {
-                        const otherRadio = radioButtons[radioButtons.length - 1]
-                        otherText.disabled = !otherRadio.checked;
-
-                        radioButtons.forEach(button => {
-                            button.addEventListener('change', () => {
-                                otherText.disabled = !otherRadio.checked;
-                            });
-                        });
-                    }
-
-                    /* in case of checkboxes */
-                    const checkBox = other.querySelector('input[type="checkbox"]');
-                    if (checkBox != null) {
-                        otherText.disabled = !checkBox.checked;
-
-                        checkBox.addEventListener('change', () => {
-                            otherText.disabled = !checkBox.checked;
-                        });
-                    }
-
-                });
-            });
-    </script>
-}
+@(header: FormHeader, pageNr: Int, nextPageNr: Int, prevPageNr: Int,
+        elements: Collection[Element])(implicit deputy: FormDeputy)
 
 @required()={
     <span class="text-danger">*</span>
 }
 
-@layout.form("page", js=js) {
+@layout.form("page", js=ext.include.js("other")){
     <div class="card">
         <div class="card-body">
             <img src='@routes.Assets.versioned("img/bebras_org-logo.svg")'
                      alt="Logo of Bebras International"
                      height="60"><h3 class="card-title">@header.title</h3>
             @ext.md(header.description)
-            <p class="text-danger"><b class="text-danger">*</b> Denotes a mandatory question</p>
-            <p class="form-text">Answers are not registered until you press the 'Submit'-button at the bottom of the page.</p>
+            <div class="row">
+                <div class="col-12 col-sm-5 text-danger"><b class="text-danger">*</b> Denotes a mandatory question.</div>
+                <div class="col-12 col-sm-7 text-end">@_next_previous_home(header.id,nextPageNr,prevPageNr)</div>
+            </div>
         </div>
     </div>
 
-    @helper.form(action = routes.FormController.submitPage(header.id, pageNr)) {
+    @helper.form(action = routes.FormController.submitPage(header.id, nextPageNr)) {
+        <input type="hidden" name="nextPage" value="@nextPageNr">
         @foreach(elements) { element =>
             <div class="card mt-3">
                 <div class="card-body">

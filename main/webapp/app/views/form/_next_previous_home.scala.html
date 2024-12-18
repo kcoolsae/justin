@@ -1,0 +1,20 @@
+@* _next_previous_home.scala.html
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+@(formId: Int, nextPageNr: Int, previousPageNr: Int)
+
+<p>Skip to
+    @if(nextPageNr > 0) {
+        <a href="@routes.FormController.showPage(formId, nextPageNr)">next</a>
+        |
+    }
+    @if(previousPageNr > 0) {
+        <a href="@routes.FormController.showPage(formId, previousPageNr)">previous</a>
+        |
+    }
+    <a href="@routes.HomeController.landing()">home</a>
+    page.</p>
