@@ -55,6 +55,7 @@ public class AdditionalContent extends ElementVisitor<Html> {
 
     @Override
     public Html visitRadio(RadioElement element) {
+        // TODO 'other' options needs a marker character in first position
         if (element.hasOther()) {
             if (StringUtils.isNumeric(element.getAnswer())) {
                 return views.html.form.radio_other.render(

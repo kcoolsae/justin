@@ -13,26 +13,16 @@
 
 @js = {
     <script>
-        /* TODO could be moved to a separate file */
+            /* TODO could be moved to a separate file */
             document.addEventListener("DOMContentLoaded", function () {
                 const groups = document.querySelectorAll('.justin-group');
                 groups.forEach(group => {
-                    const checkbox = group.querySelector('input[type="checkbox"]');
-                    const paragraph = group.querySelector('p');
-                    paragraph.hidden = !checkbox.checked;
-                    checkbox.addEventListener('input', () => {
-                        // show/hide paragraph
-                        paragraph.hidden = !checkbox.checked;
-
-                        // do ajax call
-                        const xhr= new XMLHttpRequest();
-                        let url = checkbox.getAttribute('data-url');
-                        if (!checkbox.checked) {
-                            /* hack: change end of url into false */
-                            url = url.substring(0, url.length - 4) + 'false';
-                        }
-                        xhr.open('POST', url, false);
-                        xhr.send();
+                    const checkboxes = group.querySelectorAll('input[type="checkbox"]');
+                    const button = group.querySelector('button');
+                    checkboxes.forEach(checkbox => {
+                        checkbox.addEventListener('input', () => {
+                            button.style = "display: inline;";
+                        });
                     });
                 });
 
@@ -43,22 +33,25 @@
 @layout.plain("open", js = js) {
     @_event_header_long(event)
 
-    @if(event.participation()){
+    @if(event.participation()) {
         <div class="card">
-            <div class="card-body">
+            <div class="card-body justin-group">
                 <p>Please check the relevant items.</p>
-                @foreach(forms) { form =>
-                    <div class="justin-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox"
-                                   data-url="@routes.FormController.changeParticipation(form.id,set=true)" @if(form.participation)("checked")>
-                            <label class="form-check-label">@form.label</label>
-                        </div>
-                        <div>
-                            <p class="ms-4"><a href="@routes.FormController.landing(form.id)">Fill out the corresponding form</a> before
-                                <b>@DateTimeFormatter.ofPattern("MMMM dd, yyyy", Locale.ENGLISH).format(form.deadline)</b>.</p>
-                        </div>
-                    </div>
+                @helper.form(action = routes.FormController.changeParticipations(event.id)) {
+                    @foreach(forms) { form =>
+                        @b5.checkbox(Forms.field(s"participation[${form.id}]", if(form.participation)("true")else ("")),
+                            form.label, "_label" -> "")
+                        @if(form.participation) {
+                            <div>
+                                <p class="ms-4"><a href="@routes.FormController.landing(form.id)">
+                                    Fill out the corresponding form</a> before
+                                    <b>@DateTimeFormatter.ofPattern("MMMM dd, yyyy", Locale.ENGLISH).format(form.deadline)</b>
+                                    .</p>
+                                @* TODO add count of required questions *@
+                            </div>
+                        }
+                    }
+                    <button type="submit" class="mt-2 btn btn-primary" style="display: none;">Submit changes</button>
                 }
             </div>
         </div>

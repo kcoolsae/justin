@@ -11,7 +11,7 @@ GET     /e/p/:eventId controllers.HomeController.showChangeParticipation(request
 POST    /e/p/:eventId controllers.HomeController.changeParticipation(request: Request, eventId: Int)
 
 # forms
-POST    /f/c/:formId/:set controllers.FormController.changeParticipation(request: Request, formId: Int, set: Boolean)
+POST    /f/c/:formId controllers.FormController.changeParticipations(request: Request, formId: Int)
 GET     /f/l/:formId controllers.FormController.landing(request: Request, formId: Int)
 
 GET     /f/p/:formId/:pageNr controllers.FormController.showPage(request: Request, formId: Int, pageNr: Int)

@@ -9,6 +9,7 @@
 
 package be.ugent.justin.db.jdbc;
 
+import be.ugent.caagt.dao.helper.ResultSetConverter;
 import be.ugent.justin.db.dao.FormDao;
 import be.ugent.justin.db.dto.FormHeader;
 import be.ugent.justin.db.dto.FormLabel;
@@ -34,6 +35,14 @@ class JDBCFormDao extends JDBCAbstractDao implements FormDao {
                         rs.getDate("form_deadline").toLocalDate(),
                         rs.getBoolean("participation_status")
                 ));
+    }
+
+    @Override
+    public List<Integer> listFormIds(int eventId) {
+        return select("form_id")
+                .from("forms")
+                .where("event_id", eventId)
+                .getList(ResultSetConverter.FIRST_INTEGER);
     }
 
     @Override

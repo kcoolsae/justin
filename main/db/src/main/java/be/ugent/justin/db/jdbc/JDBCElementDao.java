@@ -68,6 +68,7 @@ class JDBCElementDao extends JDBCAbstractDao implements ElementDao {
         // now retrieve options
         select("element_id, option_id, option_key, option_text")
                 .from("options JOIN elements USING (element_id)")
+                .where("form_id", formId)
                 .where("element_page_nr", pageNr)
                 .orderBy("element_id")
                 .orderBy("option_seq_nr")

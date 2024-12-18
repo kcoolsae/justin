@@ -40,12 +40,14 @@ public class ValueToString extends ElementVisitor<String> {
 
     @Override
     public String visitOptions(OptionsElement element) {
+        // TODO 'other' only in visitRadio
         Integer option = data.number == null ? null : data.number.get(element.getId());
         if (option == null) {
             return null;
         } else if (option == 0) {
             return data.string.get(element.getId()); // Other
         } else {
+            // TODO 'other' options needs a marker character in first position
             return option.toString();
         }
     }

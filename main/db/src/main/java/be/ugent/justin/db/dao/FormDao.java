@@ -22,6 +22,11 @@ public interface FormDao {
     List<FormLabel> listFormsRestricted(int eventId);
 
     /**
+     * List the ids of all forms for a given event.
+     */
+    List<Integer> listFormIds(int eventId);
+
+    /**
      * Indicate that the current user will 'participate' in the form, or not.
      */
     void setParticipation(int formId, boolean participate);

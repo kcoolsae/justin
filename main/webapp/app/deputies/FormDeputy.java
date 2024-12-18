@@ -10,6 +10,7 @@
 package deputies;
 
 import be.ugent.justin.db.dao.ElementDao;
+import be.ugent.justin.db.dao.FormDao;
 import be.ugent.justin.db.dto.*;
 import common.LoggedInDeputy;
 import controllers.routes;
@@ -22,14 +23,6 @@ import play.twirl.api.Html;
 import java.util.Map;
 
 public class FormDeputy extends LoggedInDeputy {
-
-    /**
-     * Ajax call to change participation in a form for the current user
-     */
-    public Result changeParticipation(int formId, boolean participation) {
-        dac().getFormDao().setParticipation(formId, participation);
-        return ok();
-    }
 
     public Result landing(int formId) {
         // TODO present an instruction/warning page when no answer have yet been entered for this form
@@ -80,4 +73,21 @@ public class FormDeputy extends LoggedInDeputy {
             return redirect(routes.FormController.showPage(formId, nextPage));
         }
     }
+
+    @Getter
+    @Setter
+    public static class ParticipationData {
+        public Map<Integer,Boolean> participation;
+    }
+
+    public Result changeParticipations(int eventId) {
+        Map<Integer,Boolean> map = formFromRequest(ParticipationData.class).get().participation;
+        FormDao dao = dac().getFormDao();
+        for (Integer formId : dao.listFormIds(eventId)) {
+            boolean participation = map != null && map.getOrDefault(formId,false);
+            dao.setParticipation(formId, participation);
+        }
+        return redirectToIndex();
+    }
+
 }

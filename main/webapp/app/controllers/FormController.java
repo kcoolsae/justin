@@ -20,8 +20,8 @@ public class FormController extends LoggedInController<FormDeputy> {
         super(FormDeputy::new);
     }
 
-    public Result changeParticipation(Http.Request request, int formId, boolean participation) {
-        return createDeputy(request).changeParticipation(formId, participation);
+    public Result changeParticipations(Http.Request request, int eventId) {
+        return createDeputy(request).changeParticipations(eventId);
     }
 
     public Result landing(Http.Request request, int formId) {
