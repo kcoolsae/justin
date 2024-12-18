@@ -10,6 +10,7 @@
 package deputies;
 
 import be.ugent.justin.db.dto.Event;
+import be.ugent.justin.db.dto.FormLabel;
 import common.LoggedInDeputy;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,9 +20,24 @@ import play.mvc.Result;
 
 import views.html.home.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeDeputy extends LoggedInDeputy {
+
+    public record FormInfo (FormLabel label, boolean unanswered) {
+    }
+
+    private List<FormInfo> listFormInfo(int eventId) {
+        // TODO do this on the database side
+        List<FormLabel> formLabels = dac().getFormDao().listFormsRestricted(eventId);
+        List<FormInfo> result = new ArrayList<>();
+        for (FormLabel label : formLabels) {
+            boolean unanswered = label.participation() && dac().getFormDao().hasUnansweredMandatoryQuestions(label.id());
+            result.add(new FormInfo(label, unanswered));
+        }
+        return result;
+    }
 
     /**
      * Landing page for a registered user.
@@ -46,7 +62,7 @@ public class HomeDeputy extends LoggedInDeputy {
                     case PUBLISHED -> published.render(event, this);
                     case OPEN -> open.render(
                             event,
-                            dac().getFormDao().listFormsRestricted(event.id()),
+                            listFormInfo(event.id()),
                             this
                     );
                     case CLOSED -> closed.render(event, this);

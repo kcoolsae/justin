@@ -52,4 +52,9 @@ public interface FormDao {
      */
     boolean wasNotStarted(int formId);
 
+    /**
+     * Are there still mandatory questions that the user did not answer?
+     */
+    boolean hasUnansweredMandatoryQuestions(int formId);
+
 }

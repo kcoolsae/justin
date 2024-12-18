@@ -99,4 +99,13 @@ class JDBCFormDao extends JDBCAbstractDao implements FormDao {
                 .where("form_id", formId)
                 .isEmpty();
     }
+
+    public boolean hasUnansweredMandatoryQuestions(int formId) {
+        return !select("1")
+                .from("elements LEFT JOIN answers ON elements.element_id = answers.element_id AND answers.user_id = ?")
+                .parameter(getUserId())
+                .where("form_id", formId)
+                .where("element_required AND answer_text IS NULL")
+                .isEmpty();
+    }
 }

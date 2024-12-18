@@ -9,10 +9,7 @@
 
 package deputies;
 
-import be.ugent.justin.db.dto.CheckboxesElement;
-import be.ugent.justin.db.dto.Element;
-import be.ugent.justin.db.dto.ElementVisitor;
-import be.ugent.justin.db.dto.OptionsElement;
+import be.ugent.justin.db.dto.*;
 
 import java.util.Map;
 
@@ -40,14 +37,18 @@ public class ValueToString extends ElementVisitor<String> {
 
     @Override
     public String visitOptions(OptionsElement element) {
-        // TODO 'other' only in visitRadio
+        Integer option = data.number == null ? null : data.number.get(element.getId());
+        return option == null ? null : option.toString();
+    }
+
+    @Override
+    public String visitRadio(RadioElement element) {
         Integer option = data.number == null ? null : data.number.get(element.getId());
         if (option == null) {
             return null;
         } else if (option == 0) {
-            return data.string.get(element.getId()); // Other
+            return ";" + data.string.get(element.getId()); // ; makes it nonnumeric in case the other string is a number
         } else {
-            // TODO 'other' options needs a marker character in first position
             return option.toString();
         }
     }

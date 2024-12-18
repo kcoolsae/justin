@@ -31,11 +31,19 @@ public class AdditionalContent extends ElementVisitor<Html> {
     }
 
     private Form.Field stringField(QuestionElement element) {
-        return Forms.field("string[" + element.getId() + "]", element.getAnswer());
+        return stringField(element, element.getAnswer());
+    }
+
+    private Form.Field stringField(QuestionElement element, String answer) {
+        return Forms.field("string[" + element.getId() + "]", answer);
     }
 
     private Form.Field numberField(QuestionElement element) {
-        return Forms.field("number[" + element.getId() + "]", element.getAnswer());
+        return numberField(element, element.getAnswer());
+    }
+
+    private Form.Field numberField(QuestionElement element, String answer) {
+        return Forms.field("number[" + element.getId() + "]", answer);
     }
 
     @Override
@@ -55,18 +63,21 @@ public class AdditionalContent extends ElementVisitor<Html> {
 
     @Override
     public Html visitRadio(RadioElement element) {
-        // TODO 'other' options needs a marker character in first position
         if (element.hasOther()) {
             if (StringUtils.isNumeric(element.getAnswer())) {
                 return views.html.form.radio_other.render(
                         numberField(element),
-                        Forms.field("string[" + element.getId() + "]", ""),
+                        stringField(element, ""),
                         element.getOptions(),
                         formDeputy);
             } else {
+                String answer = element.getAnswer();
+                if (answer != null) {
+                    answer = answer.substring(1); // skip the ;
+                }
                 return views.html.form.radio_other.render(
-                        Forms.field("number[" + element.getId() + "]", "0"),
-                        stringField(element),
+                        numberField(element, "0"),
+                        stringField(element, answer),
                         element.getOptions(),
                         formDeputy);
             }
@@ -128,7 +139,7 @@ public class AdditionalContent extends ElementVisitor<Html> {
             return views.html.form.checkboxes_other.render(
                     fields,
                     Forms.field("check[" + element.getId() + "][0]", checkAnswer),
-                    Forms.field("string[" + element.getId() + "]", stringAnswer),
+                    stringField(element, stringAnswer),
                     formDeputy
             );
         } else {
