@@ -2,9 +2,10 @@
 
 # home + authentication
 GET     /          controllers.InitialController.index(request: Request)
-GET     /l/:token  controllers.AuthenticationController.login(request: Request, token: String)
+GET     /a/l/:token  controllers.AuthenticationController.login(request: Request, token: String)
 GET     /x         controllers.AuthenticationController.logout(request: Request)
 POST    /a/s       controllers.AuthenticationController.signIn(request: Request)
+GET     /a/n       controllers.AuthenticationController.notRegistered(request: Request)
 
 GET     /h         controllers.HomeController.landing(request: Request)
 GET     /e/p/:eventId controllers.HomeController.showChangeParticipation(request: Request, eventId: Int)

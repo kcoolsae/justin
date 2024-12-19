@@ -45,4 +45,8 @@ public class AuthenticationController extends DataAccessController<Authenticatio
         return createDeputy(request).logout();
     }
 
+    public Result notRegistered  (Http.Request request) {
+        return createDeputy(request).notRegistered();
+    }
+
 }

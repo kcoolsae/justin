@@ -38,7 +38,7 @@ public class AuthenticationDeputy extends DataAccessDeputy {
     }
 
     private String hostUri() {
-        // TODO is there a more reliable way to do this?
+        // TODO is there a more reliable way to do this?Auth
         String host = request.host();
         if (host.endsWith("443")) {
             return "https://" + host;
@@ -104,5 +104,9 @@ public class AuthenticationDeputy extends DataAccessDeputy {
     public Result logout() {
         success("Successfully logged out.");
         return redirectToIndex().withNewSession();
+    }
+
+    public Result notRegistered() {
+        return ok (views.html.auth.not_registered.render());
     }
 }
