@@ -9,18 +9,22 @@
 
 package controllers;
 
+import common.CheckLoggedIn;
+import common.DataAccessController;
 import common.LoggedInController;
 import deputies.RegistrationDeputy;
 import play.libs.mailer.MailerClient;
 import play.mvc.Http;
 import play.mvc.Result;
+import play.mvc.With;
 
 import javax.inject.Inject;
 
 /**
  * Handles everything for which registration privilege is required.
  */
-public class RegistrationController extends LoggedInController<RegistrationDeputy> {
+@With(CheckLoggedIn.class)
+public class RegistrationController extends DataAccessController<RegistrationDeputy> {
 
     @Inject
     private MailerClient mailerClient;

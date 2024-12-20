@@ -1,0 +1,23 @@
+@* register.scala.txt
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+
+@(hostUri: String, token: String)
+
+Dear recipient,
+
+Please use the following link to complete your registration.
+
+@hostUri@controllers.routes.AuthenticationController.showCompleteRegistration(token)
+
+You will then be asked to enter your full name, and repeat the email address this
+mail was sent to. (The link is valid for 48 hours.)
+
+Best regards,
+
+The Bebras task handling committee.
+

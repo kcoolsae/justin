@@ -21,7 +21,7 @@ import java.util.concurrent.CompletionStage;
  * Checks whether the session is still active, and redirects to the index page if it is not.
  * To be used in a @@With-annotation
  */
-class CheckLoggedIn extends Action.Simple{
+public class CheckLoggedIn extends Action.Simple{
 
     private Call loginCall() {
         return controllers.routes.InitialController.index();

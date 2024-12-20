@@ -18,32 +18,9 @@ import play.data.validation.Constraints;
 import play.libs.mailer.Email;
 import play.libs.mailer.MailerClient;
 import play.mvc.Result;
+import play.mvc.With;
 
-@Setter
-public class RegistrationDeputy extends LoggedInDeputy {
-
-    private MailerClient mailerClient; // injected by controller!
-
-    // TODO avoid duplication with AuthenticationDeputy
-    private void sendEmail(String subject, String to, String text) {
-        Email email = new Email()
-                .setSubject(subject)
-                .setFrom(config.getString("justin.no-reply-address"))
-                .addTo(to)
-                .setBodyText(text);
-        mailerClient.send(email);
-    }
-
-    // TODO avoid duplication with AuthenticationDeputy
-    private String hostUri() {
-        // TODO is there a more reliable way to do this?Auth
-        String host = request.host();
-        if (host.endsWith("443")) {
-            return "https://" + host;
-        } else {
-            return "http://" + host;
-        }
-    }
+public class RegistrationDeputy extends EmailSendingDeputy {
 
     public Result showRegistration() {
         return ok(views.html.auth.registration.render(this));
@@ -70,14 +47,9 @@ public class RegistrationDeputy extends LoggedInDeputy {
                 error("Email address already in use");
             } else {
                 String token = dao.createRegistrationToken(data.email, getCountry(), data.temporary);
-                String message = """
-                        Dear user,
-                        
-                        Please use the following link to complete your registration.
-                        
-                        """
-                        + hostUri() + controllers.routes.AuthenticationController.showCompleteRegistration(token).url();
-                sendEmail("Bebras Justin - Registration", data.email, message);
+                sendEmail("Bebras Justin - Complete registration",
+                        data.email,
+                        views.txt.mail.register.render(hostUri(),token).body());
                 success("A registration invite was sent");
                 return redirectToIndex();
             }

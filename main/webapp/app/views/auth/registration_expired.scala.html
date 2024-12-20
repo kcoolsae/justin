@@ -1,0 +1,15 @@
+@* registration_expired.scala.html
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+@import deputies.AuthenticationDeputy
+
+@()(implicit deputy: AuthenticationDeputy)
+
+@layout.small("registration_expired", "Registration invite expired") {
+    <p class="text-danger">Your registration could not be completed. Most probably this is because
+        the registration link has expired. Please contact the person who invited you to send a new link.</p>
+}
