@@ -32,7 +32,7 @@ public class InitialDeputy extends Deputy {
      * not yet implemented.
      */
     public Result todo() {
-        return ok(views.html.other.todo.render());
+        return ok(views.html.other.todo.render(this));
     }
 
 }

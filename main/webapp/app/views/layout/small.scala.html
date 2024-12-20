@@ -1,0 +1,27 @@
+@* small.scala.html
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+@(pageId: String, title: String, css: Html = Html(""), js: Html = Html(""))(content: => Html)(implicit deputy: deputies.Deputy)
+
+@raw(pageId, css, js) {
+    <div class="container-sm">
+        @layout._show_status()
+        <div class="card">
+            <div class="card-body">
+                <header>
+                <div class="row">
+                    <div class="col-9">
+                        <img src='@routes.Assets.versioned("img/bebras_org-logo.svg")' class="img-fluid" alt="Logo of Bebras International">
+                    </div>
+                </div>
+                <h5 class="card-title">@title</h5>
+                </header>
+                <main>@content</main>
+            </div>
+        </div>
+    </div>
+}

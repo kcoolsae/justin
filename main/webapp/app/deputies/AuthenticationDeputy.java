@@ -117,7 +117,7 @@ public class AuthenticationDeputy extends DataAccessDeputy {
     }
 
     public Result notRegistered() {
-        return ok(views.html.auth.not_registered.render());
+        return ok(views.html.auth.not_registered.render(this));
     }
 
     @Getter
@@ -138,7 +138,7 @@ public class AuthenticationDeputy extends DataAccessDeputy {
                     form, token, this
             ));
         } else {
-            return ok(views.html.other.todo.render());
+            return ok(views.html.other.todo.render(this));
         }
     }
 

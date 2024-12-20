@@ -5,24 +5,11 @@
 * This software is distributed under the MIT License - see files LICENSE and AUTHORS
 * in the top level project directory.
 *@
-@()
+@()(implicit deputy: deputies.Deputy)
 
-@layout.raw("not_registered") {
-    <div class="container-sm">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-9">
-                        <img src='@routes.Assets.versioned("img/bebras_org-logo.svg")' class="img-fluid" alt="Logo of Bebras International">
-                    </div>
-                </div>
-                <h5 class="card-title">Not registered?</h5>
-                <p>Please contact your <i>country representative</i> and provide them
-                    with the email address you want to use to access the system.
-                    They will have the system send you a link for completing the registration.</p>
-                <p class="demo">During the demo phase, contact the web application author
-                    instead.</p>
-            </div>
-        </div>
-    </div>
+@layout.small("not_registered", "Not registered?") {
+    <p>Please contact your <i>country representative</i> and provide them
+        with the email address you want to use to access the system.
+        They will have the system send you a link for completing the registration.</p>
+    <p class="demo">During the demo phase, contact the web application author
 }
