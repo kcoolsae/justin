@@ -1,0 +1,41 @@
+@* registration_info.scala.html
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+
+@import deputies.AuthenticationDeputy
+
+@(f: Form[AuthenticationDeputy.RegistrationData], token: String)(implicit deputy: AuthenticationDeputy)
+
+@layout.raw("not_registered") {
+    <div class="container-sm">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <img src='@routes.Assets.versioned("img/bebras_org-logo.svg")' class="img-fluid" alt="Logo of Bebras International">
+                    </div>
+                </div>
+                <h5 class="card-title">Complete your registration</h5>
+                @helper.form(action = routes.AuthenticationController.completeRegistration(token)) {
+                    <div class="row">
+                    @b5.email(f("email"), "_class" -> "col",
+                        "_label" -> "Email address",
+                        "_help" -> "Use the same email address to which your registration invite was sent.")
+
+                    </div>
+                    <div class="row">
+                    @b5.text(f("name"), "_class" -> "col",
+                        "_label" -> "Full name",
+                        "_help" -> "For international accessibility, please enter your name in Latin characters.")
+                    </div>
+                    <p class="mt-2"><button type="submit" class="btn btn-primary">Complete registration</button></p>
+                }
+            </div>
+        </div>
+    </div>
+}
+

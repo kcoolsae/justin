@@ -49,4 +49,13 @@ public class AuthenticationController extends DataAccessController<Authenticatio
         return createDeputy(request).notRegistered();
     }
 
+    public Result showCompleteRegistration(Http.Request request, String token) {
+        return createDeputy(request).showCompleteRegistration(token);
+    }
+
+    public Result  completeRegistration(Http.Request request, String token) {
+        return createDeputy(request).completeRegistration(token);
+    }
 }
+
+

@@ -9,6 +9,9 @@
 
 package deputies;
 
+import be.ugent.justin.db.dao.UserDao;
+import be.ugent.justin.db.dto.PrivilegeType;
+import be.ugent.justin.db.dto.Registration;
 import be.ugent.justin.db.dto.User;
 import common.DataAccessDeputy;
 import common.Session;
@@ -38,7 +41,7 @@ public class AuthenticationDeputy extends DataAccessDeputy {
     }
 
     private String hostUri() {
-        // TODO is there a more reliable way to do this?Auth
+        // TODO is there a more reliable way to do this?
         String host = request.host();
         if (host.endsWith("443")) {
             return "https://" + host;
@@ -92,9 +95,16 @@ public class AuthenticationDeputy extends DataAccessDeputy {
             return redirectToIndex();
         } else {
             User user = dac().getUserDao().getUserById(userId); // TODO combine with getUserIdForLoginToken ?
+            StringBuilder privilegeTypes = new StringBuilder();
+            for (PrivilegeType pt : dac().getUserDao().listPrivilegeTypes(userId)) {
+                privilegeTypes.append(pt.getCode());
+            }
             return redirectToIndex().withSession(
-                    Map.of(Session.ID, userId + "", Session.NAME, user.name(), Session.COUNTRY, user.country())
-            );
+                    Map.of(Session.ID, userId + "",
+                            Session.NAME, user.name(),
+                            Session.COUNTRY, user.country(),
+                            Session.PRIVILEGES, privilegeTypes.toString()
+                    ));
         }
     }
 
@@ -107,6 +117,54 @@ public class AuthenticationDeputy extends DataAccessDeputy {
     }
 
     public Result notRegistered() {
-        return ok (views.html.auth.not_registered.render());
+        return ok(views.html.auth.not_registered.render());
     }
+
+    @Getter
+    @Setter
+    public static class RegistrationData {
+        @Constraints.Required
+        @Constraints.Email
+        public String email;
+
+        @Constraints.Required
+        public String name;
+    }
+
+    public Result showCompleteRegistration(String token) {
+        if (dac().getUserDao().isValidRegistration(token)) {
+            Form<RegistrationData> form = emptyForm(RegistrationData.class);
+            return ok(views.html.auth.registration_info.render(
+                    form, token, this
+            ));
+        } else {
+            return ok(views.html.other.todo.render());
+        }
+    }
+
+    public Result completeRegistration(String token) {
+        Form<RegistrationData> form = formFromRequest(RegistrationData.class);
+        if (form.hasErrors()) {
+            return badRequest(views.html.auth.registration_info.render(
+                    form, token, this
+            ));
+        } else {
+            RegistrationData data = form.get();
+            UserDao dao = dac().getUserDao();
+            Registration registration = dao.findAndDeleteRegistration(data.email, token);
+            if (registration == null) {
+                return badRequest(views.html.auth.registration_info.render(
+                        form.withError("email", "Email address not the same as in the registration invite"),
+                        token,
+                        this
+                ));
+            } else {
+                // TODO use temporary flag
+                dao.createUser(data.email, data.name, registration.country());
+                success("Registration was successfully completed. You can now sign in.");
+                return redirectToIndex();
+            }
+        }
+    }
+
 }

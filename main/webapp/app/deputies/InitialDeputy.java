@@ -21,7 +21,7 @@ public class InitialDeputy extends Deputy {
      */
     public Result index() {
         if (findInSession(Session.ID) != null) {
-            return redirect(routes.HomeController.landing());
+            return redirect(routes.HomeController.landing()).withFlash(request.flash());
         } else {
             return ok(sign_in.render(emptyForm(AuthenticationDeputy.EmailData.class), this));
         }

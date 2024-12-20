@@ -2,8 +2,7 @@
 
 <li class="nav-item dropdown">
     <button class="btn nav-link dropdown-toggle pe-0" type="button" id="profileMenu"
-    data-bs-toggle="dropdown">@deputy.getRequest.session.get("name")
-    </button>
+    data-bs-toggle="dropdown">@deputy.getName</button>
     <ul class="dropdown-menu" aria-labelledby="profileMenu">
         <li><a class="dropdown-item" href="@routes.ProfileController.showChangeName()">Correct name</a></li>
         <li><a class="dropdown-item" href="@routes.ProfileController.showChangeEmail()">Change email</a></li>

@@ -5,8 +5,9 @@
 * This software is distributed under the MIT License - see files LICENSE and AUTHORS
 * in the top level project directory.
 *@
-
 @(pageId: String, css: Html = Html(""), js: Html = Html(""))(content: => Html)(implicit deputy: deputies.Deputy)
+
+@import _root_.be.ugent.justin.db.dto.PrivilegeType._
 
 @raw(pageId, css, js){
     <div class="container-md">
@@ -18,7 +19,12 @@
                      height="60">
                 </a>
                 <ul class="nav nav-pills">
-                    <li class="nav-item my-2">Country: @deputy.getRequest.session.get("country")</li>
+                    @if(deputy.checkPrivilege(REGISTER_OWN)){
+                        <li class="nav-item">
+                            <a class="nav-link" href="@routes.RegistrationController.showRegistration()">Registration</a>
+                        </li>
+                    }
+                    <li class="nav-item my-2">Country: @deputy.getCountry</li>
                     @_profile_menu(deputy)
                 </ul>
             </nav>

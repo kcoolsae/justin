@@ -16,7 +16,7 @@ import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
 /**
- * Filter that renews the session with everey request
+ * Filter that renews the session with every request
  * @see https://stackoverflow.com/questions/50170244/how-to-extend-or-change-the-session-timeout-value-i-e-session-maxage-in-play-fr
  */
 class SessionDelayFilter  @Inject()(implicit override val mat: Materializer, exec: ExecutionContext) extends Filter {

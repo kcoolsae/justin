@@ -11,7 +11,7 @@ disablePlugins(PlayFilters, PlayLogback, PlayPekkoHttpServer)
 lazy val customizeBootstrap = TaskKey[Unit]("customizeBootstrap", "Calls 'sass' to customize bootstrap")
 
 customizeBootstrap := {
-    import sys.process._
+    import sys.process.*
     Process ("./customize-bootstrap.sh", baseDirectory.value) !
 }
 
@@ -20,12 +20,12 @@ Compile/compile := (Compile/compile).dependsOn(customizeBootstrap).value
 // remove dependencies on scala and play in published result:
 // see https://stackoverflow.com/questions/27835740/sbt-exclude-certain-dependency-only-during-publish
 
-import scala.xml.{Node => XmlNode, NodeSeq => XmlNodeSeq, _}
+import scala.xml.{Elem, Comment}
 import scala.xml.transform.{RewriteRule, RuleTransformer}
 
-pomPostProcess := { (node: XmlNode) =>
+pomPostProcess := { (node: scala.xml.Node) =>
   new RuleTransformer(new RewriteRule {
-    override def transform(node: XmlNode): XmlNodeSeq = node match {
+    override def transform(node: scala.xml.Node): scala.xml.NodeSeq = node match {
       case e: Elem if e.label == "dependency"  =>
         Comment("Dependencies have been removed")
       case _ => node

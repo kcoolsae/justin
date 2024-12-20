@@ -12,10 +12,29 @@ CREATE TABLE users (
     user_country  CHAR(2) NOT NULL -- may reference a country table
 );
 
+-- to be extended
+CREATE TYPE privilege_types
+AS ENUM ('REGISTER_OWN', 'REGISTER_ALL'); -- upper case for java enums
+
+CREATE TABLE privileges (
+    user_id INTEGER REFERENCES users,
+    privilege_type privilege_types,
+    privilege_detail TEXT -- e.g, category for which edit rights are granted
+);
+
+-- used for logging in
 CREATE TABLE tokens (
     user_id       INTEGER PRIMARY KEY REFERENCES users,
     token_text    TEXT UNIQUE NOT NULL,
     token_expires TIMESTAMP   NOT NULL
+);
+
+CREATE TABLE registrations (
+    registration_email   TEXT UNIQUE NOT NULL, -- always trimmed lower case
+    registration_country CHAR(2)     NOT NULL,
+    registration_as_temporary BOOLEAN NOT NULL DEFAULT FALSE,
+    registration_token   TEXT        NOT NULL,
+    registration_expires TIMESTAMP   NOT NULL
 );
 
 

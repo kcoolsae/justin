@@ -7,6 +7,11 @@ GET     /x         controllers.AuthenticationController.logout(request: Request)
 POST    /a/s       controllers.AuthenticationController.signIn(request: Request)
 GET     /a/n       controllers.AuthenticationController.notRegistered(request: Request)
 
+GET     /a/r       controllers.RegistrationController.showRegistration(request: Request)
+POST    /a/r       controllers.RegistrationController.register(request: Request)
+GET     /a/t/:token controllers.AuthenticationController.showCompleteRegistration(request: Request, token: String)
+POST    /a/t/:token controllers.AuthenticationController.completeRegistration(request: Request, token: String)
+
 GET     /h         controllers.HomeController.landing(request: Request)
 GET     /e/p/:eventId controllers.HomeController.showChangeParticipation(request: Request, eventId: Int)
 POST    /e/p/:eventId controllers.HomeController.changeParticipation(request: Request, eventId: Int)

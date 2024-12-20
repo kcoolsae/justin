@@ -9,6 +9,8 @@
 
 package deputies;
 
+import be.ugent.justin.db.dto.PrivilegeType;
+import common.Session;
 import play.mvc.Call;
 import play.mvc.Result;
 
@@ -103,4 +105,24 @@ public class Deputy extends be.ugent.caagt.play.deputies.Deputy {
         return redirect(controllers.routes.InitialController.index());
     }
 
+    /**
+     * Check whether the current user has a certain privilege
+     */
+    public boolean checkPrivilege(PrivilegeType privilege) {
+        return getFromSession(Session.PRIVILEGES).indexOf(privilege.getCode()) >= 0;
+    }
+
+    /**
+     * Get name of current user
+     */
+    public String getName () {
+        return getFromSession(Session.NAME);
+    }
+
+    /**
+     * Get country of current user
+     */
+    public String getCountry () {
+        return getFromSession(Session.COUNTRY);
+    }
 }

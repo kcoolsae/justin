@@ -30,4 +30,9 @@ public final class Session {
      */
     public static final String COUNTRY = "country";
 
+    /**
+     * String with all codes for privileges of the user currently logged in.
+     */
+    public static final String PRIVILEGES = "privileges";
+
 }

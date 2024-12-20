@@ -1,0 +1,31 @@
+@* registration.scala.html
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+
+
+@import deputies.RegistrationDeputy
+
+@()(implicit deputy: RegistrationDeputy)
+
+@layout.plain("registration") {
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">Registration (country: @deputy.getCountry)</h3>
+            @helper.form(action = routes.RegistrationController.register()) {
+                @b5.text(Forms.field("email", ""), "_label" -> "Email address of person to be registered",
+                    "required" -> "true")
+                @b5.checkbox(Forms.field("temporary", "false"), "This is a temporary registration", "_label" -> "",
+                    "_help" -> "Temporary registrations are deleted after each event and are meant for individuals outside the Bebras community, such as accompanying guests.")
+                <button type="submit" class="btn btn-primary mt-2">Initiate registration</button>
+            }
+            <p class="mt-2">This sends an email containing a link for the recipient to complete their registration.</p>
+            <p class="demo">In 2005 only Bebras community members need to be registered in the system, so temporary registrations make less sense. In future
+            also accompanying persons will need to use this system and can then be registered as temporary.</p>
+        </div>
+    </div>
+
+}
