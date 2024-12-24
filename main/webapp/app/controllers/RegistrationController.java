@@ -9,9 +9,9 @@
 
 package controllers;
 
-import common.CheckLoggedIn;
+import be.ugent.justin.db.dto.PrivilegeType;
+import common.CheckPrivileges;
 import common.DataAccessController;
-import common.LoggedInController;
 import deputies.RegistrationDeputy;
 import play.libs.mailer.MailerClient;
 import play.mvc.Http;
@@ -23,8 +23,14 @@ import javax.inject.Inject;
 /**
  * Handles everything for which registration privilege is required.
  */
-@With(CheckLoggedIn.class)
+@With(RegistrationController.HasRegistrationPrivilege.class)
 public class RegistrationController extends DataAccessController<RegistrationDeputy> {
+
+    static class HasRegistrationPrivilege extends CheckPrivileges {
+        public HasRegistrationPrivilege() {
+            super(PrivilegeType.REGISTER_OWN);
+        }
+    }
 
     @Inject
     private MailerClient mailerClient;
