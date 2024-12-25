@@ -10,9 +10,11 @@
 package deputies;
 
 import common.DataAccessDeputy;
+import lombok.Setter;
 import play.libs.mailer.Email;
 import play.libs.mailer.MailerClient;
 
+@Setter
 public class EmailSendingDeputy extends DataAccessDeputy {
     private MailerClient mailerClient; // injected by controller!
 
@@ -35,7 +37,4 @@ public class EmailSendingDeputy extends DataAccessDeputy {
         }
     }
 
-    public void setMailerClient(play.libs.mailer.MailerClient mailerClient) {
-        this.mailerClient = mailerClient;
-    }
 }

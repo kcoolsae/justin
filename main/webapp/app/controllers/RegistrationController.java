@@ -23,14 +23,7 @@ import javax.inject.Inject;
 /**
  * Handles everything for which registration privilege is required.
  */
-@With(RegistrationController.HasRegistrationPrivilege.class)
 public class RegistrationController extends DataAccessController<RegistrationDeputy> {
-
-    static class HasRegistrationPrivilege extends CheckPrivileges {
-        public HasRegistrationPrivilege() {
-            super(PrivilegeType.REGISTER_OWN);
-        }
-    }
 
     @Inject
     private MailerClient mailerClient;
@@ -46,11 +39,37 @@ public class RegistrationController extends DataAccessController<RegistrationDep
         return deputy;
     }
 
-    public Result showRegistration (Http.Request request) {
+    static class HasRegistrationOwnPrivilege extends CheckPrivileges {
+        public HasRegistrationOwnPrivilege() {
+            super(PrivilegeType.REGISTER_OWN);
+        }
+    }
+
+    @With(HasRegistrationOwnPrivilege.class)
+    public Result showRegistration(Http.Request request) {
         return createDeputy(request).showRegistration();
     }
 
-    public Result register (Http.Request request) {
+    @With(HasRegistrationOwnPrivilege.class)
+    public Result register(Http.Request request) {
         return createDeputy(request).register();
     }
+
+    static class HasRegistrationAllPrivilege extends CheckPrivileges {
+        public HasRegistrationAllPrivilege() {
+            super(PrivilegeType.REGISTER_ALL);
+        }
+    }
+
+    @With(HasRegistrationAllPrivilege.class)
+    public Result showRegistrationAll(Http.Request request) {
+        return createDeputy(request).showRegistrationAll();
+    }
+
+    @With(HasRegistrationAllPrivilege.class)
+    public Result registerExternal(Http.Request request) {
+        return createDeputy(request).registerExternal();
+    }
+
+
 }

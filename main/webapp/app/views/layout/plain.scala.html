@@ -19,7 +19,11 @@
                      height="60">
                 </a>
                 <ul class="nav nav-pills">
-                    @if(deputy.checkPrivilege(REGISTER_OWN)){
+                    @if(deputy.checkPrivilege(REGISTER_ALL)){
+                        <li class="nav-item">
+                            <a class="nav-link" href="@routes.RegistrationController.showRegistrationAll()">Registration</a>
+                        </li>
+                    } else if(deputy.checkPrivilege(REGISTER_OWN)){
                         <li class="nav-item">
                             <a class="nav-link" href="@routes.RegistrationController.showRegistration()">Registration</a>
                         </li>
