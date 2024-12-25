@@ -36,8 +36,9 @@ class JDBCEventDao extends JDBCAbstractDao implements EventDao {
     }
 
     private SelectSQLStatement selectEvent() {
-        return select("event_id, event_key, event_name, event_description, event_status, participation_status")
-                .from("events LEFT JOIN participations USING (event_id)");
+        return select("events.event_id, event_key, event_name, event_description, event_status, participation_status")
+                .from("events LEFT JOIN participations ON events.event_id = participations.event_id AND participations.user_id = ?")
+                .parameter(getUserId());
     }
 
     @Override
