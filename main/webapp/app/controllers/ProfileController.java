@@ -32,8 +32,4 @@ public class ProfileController extends LoggedInController<ProfileDeputy> {
         return createDeputy(request).showChangeEmail();
     }
 
-    public Result changeEmail (Http.Request request) {
-        return createDeputy(request).changeEmail();
-    }
-
 }

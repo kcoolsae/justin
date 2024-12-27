@@ -9,10 +9,6 @@
 
 @layout.plain("change_email") {
     <h5>Change your email address</h5>
-        <p>Your email address is used to identify you with the system. If you change your email address
-        then you will need to use the new address for signing in to the system.</p>
-    <p class="text-warning">
-        This feature is not yet implemented. Changing your email address will send a mail to the original
-        email address for verification.
-    </p>
+    <p>For enhanced security, changing your email address involves a two-step process: a link will be sent to your current email address, which you can use to register a new one.</p>
+    <a href="@routes.AuthenticationController.sendEmailLink()" class="btn btn-primary">Send link</a>
 }

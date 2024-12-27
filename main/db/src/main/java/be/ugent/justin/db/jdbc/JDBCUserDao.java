@@ -26,7 +26,7 @@ class JDBCUserDao extends JDBCAbstractDao implements UserDao {
     }
 
     @Override
-    public String createToken(String email) {
+    public String createToken(String email, boolean forEmailChange) {
         int userId = select("user_id").from("users")
                 .where("user_email = ?", email.toLowerCase().strip())
                 .getInt();
@@ -39,6 +39,7 @@ class JDBCUserDao extends JDBCAbstractDao implements UserDao {
                     .key("user_id", userId)
                     .value("token_text", token)
                     .value("token_expires", expires)
+                    .value("token_for_email_change", forEmailChange)
                     .execute();
             return token;
         }
@@ -59,10 +60,11 @@ class JDBCUserDao extends JDBCAbstractDao implements UserDao {
     }
 
     @Override
-    public int getUserIdForLoginToken(String token) {
+    public int getUserIdForToken(String token, boolean forEmailChange) {
         return select("user_id").from("tokens")
                 .where("token_text", token)
                 .where("token_expires > NOW()")
+                .where("token_for_email_change", forEmailChange)
                 .getInt();
     }
 
@@ -87,6 +89,11 @@ class JDBCUserDao extends JDBCAbstractDao implements UserDao {
     @Override
     public void updateName(String name) {
         update("users").set("user_name", name).where("user_id", getUserId()).execute();
+    }
+
+    @Override
+    public void updateEmail(int userId, String email) {
+        update("users").set("user_email", email.toLowerCase().strip()).where("user_id", userId).execute();
     }
 
     @Override
@@ -127,6 +134,25 @@ class JDBCUserDao extends JDBCAbstractDao implements UserDao {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public int findEmailToken(String e, String token) {
+        String email = e.toLowerCase().strip();
+        return select("user_id")
+                .from("tokens JOIN users USING (user_id)")
+                .where("user_email", email)
+                .where("token_for_email_change")
+                .where("token_text", token)
+                .getInt();
+    }
+
+    @Override
+    public void deleteEmailTokens(int userId) {
+        deleteFrom("tokens")
+                .where("user_id", userId)
+                .where("token_for_email_change")
+                .execute();
     }
 
     @Override

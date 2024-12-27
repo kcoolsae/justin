@@ -29,7 +29,9 @@ POST    /f/p/:formId/:pageNr controllers.FormController.submitPage(request: Requ
 GET     /p/n       controllers.ProfileController.showChangeName(request: Request)
 POST    /p/n       controllers.ProfileController.changeName(request: Request)
 GET     /p/e       controllers.ProfileController.showChangeEmail(request: Request)
-POST    /p/e       controllers.ProfileController.changeEmail(request: Request)
+GET     /p/l       controllers.AuthenticationController.sendEmailLink(request: Request)
+GET     /p/E/:token  controllers.AuthenticationController.showNewEmail(request: Request, token: String)
+POST    /p/E/:token  controllers.AuthenticationController.completeChangeEmail(request: Request, token: String)
 
 # extra
 GET     /x/t       controllers.InitialController.todo(request: Request)

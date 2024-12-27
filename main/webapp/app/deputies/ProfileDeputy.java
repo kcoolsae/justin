@@ -61,8 +61,4 @@ public class ProfileDeputy extends LoggedInDeputy {
         return ok (views.html.profile.change_email.render(this));
     }
 
-    public Result changeEmail() {
-        return ok ("changeEmail");
-    }
-
 }

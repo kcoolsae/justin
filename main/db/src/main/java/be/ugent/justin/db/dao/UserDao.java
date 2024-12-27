@@ -21,7 +21,7 @@ public interface UserDao {
      * Create a token for the user with the given email. Returns null
      * when the user does not exist.
      */
-    String createToken (String email);
+    String createToken (String email, boolean forEmailChange);
 
     /**
      * Create a registration token for the user with the given email.
@@ -29,10 +29,10 @@ public interface UserDao {
     String createRegistrationToken (String email, String country, boolean temporary);
 
     /**
-     * Return the user ID for the given (login) token. Returns 0 when not found
+     * Return the user ID for the given token. Returns 0 when not found
      * or when the token is expired.
      */
-    int getUserIdForLoginToken (String token);
+    int getUserIdForToken(String token, boolean forEmailChange);
 
     /**
      * Return the user for the given ID. Returns null when not found.
@@ -50,6 +50,11 @@ public interface UserDao {
     void updateName (String name);
 
     /**
+     * Update the email of the given user
+     */
+    void updateEmail (int userId, String email);
+
+    /**
      * Return all privilege types for the given user
      */
     List<PrivilegeType> listPrivilegeTypes (int userId);
@@ -63,6 +68,16 @@ public interface UserDao {
      * Find a registration record and delete it when found.
      */
     Registration findAndDeleteRegistration (String email, String token);
+
+    /**
+     * Find the token and return the corresponding user ID, or 0 if invalid
+     */
+    int findEmailToken (String email, String token);
+
+    /**
+     * Delete the email tokens for the given user
+     */
+    void deleteEmailTokens (int userId);
 
     /**
      * Create a new user with the given email, name and country. Returns the user ID.

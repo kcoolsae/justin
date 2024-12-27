@@ -1,0 +1,17 @@
+@* cgange_email.scala.txt
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+
+@(hostUri: String, token: String)
+
+Dear user,
+
+Please use the link below to change the email address you are registered with.
+(The link is valid for 30 minutes only!)
+
+@hostUri@controllers.routes.AuthenticationController.showNewEmail(token)
+

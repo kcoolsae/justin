@@ -22,11 +22,12 @@ CREATE TABLE privileges (
     privilege_detail TEXT -- e.g, category for which edit rights are granted
 );
 
--- used for logging in
+-- used for logging in and changing email address
 CREATE TABLE tokens (
     user_id       INTEGER PRIMARY KEY REFERENCES users,
     token_text    TEXT UNIQUE NOT NULL,
-    token_expires TIMESTAMP   NOT NULL
+    token_expires TIMESTAMP   NOT NULL,
+    token_for_email_change   BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE registrations (

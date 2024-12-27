@@ -19,14 +19,8 @@ import java.util.function.Supplier;
  * Common super class of all controllers that need the user to be logged in.
  * Also provides access to the markdown service.
  */
-@With(LoggedInController.CheckLoggedIn.class)
+@With(CheckLoggedIn.class)
 public class LoggedInController<D extends LoggedInDeputy> extends DataAccessController<D> {
-
-    static class CheckLoggedIn extends CheckPrivileges {
-        public CheckLoggedIn() {
-            super();
-        }
-    }
 
     @Inject
     private MarkdownService markdownService;

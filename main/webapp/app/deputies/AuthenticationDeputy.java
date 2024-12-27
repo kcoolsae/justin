@@ -42,7 +42,7 @@ public class AuthenticationDeputy extends EmailSendingDeputy {
             return badRequest(sign_in.render(form, this));
         } else {
             String email = form.get().email;
-            String token = dac().getUserDao().createToken(email);
+            String token = dac().getUserDao().createToken(email, false);
             if (token != null) {
                 sendEmail("Bebras Justin - Sign-in",
                         email,
@@ -57,7 +57,7 @@ public class AuthenticationDeputy extends EmailSendingDeputy {
      * Token login by registered user.
      */
     public Result login(String token) {
-        int userId = dac().getUserDao().getUserIdForLoginToken(token);
+        int userId = dac().getUserDao().getUserIdForToken(token, false);
         if (userId == 0) {
             error("""
                     The link you used to access the system is either invalid or
@@ -134,6 +134,73 @@ public class AuthenticationDeputy extends EmailSendingDeputy {
                 success("Registration was successfully completed. You can now sign in.");
                 return redirectToIndex();
             }
+        }
+    }
+
+    public Result sendEmailLink() {
+        String email = dac().getUserDao().getCurrentUser().email();
+        String token = dac().getUserDao().createToken(email, true);
+        sendEmail("Bebras Justin - Change email address",
+                email,
+                views.txt.mail.change_email.render(hostUri(), token).body());
+        success("An email was sent to the address you are currently registered with.");
+        return redirectToIndex();
+    }
+
+    @Getter
+    @Setter
+    public static class ChangeEmailData {
+        @Constraints.Required
+        @Constraints.Email
+        public String email;
+
+        @Constraints.Required
+        @Constraints.Email
+        public String newEmail;
+    }
+
+    public Result showNewEmail(String token) {
+        int userId = dac().getUserDao().getUserIdForToken(token, true);
+        if (userId == 0) {
+            error("The link you used to change your email address is either invalid or has expired.");
+            return redirectToIndex();
+        } else {
+            return ok(views.html.profile.new_email.render(emptyForm(ChangeEmailData.class),token, this));
+        }
+    }
+
+    public Result completeChangeEmail(String token) {
+        Form<ChangeEmailData> form = formFromRequest(ChangeEmailData.class);
+        if (form.hasErrors()) {
+            return badRequest(views.html.profile.new_email.render(form, token, this));
+        } else {
+            ChangeEmailData data = form.get();
+            UserDao dao = dac().getUserDao();
+
+            // find the token
+            int userId = dao.findEmailToken(data.email, token);
+            if (userId == 0) {
+                return badRequest(views.html.profile.new_email.render(
+                        form.withError("email", "Not the user's current email address"),
+                        token,
+                        this
+                ));
+            }
+
+            // check if the new email address is already in use
+            if (dao.emailExists(data.newEmail)) {
+                return badRequest(views.html.profile.new_email.render(
+                        form.withError("newEmail", "Email address is already in use"),
+                        token,
+                        this
+                ));
+            }
+
+            // change the email address and delete email tokens
+            dao.updateEmail(userId, data.newEmail);
+            dao.deleteEmailTokens(userId);
+            success("Email address was successfully changed. You need to sign in again.");
+            return redirectToIndex().withNewSession();
         }
     }
 

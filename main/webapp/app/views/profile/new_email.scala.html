@@ -1,0 +1,28 @@
+@* registration_info.scala.html
+* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Copyright © 2024 Kris Coolsaet (Universiteit Gent)
+*
+* This software is distributed under the MIT License - see files LICENSE and AUTHORS
+* in the top level project directory.
+*@
+@import deputies.AuthenticationDeputy
+
+@(f: Form[AuthenticationDeputy.ChangeEmailData], token: String)(implicit deputy: AuthenticationDeputy)
+
+@layout.small("new_email", "Change email address") {
+    @helper.form(action = routes.AuthenticationController.completeChangeEmail(token)) {
+        <div class="row">
+        @b5.email(f("email"), "_class" -> "col",
+            "_label" -> "Current email address")
+
+        </div>
+        <div class="row">
+        @b5.email(f("newEmail"), "_class" -> "col",
+            "_label" -> "New email address")
+        </div>
+        <p class="mt-2"><button type="submit" class="btn btn-primary">Submit</button></p>
+        <p>Your email address is used to identify you with the system. After you change your email address
+        you must use the new address for signing in to the system.</p>
+    }
+}
+
