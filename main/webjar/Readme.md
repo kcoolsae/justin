@@ -6,7 +6,18 @@ Constructs the webjar with fonts and css for the `webapp` project.
 
 Bootstrap customization is done in the `scss` directory.
 
-### Preliminary setup
+### Preliminary setup - Google fonts
+
+Before building the webjar, the following Fira Sans fonts should be downloaded from Google, 
+converted to `.woff` and to `.woff2` format
+and stored in the directory `.../webjar/public/fonts`. These font files are not be stored in the repository.
+
+    FiraSans-Italic.woff FiraSans-Italic.woff2
+    FiraSans-Regular.woff FiraSans-Regular.woff2
+    FiraSans-Medium.woff FiraSans-Medium.woff2
+    FiraSans-MediumItalic.woff FiraSans-MediumItalic.woff2
+
+### Preliminary setup - bootstrap
 
 To build the webjar you need the bootstrap distribution and additional the `sass` command. Both
 can be installed using `npm`, as follows

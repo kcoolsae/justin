@@ -64,7 +64,7 @@ public class AuthenticationDeputy extends EmailSendingDeputy {
                     has expired. Please sign in again to continue.""");
             return redirectToIndex();
         } else {
-            User user = dac().getUserDao().getUserById(userId); // TODO combine with getUserIdForLoginToken ?
+            User user = dac().getUserDao().getUserById(userId);
             StringBuilder privilegeTypes = new StringBuilder();
             for (PrivilegeType pt : dac().getUserDao().listPrivilegeTypes(userId)) {
                 privilegeTypes.append(pt.getCode());

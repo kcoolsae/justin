@@ -7,11 +7,6 @@
  * in the top level project directory.
  */
 
-/* Google fonts */
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;1,400;1,500&display=swap');
-
-/* TODO serve fonts locally */
-
 /* General styling */
 body {
     height: 100%;

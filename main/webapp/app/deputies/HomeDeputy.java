@@ -9,6 +9,7 @@
 
 package deputies;
 
+import be.ugent.justin.db.dao.FormDao;
 import be.ugent.justin.db.dto.Event;
 import be.ugent.justin.db.dto.FormLabel;
 import common.LoggedInDeputy;
@@ -30,10 +31,11 @@ public class HomeDeputy extends LoggedInDeputy {
 
     private List<FormInfo> listFormInfo(int eventId) {
         // TODO do this on the database side
-        List<FormLabel> formLabels = dac().getFormDao().listFormsRestricted(eventId);
+        FormDao dao = dac().getFormDao();
+        List<FormLabel> formLabels = dao.listFormsRestricted(eventId);
         List<FormInfo> result = new ArrayList<>();
         for (FormLabel label : formLabels) {
-            boolean unanswered = label.participation() && dac().getFormDao().hasUnansweredMandatoryQuestions(label.id());
+            boolean unanswered = label.participation() && dao.hasUnansweredMandatoryQuestions(label.id());
             result.add(new FormInfo(label, unanswered));
         }
         return result;

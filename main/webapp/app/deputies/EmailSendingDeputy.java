@@ -28,7 +28,7 @@ public class EmailSendingDeputy extends DataAccessDeputy {
     }
 
     protected String hostUri() {
-        // TODO is there a more reliable way to do this?
+        // ?is there a more reliable way to do this?
         String host = request.host();
         if (host.endsWith("443")) {
             return "https://" + host;

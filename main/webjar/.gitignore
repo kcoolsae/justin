@@ -2,5 +2,4 @@ bootstrap/
 bootstrap.bundle.min.js*
 justin-bootstrap.min.css*
 
-/public/css/tables.css*
-
+/public/fonts/

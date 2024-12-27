@@ -11,8 +11,6 @@ import javax.inject.Singleton;
 @Singleton
 public class MarkdownServiceImpl implements MarkdownService {
 
-    // TODO HTML-tags not allowed
-
     private final Parser parser;
 
     private final HtmlRenderer renderer;
