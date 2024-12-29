@@ -9,6 +9,7 @@
 
 package deputies;
 
+import be.ugent.justin.db.dao.EventDao;
 import be.ugent.justin.db.dao.FormDao;
 import be.ugent.justin.db.dto.Event;
 import be.ugent.justin.db.dto.FormLabel;
@@ -18,7 +19,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import play.mvc.Result;
-
 import views.html.home.*;
 
 import java.util.ArrayList;
@@ -45,7 +45,8 @@ public class HomeDeputy extends LoggedInDeputy {
      * Landing page for a registered user.
      */
     public Result landing() {
-        List<Event> events = dac().getEventDao().getVisibleEvents();
+        EventDao dao = dac().getEventDao();
+        List<Event> events = dao.getVisibleEvents();
         if (events.isEmpty()) {
             return ok(no_event.render(this));
         } else {
@@ -57,14 +58,19 @@ public class HomeDeputy extends LoggedInDeputy {
                 return ok(change_participation.render(
                         event,
                         emptyForm(ParticipationData.class),
+                        dao.getUsers(event.id(), getCountry()),
                         this
                 ));
             } else {
                 return ok (switch (event.status()) {
-                    case PUBLISHED -> published.render(event, this);
+                    case PUBLISHED -> published.render(
+                            event,
+                            dao.getUsers(event.id(), getCountry()),
+                            this);
                     case OPEN -> open.render(
                             event,
                             listFormInfo(event.id()),
+                            dao.getUsers(event.id(), getCountry()),
                             this
                     );
                     case CLOSED -> closed.render(event, this);
@@ -87,10 +93,12 @@ public class HomeDeputy extends LoggedInDeputy {
      * Show the form to change participation
      */
     public Result showChangeParticipation(int eventId) {
-        Event event = dac().getEventDao().getEvent(eventId);
+        EventDao dao = dac().getEventDao();
+        Event event = dao.getEvent(eventId);
         return ok(change_participation.render(
                 event,
                 formFromData(new ParticipationData(event.participation())),
+                dao.getUsers(eventId, getCountry()),
                 this
         ));
     }

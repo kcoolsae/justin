@@ -31,4 +31,11 @@ public interface EventDao {
      */
     void setParticipation(int eventId, boolean participating);
 
+    record UserParticipation(String name, boolean participating, boolean temporary) {
+    }
+
+    /**
+     * Get the list of users with a known participation status for the given event.
+     */
+    List<UserParticipation> getUsers(int eventId, String country);
 }

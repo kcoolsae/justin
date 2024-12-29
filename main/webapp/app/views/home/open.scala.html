@@ -8,8 +8,10 @@
 @import _root_.be.ugent.justin.db.dto.{Event, FormLabel}
 
 @import java.time.format.DateTimeFormatter
+@import _root_.be.ugent.justin.db.dao.EventDao
 
-@(event: Event, forms: List[HomeDeputy.FormInfo])(implicit deputy: HomeDeputy)
+
+@(event: Event, forms: List[HomeDeputy.FormInfo], users: List[EventDao.UserParticipation])(implicit deputy: HomeDeputy)
 
 @js = {
     <script>
@@ -66,5 +68,5 @@
                 in a separate application.</p>
         </div>
     }
-
+    @_country_participations(users)
 }

@@ -9,7 +9,8 @@ CREATE TABLE users (
     user_id       SERIAL PRIMARY KEY,
     user_email    TEXT UNIQUE NOT NULL, -- always trimmed lower case
     user_name     TEXT NOT NULL,
-    user_country  CHAR(2) NOT NULL -- may reference a country table
+    user_country  CHAR(2) NOT NULL, -- may reference a country table
+    user_temporary BOOLEAN NOT NULL DEFAULT FALSE -- temporary users are deleted after an event
 );
 
 -- to be extended
