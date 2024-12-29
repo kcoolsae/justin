@@ -10,11 +10,14 @@
 package deputies;
 
 import be.ugent.justin.db.dao.UserDao;
+import be.ugent.justin.db.dto.User;
 import lombok.Getter;
 import lombok.Setter;
 import play.data.Form;
 import play.data.validation.Constraints;
 import play.mvc.Result;
+
+import java.util.List;
 
 public class RegistrationDeputy extends EmailSendingDeputy {
 
@@ -87,6 +90,13 @@ public class RegistrationDeputy extends EmailSendingDeputy {
                 views.txt.mail.register.render(hostUri(), token).body());
         success("A registration invite was sent");
         return redirectToIndex();
+    }
+
+    // ACCESSORS TO BE USED BY VIEWS
+    ///////////////////////////////
+
+    public List<User> listUsersCurrentCountry() {
+        return dac().getUserDao().listUsers(getCountry());
     }
 
 }

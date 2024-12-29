@@ -9,11 +9,14 @@
 
 package be.ugent.justin.db.jdbc;
 
+import be.ugent.caagt.dao.helper.SelectSQLStatement;
 import be.ugent.justin.db.dao.UserDao;
 import be.ugent.justin.db.dto.PrivilegeType;
 import be.ugent.justin.db.dto.Registration;
 import be.ugent.justin.db.dto.User;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
@@ -68,17 +71,34 @@ class JDBCUserDao extends JDBCAbstractDao implements UserDao {
                 .getInt();
     }
 
+    private SelectSQLStatement selectUsers() {
+        return select("user_id, user_email, user_name, user_country, user_temporary")
+                .from("users");
+
+    }
+
+    private static User makeUser (ResultSet rs) throws SQLException {
+        return new User(
+                rs.getInt("user_id"),
+                rs.getString("user_email"),
+                rs.getString("user_name"),
+                rs.getString("user_country"),
+                rs.getBoolean("user_temporary")
+        );
+    }
+
     @Override
     public User getUserById(int userId) {
-        return select("user_email, user_name, user_country")
-                .from("users")
+        return selectUsers()
                 .where("user_id", userId)
-                .getObject(rs -> new User(
-                        userId,
-                        rs.getString("user_email"),
-                        rs.getString("user_name"),
-                        rs.getString("user_country")
-                ));
+                .getObject(JDBCUserDao::makeUser);
+    }
+
+    @Override
+    public List<User> listUsers(String country) {
+        return selectUsers()
+                .where("user_country", country)
+                .getList(JDBCUserDao::makeUser);
     }
 
     @Override

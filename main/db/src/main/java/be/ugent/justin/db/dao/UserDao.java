@@ -88,4 +88,9 @@ public interface UserDao {
      * Are these valid registration credentials?
      */
     boolean isValidRegistration (String token);
+
+    /**
+     * List all users for a given country
+     */
+    List<User> listUsers (String country);
 }

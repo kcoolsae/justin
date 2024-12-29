@@ -12,22 +12,22 @@
 @(f: Form[RegistrationDeputy.RegistrationData])(implicit deputy: RegistrationDeputy)
 
 @layout.plain("registration_external") {
-    <div class="card">
-        <div class="card-body">
-            <h3 class="card-title">Registration</h3>
-            @helper.form(action = routes.RegistrationController.registerExternal()) {
-                <div class="row">
-                    @b5.text(f("email"), "_class" -> "col-8 col-sm-9 col-md-10", "_label" -> "Email address of person to be registered",
-                        "required" -> "true")
-                    @b5.text(f("country"), "_label" -> "Country code", "_class" -> "col-4 col-sm-3 col-md-2", "placeholder" -> "2 chars",
-                        "required" -> "true")
-                </div>
-                @b5.checkbox(f("temporary"), "This is a temporary registration", "_label" -> "",
-                    "_help" -> "Temporary registrations are deleted after each event and are meant for individuals outside the Bebras community, such as accompanying guests.")
-                <button type="submit" class="btn btn-primary mt-2">Initiate registration</button>
-            }
-            <p class="mt-2">This sends an email containing a link for the recipient to complete their registration.</p>
-        </div>
-    </div>
 
+    <h3>Registrations (all countries)</h3>
+    <p class="demo">Here comes a table of all registered users. Possibly with an option to delete a user, and to delete all
+        temporary users.</p>
+
+    <h4>Register new user</h4>
+    @helper.form(action = routes.RegistrationController.registerExternal()) {
+        <div class="row">
+            @b5.text(f("email"), "_class" -> "col-8 col-sm-9 col-md-10", "_label" -> "Email address of person to be registered",
+                "required" -> "true")
+            @b5.text(f("country"), "_label" -> "Country code", "_class" -> "col-4 col-sm-3 col-md-2", "placeholder" -> "2 chars",
+                "required" -> "true")
+        </div>
+        @b5.checkbox(f("temporary"), "This is a temporary registration", "_label" -> "",
+            "_help" -> "Temporary registrations are deleted after each event and are meant for individuals outside the Bebras community, such as accompanying guests.")
+        <button type="submit" class="btn btn-primary mt-2">Initiate registration</button>
+    }
+    <p class="mt-2">This sends an email containing a link for the recipient to complete their registration.</p>
 }

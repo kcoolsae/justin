@@ -9,5 +9,5 @@
 
 package be.ugent.justin.db.dto;
 
-public record User(int id, String email, String name, String country) {
+public record User(int id, String email, String name, String country, boolean temporary) {
 }
