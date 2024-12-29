@@ -5,32 +5,34 @@
 * This software is distributed under the MIT License - see files LICENSE and AUTHORS
 * in the top level project directory.
 *@
-@import _root_.be.ugent.justin.db.dao.EventDao
 
-@(users: List[EventDao.UserParticipation])(implicit deputy: HomeDeputy)
+@(eventId: Int)(implicit deputy: HomeDeputy)
 
 <h5>Participations (@deputy.getCountry)</h5>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Participating</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if(users.isEmpty) {
-            <tr><td colspan="2">No data.</td></tr>
-        } else {
-          @foreach(users){ user =>
+@defining(deputy.getEventUsers(eventId)) { users =>
+    <table class="table">
+        <thead>
             <tr>
-                <td>@user.name@if(user.temporary)("*")</td>
-                <td>@if(user.participating)("Yes")else("No")</td>
+                <th>Name</th>
+                <th>Participating</th>
             </tr>
-          }
-        }
-    </tbody>
-</table>
-@if(users.asScala.exists(_.temporary)) {
-    <p class="form-text">* = temporary registration</p>
+        </thead>
+        <tbody>
+
+            @if(users.isEmpty) {
+                <tr><td colspan="2">No data.</td></tr>
+            } else {
+                @foreach(users) { user =>
+                    <tr>
+                        <td>@user.name @if(user.temporary)("*")</td>
+                        <td>@if(user.participating)("Yes")else("No")</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    @if(users.asScala.exists(_.temporary)) {
+        <p class="form-text">* = temporary registration</p>
+    }
 }

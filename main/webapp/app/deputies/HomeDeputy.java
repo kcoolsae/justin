@@ -26,7 +26,7 @@ import java.util.List;
 
 public class HomeDeputy extends LoggedInDeputy {
 
-    public record FormInfo (FormLabel label, boolean unanswered) {
+    public record FormInfo(FormLabel label, boolean unanswered) {
     }
 
     private List<FormInfo> listFormInfo(int eventId) {
@@ -45,32 +45,26 @@ public class HomeDeputy extends LoggedInDeputy {
      * Landing page for a registered user.
      */
     public Result landing() {
-        EventDao dao = dac().getEventDao();
-        List<Event> events = dao.getVisibleEvents();
+        List<Event> events = dac().getEventDao().getVisibleEvents();
         if (events.isEmpty()) {
             return ok(no_event.render(this));
         } else {
             if (events.size() > 1) {
-                warning ("Only the most recent event is shown.");
+                warning("Only the most recent event is shown.");
             }
             Event event = events.getFirst();
             if (event.participation() == null) {
                 return ok(change_participation.render(
                         event,
                         emptyForm(ParticipationData.class),
-                        dao.getUsers(event.id(), getCountry()),
                         this
                 ));
             } else {
-                return ok (switch (event.status()) {
-                    case PUBLISHED -> published.render(
-                            event,
-                            dao.getUsers(event.id(), getCountry()),
-                            this);
+                return ok(switch (event.status()) {
+                    case PUBLISHED -> published.render(event, this);
                     case OPEN -> open.render(
                             event,
                             listFormInfo(event.id()),
-                            dao.getUsers(event.id(), getCountry()),
                             this
                     );
                     case CLOSED -> closed.render(event, this);
@@ -93,12 +87,10 @@ public class HomeDeputy extends LoggedInDeputy {
      * Show the form to change participation
      */
     public Result showChangeParticipation(int eventId) {
-        EventDao dao = dac().getEventDao();
-        Event event = dao.getEvent(eventId);
+        Event event = dac().getEventDao().getEvent(eventId);
         return ok(change_participation.render(
                 event,
                 formFromData(new ParticipationData(event.participation())),
-                dao.getUsers(eventId, getCountry()),
                 this
         ));
     }
@@ -113,6 +105,14 @@ public class HomeDeputy extends LoggedInDeputy {
             dac().getEventDao().setParticipation(eventId, participation);
         }
         return redirectToIndex();
+    }
+
+    // ACCESSORS FOR USE BY VIEWS
+
+    /// //////////////////////////
+
+    public List<EventDao.UserParticipation> getEventUsers(int eventId) {
+        return dac().getEventDao().getUsers(eventId, getCountry());
     }
 
 }

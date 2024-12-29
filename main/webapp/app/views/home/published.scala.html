@@ -6,11 +6,10 @@
 * in the top level project directory.
 *@
 @import _root_.be.ugent.justin.db.dto.Event
-@import _root_.be.ugent.justin.db.dao.EventDao
 
-@(event: Event, users: List[EventDao.UserParticipation])(implicit deputy: HomeDeputy)
+@(event: Event)(implicit deputy: HomeDeputy)
 
 @layout.plain("published") {
     @_event_header_long(event)
-    @_country_participations(users)
+    @_country_participations(event.id)
 }

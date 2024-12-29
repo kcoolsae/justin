@@ -6,10 +6,9 @@
 * in the top level project directory.
 *@
 
-@import _root_.be.ugent.justin.db.dao.EventDao
 @import _root_.be.ugent.justin.db.dto.Event
 
-@(event: Event, f: Form[HomeDeputy.ParticipationData], users: List[EventDao.UserParticipation])(implicit deputy: HomeDeputy)
+@(event: Event, f: Form[HomeDeputy.ParticipationData])(implicit deputy: HomeDeputy)
 
 @layout.plain("change_participation") {
     @_event_header(event)
@@ -34,6 +33,6 @@
         <p>Comments set in this color and style will be removed once
         the application is in production.</p>
     </div>
-    @_country_participations(users)
+    @_country_participations(event.id)
 
 }
