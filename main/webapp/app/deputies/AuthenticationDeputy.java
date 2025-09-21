@@ -129,8 +129,7 @@ public class AuthenticationDeputy extends EmailSendingDeputy {
                         this
                 ));
             } else {
-                // TODO use temporary flag
-                dao.createUser(data.email, data.name, registration.country());
+                dao.createUser(data.email, data.name, registration.country(), registration.temporary());
                 success("Registration was successfully completed. You can now sign in.");
                 return redirectToIndex();
             }

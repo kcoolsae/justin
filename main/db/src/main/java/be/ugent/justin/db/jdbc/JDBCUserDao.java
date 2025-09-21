@@ -176,11 +176,12 @@ class JDBCUserDao extends JDBCAbstractDao implements UserDao {
     }
 
     @Override
-    public void createUser(String email, String name, String country) {
+    public void createUser(String email, String name, String country, boolean temporary) {
         insertInto("users")
                 .value("user_email", email.toLowerCase().strip())
                 .value("user_name", name)
                 .value("user_country", country)
+                .value("user_temporary", temporary)
                 .execute();
     }
 

@@ -91,6 +91,7 @@ user interface for the user to upload images.
 Technical
 ---
 Programming the pages where users fill in data, is fairly straightforward (and is already implemented at the current time). The part of the application that allows
-privileged users to create and edit forms, is much more complex - and of low priority. For 2025 the forms will be imported directly into the database
+privileged users to create and edit forms, is much more complex - and of low priority. For 2025 (and maybe 2026?) the forms
+will be imported directly into the database
 from an XML file.
 

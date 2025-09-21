@@ -42,9 +42,9 @@ Note that the system treats the last two categories in a very similar way, so it
 a category in the future.
 
 {:.note}
-In 2025 only the THC part of the system will be implemented, as 
-the host (South Korea) has already its own system in place to
-gather accomodation preferences.
+The system was not used in 2025 because the host (South Korea) had already started implementing 
+their own system to gather accommodation preferences. It is not clear whether the system will
+be used in 2026 - we want to avoid using two different systems at the same time.
 
 User types
 ---
@@ -146,9 +146,6 @@ To invite a person, you enter their email address
 in the system (and press a button). The system then sends an email to that person
 with a link that allows them to complete their registration
 (and enter their full name).
-
-{:.note}
-Registration of temporary users is disabled in the 2025 application.
 
 Language
 --------

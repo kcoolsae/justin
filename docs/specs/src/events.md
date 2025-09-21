@@ -28,9 +28,6 @@ for additional cases, currently only two categories are implemented:
 * Background information needed by the THC (`thc`)
 * Accommodation preferences needed by the host (`host`)
 
-{:.note}
-In 2025 only the category `thc` will be provided.
-
 Subscribing to a category serves a dual purpose
 
 * Subscribing to `host` indicates that the user will attend the international workshop in person
@@ -50,7 +47,7 @@ Local participants from the organising host, that are not participants in the st
 need not necessarily register with the system. But then the host must make sure that they are included in the accommodation planning.
 
 Access privileges to data entered by the users in the different forms is restricted to a specific category.
-Some users will have 'view data'-privilege only for category `thc`, others only for catgeory `host`. 
+Some users will have 'view data'-privilege only for category `thc`, others only for category `host`. 
 
 # Event status
 

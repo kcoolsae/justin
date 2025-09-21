@@ -82,7 +82,7 @@ public interface UserDao {
     /**
      * Create a new user with the given email, name and country. Returns the user ID.
      */
-    void createUser (String email, String name, String country);
+    void createUser (String email, String name, String country, boolean temporary);
 
     /**
      * Are these valid registration credentials?

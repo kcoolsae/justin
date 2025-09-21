@@ -8,15 +8,15 @@ libraryDependencies ++= Seq(
   javaCore, guice, javaJdbc,
 
   "be.ugent.caagt" %% "play-utils" % "1.1",
-  "org.webjars" % "font-awesome" % "6.7.1",
+  "org.webjars" % "font-awesome" % "6.7.2",
   "org.playframework" %% "play-mailer" % "10.1.0",
   "org.playframework" %% "play-mailer-guice" % "10.1.0",
 
   "com.vladsch.flexmark" % "flexmark" % "0.64.8",
 
-  "org.projectlombok" % "lombok" % "1.18.36" % Compile,
+  "org.projectlombok" % "lombok" % "1.18.42" % Compile,
 
-  "org.postgresql" % "postgresql" % "42.7.4" % Runtime
+  "org.postgresql" % "postgresql" % "42.7.8" % Runtime
 )
 
 // Include template extensions for be.ugent.caagt:play-utils

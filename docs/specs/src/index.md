@@ -17,15 +17,14 @@ See
 * [Form structure](forms.md)
 
 Recent changes
-* December 16 - [registration](overview.md#registration) procedure. Rewrite of other pages to
+* September 2025. Revived the demo. (The system was not used in 2025.)
+* December 16, 2024 - [registration](overview.md#registration) procedure. Rewrite of other pages to
   better conform to the actual application as it is being implemented.
-* December 9 - [mockups](mockups/pending.html) of the landing page, depending on status.
+* December 9, 2024 - [mockups](mockups/pending.html) of the landing page, depending on status.
 * [Less recent changes](changes.md)
 
 Schedule
 * High priority: the interface for the user: authentication, registration, data entry
 * Medium priority: data retrieval by authorised users
 * Lower priority: compilation of question forms (could be done offline for the first year), assignment of roles, special cases
-* **Important note** For 2025 only the THC questionnaire will be implemented, 
-  accommodation preferences will be gathered by the host (South Korea). 
 
